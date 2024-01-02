@@ -1,0 +1,10 @@
+@mixin breakpoint($size) {
+    @if map-has-key($breakpoints, $size) {
+      @media #{inspect(map-get($breakpoints, $size))} {
+        @content;
+      }
+    } @else {
+      @warn "Invalid breakpoint size: #{$size}.";
+    }
+  }
+  
