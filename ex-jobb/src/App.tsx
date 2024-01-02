@@ -1,15 +1,15 @@
 
 import './style/index.scss'
+import {RouterProvider} from 'react-router-dom'
+import { router } from './Router'
+
 
 function App() {
- 
+
 
   return (
     <>
-
-      <h1>Hello world
-      <i className="material-symbols-outlined">book_2</i>
-      </h1>
+   <RouterProvider router={router}></RouterProvider>
     </>
   )
 }
