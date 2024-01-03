@@ -2,16 +2,15 @@
 
 .header {
     &-container {
+        @extend %container;
         position: relative;
-        margin-left: -16px;
-        margin-right: -16px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         background-color: $secondary;
-        padding-left: 16px;
-        padding-right: 16px;
+        z-index: 2;
+        
     }
     &-logo {
         width: 150px;
@@ -23,6 +22,7 @@
         min-width: 100%;
         top: 0;
         left: 0;
+        box-shadow: 0 5px 5px black;
 
         &-container {
             width: 100vw;

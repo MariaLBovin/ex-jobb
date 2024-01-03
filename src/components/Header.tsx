@@ -1,15 +1,13 @@
 import { useState } from "react"
 
-const Header = () => {
+interface HeaderProps {
+    onToggleMainMenu: () => void;
+    mainMenuOpen: boolean;
+  }
 
-    const [mainMenuOpen, setmainMenuOpen] =useState(false);
-
+const Header = ({onToggleMainMenu, mainMenuOpen} :HeaderProps) => {
     const [subMenuOpen, setsubMenuOpen] = useState(false);
 
-    const toggleMainMenu = () => {
-        setmainMenuOpen(!mainMenuOpen);
-    };
-    
     const toggleSubMenu = () => {
         setsubMenuOpen(!subMenuOpen);
     }
@@ -18,7 +16,7 @@ const Header = () => {
     <>
         <header className="header-container">
             <div className="header-logo-container">
-                <img className="header-logo" src="/public/logo.png"/>
+                <img className="header-logo" src="/logo.png"/>
             </div>
             <nav className={`header-nav ${mainMenuOpen ? "" : "hidden"}`} aria-label="main" aria-hidden="true">
                 <ul className="header-nav-list">
@@ -42,7 +40,7 @@ const Header = () => {
                     <li className="header-nav-item">Meny</li>
                 </ul>
             </nav>
-            <button className="header-nav-button" onClick={toggleMainMenu}>
+            <button className="header-nav-button" onClick={onToggleMainMenu}>
             {mainMenuOpen ? (
             <span className="material-symbols-outlined header-nav-symbol">close</span>
           ) : (

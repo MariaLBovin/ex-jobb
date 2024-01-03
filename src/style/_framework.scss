@@ -4,7 +4,10 @@
 *::after {
     box-sizing: border-box;
 }
-
+#root {
+    display: flex;
+    flex-direction: column;
+}
 html,
 body {
     height: 100%;
@@ -21,15 +24,24 @@ img {
     max-width: 100%;
     display: block;
 }
+.main {
+    display: flex;
+    flex: 1;
+
+    
+}
 .hidden {
   display: none;
 }
-.material-symbols-outlined {
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24
-  }
+// .material-symbols-outlined {
+//     font-variation-settings:
+//     'FILL' 0,
+//     'wght' 400,
+//     'GRAD' 0,
+//     'opsz' 24
+//   }
 
-
+.overlay {
+    background-color: black;
+    opacity: .1;
+};

@@ -3,11 +3,11 @@
 
 /*------------------- placeholder components ----------------*/
 
-.container {
+%container {
     max-width: 100vw;
     padding-right: calc($gutter / 2);
     padding-left: calc($gutter / 2);
-    margin: 0;
+
 
     @include breakpoint(s) {
         max-width: $tablet;
