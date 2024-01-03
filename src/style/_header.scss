@@ -1,0 +1,39 @@
+@import './variables';
+
+.header {
+    &-container {
+        position: relative;
+        margin-left: -16px;
+        margin-right: -16px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $secondary;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    &-logo {
+        width: 150px;
+    }
+
+    &-nav {
+        &-list {
+            @extend %listreset;
+            position: fixed;
+        }
+        
+        &-button{
+            @extend %buttonreset;
+            position: fixed;
+            right: 16px;
+        }
+        &-symbol {
+            line-height: 1.5;
+            color: $primary;
+            font-size: 3.2rem;
+            
+        }
+    }
+
+}

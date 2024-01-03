@@ -4,10 +4,10 @@
 /*------------------- placeholder components ----------------*/
 
 .container {
-    width: 100%;
-    padding-right: $gutter;
-    padding-left: $gutter;
-    margin: 0 auto;
+    max-width: 100vw;
+    padding-right: calc($gutter / 2);
+    padding-left: calc($gutter / 2);
+    margin: 0;
 
     @include breakpoint(s) {
         max-width: $tablet;
