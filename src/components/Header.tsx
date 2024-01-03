@@ -2,11 +2,17 @@ import { useState } from "react"
 
 const Header = () => {
 
-    const [menuOpen, setMenuOpen] =useState(false);
+    const [mainMenuOpen, setmainMenuOpen] =useState(false);
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
+    const [subMenuOpen, setsubMenuOpen] = useState(false);
+
+    const toggleMainMenu = () => {
+        setmainMenuOpen(!mainMenuOpen);
     };
+    
+    const toggleSubMenu = () => {
+        setsubMenuOpen(!subMenuOpen);
+    }
 
   return (
     <>
@@ -14,14 +20,30 @@ const Header = () => {
             <div className="header-logo-container">
                 <img className="header-logo" src="/public/logo.png"/>
             </div>
-            <nav className={`header-nav ${menuOpen ? "" : "hidden"}`} aria-label="main" aria-hidden="true">
+            <nav className={`header-nav ${mainMenuOpen ? "" : "hidden"}`} aria-label="main" aria-hidden="true">
                 <ul className="header-nav-list">
-                    <li className="header-nav-item">Meny</li>
+                    <li className="header-nav-item">
+                    <button className="header-nav-innerButton" onClick={toggleSubMenu}>
+                       Kategorier
+                       <span className="material-symbols-outlined">expand_more</span>
+                    </button>
+                    <ul className={`header-nav-innerMenu ${subMenuOpen ? "" : "hidden"}`} aria-label="inner" aria-hidden="true">
+                            <li className="header-nav-innerItem">
+                                kategori
+                            </li>
+                            <li className="header-nav-innerItem">
+                                kategori
+                            </li>
+                            <li className="header-nav-innerItem">
+                                kategori
+                            </li>
+                        </ul>
+                    </li>
                     <li className="header-nav-item">Meny</li>
                 </ul>
             </nav>
-            <button className="header-nav-button" onClick={toggleMenu}>
-            {menuOpen ? (
+            <button className="header-nav-button" onClick={toggleMainMenu}>
+            {mainMenuOpen ? (
             <span className="material-symbols-outlined header-nav-symbol">close</span>
           ) : (
             <span className="material-symbols-outlined header-nav-symbol">menu</span>

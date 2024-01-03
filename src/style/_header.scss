@@ -23,6 +23,7 @@
         min-width: 100%;
         top: 0;
         left: 0;
+
         &-container {
             width: 100vw;
             background-color: $secondary;
@@ -44,6 +45,20 @@
             line-height: 1.5;
             color: $primary;
             font-size: 3.2rem;
+            
+        }
+        &-inner {
+            &Menu {
+                @extend %listreset;
+                padding-left: 16px;
+                font-weight: lighter;
+            }
+            &Button {
+                @extend %buttonreset;
+                color: inherit;
+                display: flex;
+            }
+
             
         }
     }
