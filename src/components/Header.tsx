@@ -23,7 +23,11 @@ const Header = ({onToggleMainMenu, mainMenuOpen} :HeaderProps) => {
                     <li className="header-nav-item">
                     <button className="header-nav-innerButton" onClick={toggleSubMenu}>
                        Kategorier
-                       <span className="material-symbols-outlined">expand_more</span>
+                       {!subMenuOpen ? (
+                        <span className="material-symbols-outlined">expand_more</span>
+                        ) : (
+                        <span className="material-symbols-outlined">expand_less</span>
+                        )}
                     </button>
                     <ul className={`header-nav-innerMenu ${subMenuOpen ? "" : "hidden"}`} aria-label="inner" aria-hidden="true">
                             <li className="header-nav-innerItem">
