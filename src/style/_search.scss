@@ -1,0 +1,40 @@
+@import './variables';
+
+.search {
+    &-container {
+        @extend %container;
+        background-color: $secondary;
+        padding-top: $gutter;
+        height: 80vh;
+    }
+    &-header {
+        color: $primary;
+        padding-bottom: $gutter;
+    }
+
+    &-text {
+        background-color: $yellow;
+        border-radius: 0 15px;
+        padding: calc($gutter / 2);
+        margin-bottom: $gutter;
+    }
+    &-form {
+        display: flex;
+        flex-direction: column;
+        gap: calc($gutter / 2)
+    }
+    &-input {
+        font-size: 1.6rem;
+        height: 30px;
+        box-shadow: 0 5px 5px black;
+        border: none
+    }
+    &-button {
+        @extend %buttonreset;
+        background-color: $blue;
+        height: 45px;
+        width: 115px;
+        border-radius: 5px;
+        box-shadow: 0 5px 5px black;
+    }
+}
