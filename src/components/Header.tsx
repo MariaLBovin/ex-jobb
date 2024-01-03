@@ -14,7 +14,7 @@ const Header = () => {
             <div className="header-logo-container">
                 <img className="header-logo" src="/public/logo.png"/>
             </div>
-            <nav className="header-nav hidden" aria-label="main" aria-hidden="true">
+            <nav className={`header-nav ${menuOpen ? "" : "hidden"}`} aria-label="main" aria-hidden="true">
                 <ul className="header-nav-list">
                     <li className="header-nav-item">Meny</li>
                     <li className="header-nav-item">Meny</li>
@@ -27,6 +27,8 @@ const Header = () => {
             <span className="material-symbols-outlined header-nav-symbol">menu</span>
           )}
             </button>
+            
+            
         </header>
     </>
   )
