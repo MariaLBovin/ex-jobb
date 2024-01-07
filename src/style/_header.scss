@@ -1,4 +1,5 @@
 @import './variables';
+@import './mixins';
 
 .header {
     &-container {
@@ -40,6 +41,11 @@
             @extend %buttonreset;
             position: fixed;
             right: 16px;
+
+            @include breakpoint (s) {
+                display: none;
+            }
+           
         }
         &-symbol {
             line-height: 1.5;
@@ -57,9 +63,40 @@
                 @extend %buttonreset;
                 color: inherit;
                 display: flex;
+                align-items: center;
+            }
+            &Desktop{
+                &Menu {
+                    @extend %listreset;
+                }
+                &Item {
+                    padding-left: calc($gutter/2);
+                }
             }
 
+        }
+        &-desktop {
+            width: 70%;
+            display: flex;
             
+            @include breakpoint (m) {
+                display: none;
+            }
+
+            &List {
+                @extend %listreset;
+                display: flex;
+                flex-direction: row;
+                gap: $gutter;
+                position: absolute;
+                right: $gutter;
+                color: $primary;
+                align-items:flex-start;
+                
+            }
+            &Item {
+                width: 200px;
+            }
         }
     }
 

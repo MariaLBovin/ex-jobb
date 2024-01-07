@@ -1,4 +1,48 @@
+///Skönlitteratur
+GET https://www.googleapis.com/books/v1/volumes?q=*+subject:fiction&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+
+###
+///Barnböcker
+GET https://www.googleapis.com/books/v1/volumes?q=*+subject:juvenile%fiction&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+
+###
+///True crime
+GET https://www.googleapis.com/books/v1/volumes?q=*+subject:true%crime&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
 
 
-GET https://www.googleapis.com/books/v1/volumes?q=pride+prejudice&download=epub&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+###
+///Lyrik
+GET https://www.googleapis.com/books/v1/volumes?q=*+subject:poetry&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+
+###
+/// Biografier
+GET https://www.googleapis.com/books/v1/volumes?q=*+subject:biography%autobiography&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+
+
+///Allt här under går som fakta
+###
+///Familj
+GET https://www.googleapis.com/books/v1/volumes?q=*+subject:family%relationships&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+
+###
+///Trädgård
+GET https://www.googleapis.com/books/v1/volumes?q=*+subject:gardening&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+
+###
+///Lagar & regler
+GET https://www.googleapis.com/books/v1/volumes?q=*+subject:law&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+
+###
+///Politik
+GET https://www.googleapis.com/books/v1/volumes?q=*+subject:political%science&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+
+###
+///Psykologi
+GET https://www.googleapis.com/books/v1/volumes?q=*+subject:psychology&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+
+
+###
+///Enskild bok
+GET https://www.googleapis.com/books/v1/volumes?q=markoolio&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+
 

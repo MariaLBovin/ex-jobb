@@ -2,7 +2,7 @@
 $mobile: 420px;
 $tablet: 760px;
 $desktop: 990px;
-$desktop-large: 1152px;
+$desktop-large: 100vw;
 
 $breakpoints: (
     'xs': (
@@ -12,7 +12,7 @@ $breakpoints: (
         min-width: $tablet,
     ),
     'm': (
-        min-width: $desktop,
+        max-width: $desktop,
     ),
     'l': (
         min-width: $desktop-large,

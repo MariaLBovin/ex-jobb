@@ -1,16 +1,15 @@
-import { useState } from "react"
+
+import { DesktopNav } from "./Partials/DesktopNav";
+import Navigation from "./Partials/Navigation";
 
 interface HeaderProps {
     onToggleMainMenu: () => void;
     mainMenuOpen: boolean;
+    onToggleSubMenu: () => void;
+    subMenuOpen: boolean;
   }
+const Header = ({ onToggleMainMenu, mainMenuOpen, onToggleSubMenu, subMenuOpen }: HeaderProps) => {
 
-const Header = ({onToggleMainMenu, mainMenuOpen} :HeaderProps) => {
-    const [subMenuOpen, setsubMenuOpen] = useState(false);
-
-    const toggleSubMenu = () => {
-        setsubMenuOpen(!subMenuOpen);
-    }
 
   return (
     <>
@@ -18,32 +17,8 @@ const Header = ({onToggleMainMenu, mainMenuOpen} :HeaderProps) => {
             <div className="header-logo-container">
                 <img className="header-logo" src="/logo.png"/>
             </div>
-            <nav className={`header-nav ${mainMenuOpen ? "" : "hidden"}`} aria-label="main" aria-hidden="true">
-                <ul className="header-nav-list">
-                    <li className="header-nav-item">
-                    <button className="header-nav-innerButton" onClick={toggleSubMenu}>
-                       Kategorier
-                       {!subMenuOpen ? (
-                        <span className="material-symbols-outlined">expand_more</span>
-                        ) : (
-                        <span className="material-symbols-outlined">expand_less</span>
-                        )}
-                    </button>
-                    <ul className={`header-nav-innerMenu ${subMenuOpen ? "" : "hidden"}`} aria-label="inner" aria-hidden="true">
-                            <li className="header-nav-innerItem">
-                                kategori
-                            </li>
-                            <li className="header-nav-innerItem">
-                                kategori
-                            </li>
-                            <li className="header-nav-innerItem">
-                                kategori
-                            </li>
-                        </ul>
-                    </li>
-                    <li className="header-nav-item">Meny</li>
-                </ul>
-            </nav>
+            <Navigation mainMenuOpen={mainMenuOpen} toggleSubMenu={onToggleSubMenu} subMenuOpen={subMenuOpen}></Navigation>
+            <DesktopNav toggleSubMenu={onToggleSubMenu} subMenuOpen={subMenuOpen}></DesktopNav>
             <button className="header-nav-button" onClick={onToggleMainMenu}>
             {mainMenuOpen ? (
             <span className="material-symbols-outlined header-nav-symbol">close</span>
@@ -51,8 +26,7 @@ const Header = ({onToggleMainMenu, mainMenuOpen} :HeaderProps) => {
             <span className="material-symbols-outlined header-nav-symbol">menu</span>
           )}
             </button>
-            
-            
+ 
         </header>
     </>
   )
