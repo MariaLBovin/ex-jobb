@@ -1,4 +1,5 @@
 @import './variables';
+@import './mixins';
 
 .search {
     &-container {
@@ -7,10 +8,38 @@
         padding-top: $gutter;
         height: 80vh;
         margin-bottom: $gutter;
+
+        @include breakpoint (s){
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+    &-hero {
+        display: none;
+        @include breakpoint (s) {
+            flex:1;
+            display: flex;
+            justify-content: center;
+    
+            &-img {
+                width: 400px;
+                filter: invert(22%) sepia(64%) saturate(479%) hue-rotate(140deg) brightness(101%) contrast(91%);
+            }
+        }
+        
+    }
+    &-wrapper {
+        flex: 1;
     }
     &-header {
         color: $primary;
         padding-bottom: $gutter;
+
+        @include breakpoint (m) {
+            padding-bottom: 0;
+            line-height: 1.25;
+        }
     }
 
     &-text {
@@ -22,13 +51,23 @@
     &-form {
         display: flex;
         flex-direction: column;
-        gap: calc($gutter / 2)
+        gap: calc($gutter / 2);
+
+        @include breakpoint (s) {
+            flex-direction: row;
+
+        }
     }
     &-input {
         font-size: 1.6rem;
         height: 30px;
         box-shadow: 0 5px 5px black;
-        border: none
+        border: none;
+
+        @include breakpoint (s) {
+            height: 70px;
+            width: 80%;
+        }
     }
     &-button {
         @extend %buttonreset;
@@ -37,5 +76,10 @@
         width: 115px;
         border-radius: 5px;
         box-shadow: 0 5px 5px black;
+
+        @include breakpoint (s) {
+            height: 70px;
+            width: 150px;
+        }
     }
 }

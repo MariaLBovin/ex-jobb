@@ -5,6 +5,7 @@
     &-container {
         @extend %container;
         background-color: $secondary;
+        z-index: 999;
     }
     &-wrapper {
         display: flex;
