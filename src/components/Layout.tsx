@@ -17,7 +17,7 @@ const toggleSubMenu = () => {
 };
 useEffect(() => {
   const handleViewportChange = () => {
-    setmainMenuOpen(window.innerWidth > 770);
+    setmainMenuOpen(window.innerWidth > 760);
   };
 
   window.addEventListener("resize", handleViewportChange);

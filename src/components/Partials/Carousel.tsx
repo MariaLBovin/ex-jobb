@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Category {
     id: number;
@@ -13,6 +13,19 @@ interface Category {
 const Carousel = ({categories} :CarouselProps) => {
 
     const [activeIndex, setActiveIndex] = useState(0);
+    const [isDesktop, setIsDesktop] = useState(window.innerWidth > 760); 
+
+    useEffect(() => {
+      const handleResize = () => {
+        setIsDesktop(window.innerWidth > 760); 
+      };
+  
+      window.addEventListener("resize", handleResize);
+  
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
 
     const nextSlide = () => {
         setActiveIndex((prevIndex) =>
@@ -32,10 +45,14 @@ const Carousel = ({categories} :CarouselProps) => {
       };
     
       const renderCategories = () => {
-        const circularCategories = [
-          categories[calculateIndex(activeIndex)],
-          categories[calculateIndex(activeIndex + 1)],
-        ];
+        
+        const circularCategories = isDesktop
+        ? categories
+        : [
+            categories[calculateIndex(activeIndex)],
+            categories[calculateIndex(activeIndex + 1)],
+          ];
+  
     
         return circularCategories.map((category, index) => (
           <li key={index} className="categories-list-item">

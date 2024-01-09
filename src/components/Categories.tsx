@@ -6,8 +6,14 @@ const Categories  = () => {
   return (
     <>
     <section className="categories-container">
-    <h2 className="categories-header">Boktips baserat på kategorier</h2>
-    <Carousel categories={categories}></Carousel>
+      <div className="categories-wrapper">
+      <Carousel categories={categories}></Carousel>
+      </div>
+      <div className="categories-content">
+      <h2 className="categories-content-header">Boktips baserat på kategorier</h2>
+      </div>
+    
+    
     </section>
     
     </>
