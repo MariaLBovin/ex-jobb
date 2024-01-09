@@ -58,13 +58,18 @@
                     top: 0;
                     left: 0;
                     box-shadow: 0 5px 5px black;
+
+                    @include breakpoint (s) {
+                        display: flex;
+                        flex-direction: row;
+                        padding: 0;
+                        background-color: transparent;
+                        position: relative;
+                        box-shadow: 0 0 0;
+                    }
                 }
 
-            @include breakpoint (s) {
-                display: flex;
-                flex-direction: row;
-                padding: 0;
-            }
+            
 
         }
         &-item {

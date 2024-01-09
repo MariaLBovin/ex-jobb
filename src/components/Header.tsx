@@ -17,7 +17,7 @@ const Header = ({ onToggleMainMenu, mainMenuOpen, onToggleSubMenu, subMenuOpen }
           <div className="header-wrapper">
             <Logo></Logo>
             <Navigation mainMenuOpen={mainMenuOpen} toggleSubMenu={onToggleSubMenu} subMenuOpen={subMenuOpen}></Navigation>
-            <button className="header-button" onClick={onToggleMainMenu}>
+            <button className="header-button" onClick={onToggleMainMenu} aria-expanded={mainMenuOpen ? "true" : "false"}>
             {mainMenuOpen ? (
             <span className="material-symbols-outlined header-symbol">close</span>
           ) : (

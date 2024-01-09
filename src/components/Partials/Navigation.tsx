@@ -10,10 +10,10 @@ const Navigation = ({mainMenuOpen, toggleSubMenu, subMenuOpen} :NavigationProps)
   return (
     <>
       <div className="header-nav-wrapper">
-        <nav className="header-nav">
+        <nav className="header-nav" aria-label="main" aria-hidden={mainMenuOpen ? "false" : "true"}>
         <ul className={`header-nav-list ${mainMenuOpen  && 'active'}` }>
             <li className="header-nav-item">
-              <button className="header-nav-innerButton" onClick={toggleSubMenu}>
+              <button className="header-nav-innerButton" onClick={toggleSubMenu} aria-exanded={subMenuOpen ? "true" : "false"}>
                 Kategorier
                 {!subMenuOpen ? (
                 <span className="material-symbols-outlined">expand_more</span>

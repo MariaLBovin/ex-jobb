@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
 import Header from "./Header"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 const Layout = () => {
@@ -15,8 +15,23 @@ const Layout = () => {
 const toggleSubMenu = () => {
   setSubMenuOpen(!subMenuOpen);
 };
+useEffect(() => {
+  // Funktion som sätter mainMenuOpen till true om viewport är mer än 770px
+  const handleViewportChange = () => {
+    setmainMenuOpen(window.innerWidth > 770);
+  };
 
-  return (
+  // Lyssna på resize-händelser
+  window.addEventListener("resize", handleViewportChange);
+
+  // Kör vid montering och rensa upp vid avmontering
+  handleViewportChange();
+  return () => {
+    window.removeEventListener("resize", handleViewportChange);
+  };
+}, []);
+
+return (
     <>
     <Header 
       onToggleMainMenu={toggleMainMenu}
