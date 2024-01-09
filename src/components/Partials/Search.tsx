@@ -1,12 +1,9 @@
 
+
 const Search = () => {
   return (
     <>
-    <section className="search-container">
-        <div className="search-hero">
-          <img className="search-hero-img" src="/bookstack.png"></img>
-        </div>
-        <div className="search-wrapper">
+    <div className="search-wrapper">
           <h1 className="search-header">Vad ska jag läsa nu?</h1>
             <article className="search-wrapper-inner">
               <p className="search-text">
@@ -20,7 +17,6 @@ const Search = () => {
                 <button className="search-button">Få tips</button>
             </form>
         </div>
-    </section>
     </>
   )
 }

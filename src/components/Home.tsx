@@ -1,11 +1,11 @@
 import Categories from "./Categories"
-import Search from "./Search"
+import BookSearch from "./Booksearch"
 
 
 const Home = () => {
   return (
     <>
-    <Search></Search>
+    <BookSearch></BookSearch>
     <Categories></Categories>
     </>
   )

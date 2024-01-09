@@ -16,15 +16,12 @@ const toggleSubMenu = () => {
   setSubMenuOpen(!subMenuOpen);
 };
 useEffect(() => {
-  // Funktion som sätter mainMenuOpen till true om viewport är mer än 770px
   const handleViewportChange = () => {
     setmainMenuOpen(window.innerWidth > 770);
   };
 
-  // Lyssna på resize-händelser
   window.addEventListener("resize", handleViewportChange);
 
-  // Kör vid montering och rensa upp vid avmontering
   handleViewportChange();
   return () => {
     window.removeEventListener("resize", handleViewportChange);
