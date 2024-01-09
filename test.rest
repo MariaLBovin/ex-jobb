@@ -3,7 +3,7 @@ GET https://www.googleapis.com/books/v1/volumes?q=*+subject:fiction&langRestrict
 
 ###
 ///Barnböcker
-GET https://www.googleapis.com/books/v1/volumes?q=*+subject:juvenile%fiction&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+GET https://www.googleapis.com/books/v1/volumes?q=*+subject:juvenile%fiction&langRestrict=sv&startIndex=0&maxReslut=2&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
 
 ###
 ///True crime
