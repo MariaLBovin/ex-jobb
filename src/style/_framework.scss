@@ -34,8 +34,10 @@ img {
 .hidden {
   display: none;
 }
+.overlay {
+    opacity: .3;
 
-// .overlay {
-//     background-color: black;
-//     opacity: .1;
-// };
+    @include breakpoint (s){
+        opacity: 1;
+    }
+}

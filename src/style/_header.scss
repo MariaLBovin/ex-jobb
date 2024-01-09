@@ -5,11 +5,8 @@
     &-container {
         @extend %container;
         background-color: $secondary;
+        padding-top: calc($gutter/2);
         z-index: 999;
-        
-        @include breakpoint (s) {
-            padding-top: $gutter;
-        }
     }
     &-wrapper {
         display: flex;
