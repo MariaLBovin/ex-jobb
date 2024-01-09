@@ -12,7 +12,7 @@ $breakpoints: (
         min-width: $tablet,
     ),
     'm': (
-        max-width: $desktop,
+        min-width: $desktop,
     ),
     'l': (
         min-width: $desktop-large,

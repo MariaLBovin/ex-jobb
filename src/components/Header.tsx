@@ -1,6 +1,6 @@
-
-import { DesktopNav } from "./Partials/DesktopNav";
+import Logo from "./Partials/Logo";
 import Navigation from "./Partials/Navigation";
+
 
 interface HeaderProps {
     onToggleMainMenu: () => void;
@@ -14,19 +14,18 @@ const Header = ({ onToggleMainMenu, mainMenuOpen, onToggleSubMenu, subMenuOpen }
   return (
     <>
         <header className="header-container">
-            <div className="header-logo-container">
-                <img className="header-logo" src="/logo.png"/>
-            </div>
+          <div className="header-wrapper">
+            <Logo></Logo>
             <Navigation mainMenuOpen={mainMenuOpen} toggleSubMenu={onToggleSubMenu} subMenuOpen={subMenuOpen}></Navigation>
-            <DesktopNav toggleSubMenu={onToggleSubMenu} subMenuOpen={subMenuOpen}></DesktopNav>
-            <button className="header-nav-button" onClick={onToggleMainMenu}>
+            <button className="header-button" onClick={onToggleMainMenu}>
             {mainMenuOpen ? (
-            <span className="material-symbols-outlined header-nav-symbol">close</span>
+            <span className="material-symbols-outlined header-symbol">close</span>
           ) : (
-            <span className="material-symbols-outlined header-nav-symbol">menu</span>
+            <span className="material-symbols-outlined header-symbol">menu</span>
           )}
             </button>
- 
+              
+            </div>
         </header>
     </>
   )

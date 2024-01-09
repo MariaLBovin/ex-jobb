@@ -4,60 +4,108 @@
 .header {
     &-container {
         @extend %container;
-        position: relative;
+        background-color: $secondary;
+    }
+    &-wrapper {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         align-items: center;
-        background-color: $secondary;
-        z-index: 2;
-        
     }
     &-logo {
         width: 150px;
     }
 
-    &-nav {
-        background-color: $secondary;
+    &-button{
+        @extend %buttonreset;
         position: fixed;
-        min-width: 100%;
-        top: 0;
-        left: 0;
-        box-shadow: 0 5px 5px black;
+        right: 16px;
 
-        &-container {
-            width: 100vw;
-            background-color: $secondary;
+        @include breakpoint (s) {
+            display: none;
         }
+    }
+
+    &-symbol {
+        line-height: 1.5;
+        color: $primary;
+        font-size: 3.2rem;  
+    }
+
+    &-nav {
+        &-wrapper {
+            display: flex;
+            flex-direction: column;
+            @include breakpoint (s) {
+                position: absolute;
+                right: 0;
+                flex-direction: row;
+            }
+        }
+
         &-list {
             @extend %listreset;
             padding: 32px 16px;
             color: $primary;
             font-size: 2rem;
-            
-        }
-        
-        &-button{
-            @extend %buttonreset;
-            position: fixed;
-            right: 16px;
+            display: none;
+
+                &.active {
+                    display: flex;
+                    flex-direction: column;
+                    background-color: $secondary;
+                    position: fixed;
+                    min-width: 100%;
+                    top: 0;
+                    left: 0;
+                    box-shadow: 0 5px 5px black;
+                }
 
             @include breakpoint (s) {
-                display: none;
+                display: flex;
+                flex-direction: row;
+                padding: 0;
             }
-           
+
         }
-        &-symbol {
-            line-height: 1.5;
-            color: $primary;
-            font-size: 3.2rem;
-            
+        &-item {
+
+            @include breakpoint (s) {
+                width: 200px;
+                text-align: center;
+            }
         }
+        
         &-inner {
+            &Wrapper {
+                @include breakpoint (s) {
+                    display: flex;
+                    flex-direction: column;
+                    background-color: $secondary;
+                    position: fixed;
+                    min-width: 100%;
+                    top: calc($gutter*2);
+                    left: 0;
+                    box-shadow: 0 5px 5px black;
+                }
+            }
+            &Nav {
+                display: flex;
+                justify-content: end;
+                position: relative;
+                right: 180px;
+            }
             &Menu {
                 @extend %listreset;
                 padding-left: 16px;
                 font-weight: lighter;
+                display: none;
+                color: $primary;
+
+                &.active {
+                    display: flex;
+                    flex-direction: column;
+                    
+                }
             }
             &Button {
                 @extend %buttonreset;
@@ -65,38 +113,13 @@
                 display: flex;
                 align-items: center;
             }
-            &Desktop{
-                &Menu {
-                    @extend %listreset;
-                }
-                &Item {
-                    padding-left: calc($gutter/2);
-                }
-            }
-
-        }
-        &-desktop {
-            width: 70%;
-            display: flex;
             
-            @include breakpoint (m) {
-                display: none;
-            }
-
-            &List {
-                @extend %listreset;
-                display: flex;
-                flex-direction: row;
-                gap: $gutter;
-                position: absolute;
-                right: $gutter;
-                color: $primary;
-                align-items:flex-start;
-                
-            }
             &Item {
-                width: 200px;
+                padding-left: calc($gutter/2);
+
+
             }
+            
         }
     }
 
