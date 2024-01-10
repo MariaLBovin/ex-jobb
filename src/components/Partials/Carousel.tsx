@@ -53,6 +53,7 @@ const Carousel = ({categories} :CarouselProps) => {
             categories[calculateIndex(activeIndex + 1)],
           ];
   
+
     
         return circularCategories.map((category, index) => (
           <li key={index} className="categories-list-item">
