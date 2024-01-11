@@ -37,12 +37,15 @@ const Categories  = () => {
     <>
     <section className="categories-container">
       <h2 className="categories-header">Boktips baserat på kategorier</h2>
+      <div className="categories-inner">
       <div className="categories-slider-wrapper">
       <Carousel categories={categories}></Carousel>
       </div>
       <div className="categories-content-wrapper">
         <DisplayBooks></DisplayBooks>
       </div>
+      </div>
+      
     </section>
     
     </>

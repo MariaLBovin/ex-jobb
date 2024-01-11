@@ -4,13 +4,17 @@
 .categories {
     &-container {
         @extend %container;
+        
+    
+    }
+    &-inner{
         display: flex;
         flex-direction: column;
 
         @include breakpoint (s) {
             flex-direction: row;
+            
         }
-    
     }
 
     &-header {
@@ -26,8 +30,10 @@
 
         &-wrapper {
             margin-bottom: $gutter;
+
             @include breakpoint (s) {
                padding-right: calc($gutter *2);
+               width: 30%;
             }
 
        }
@@ -41,6 +47,7 @@
         @include breakpoint (s) {
             flex-direction: column;
         }
+
         &Button {
             @extend %buttonreset;
             background-color: $red;
@@ -63,6 +70,7 @@
 
             @include breakpoint (s) {
                 width: 100%;
+                padding-bottom: $gutter;
             }
 
             &Text {
@@ -90,9 +98,14 @@
     }
     
     &-content {
-        &-wrapper {
-            
+        &-innerWrapper {
+            display: flex;
+            flex-direction: column;
+            @include breakpoint (s) {
+                width: 50%;
+            }
         }
+
         &-list{
             @extend %listreset;
             display: grid;
@@ -113,20 +126,25 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            justify-content: space-between;
+
+            @include breakpoint (s) {
+                margin: calc($gutter/4);
+
+            }
             
         }
-
+        &-text {
+            align-self: start;
+        }
         &-img {
-            padding-bottom: calc($gutter/2);
 
             &Wrapper {
-                margin-bottom: auto;
+                align-self: start;
+
             }
         }
-        &-text {
-            margin-bottom: auto;
-        }
+
         &-title {
             font-weight: 700;
             padding-bottom: calc($gutter/4);
@@ -142,7 +160,7 @@
 
             &Wrapper {
                 width: 100%;
-                margin-top: auto;
+                align-self: end;
             }
         }
     }

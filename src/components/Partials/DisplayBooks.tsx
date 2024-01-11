@@ -23,6 +23,7 @@ const DisplayBooks = () => {
               alt={book.title}> 
             </img>
           </div>
+          <div className="categories-content-innerWrapper">
           <div className="categories-content-text">
           <p className="categories-content-title">{book.title}</p>
           {book.authors.map((author) => (
@@ -32,6 +33,8 @@ const DisplayBooks = () => {
           <div className="categories-content-buttonWrapper">
             <button className="categories-content-button">Läs mer</button>
           </div>
+          </div>
+          
         </li>
       ))}
       <button className="categories-content-listButton">Se alla böcker
