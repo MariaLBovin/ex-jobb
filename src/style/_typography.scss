@@ -13,7 +13,7 @@ body {
     color:$text-dark;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, p {
   margin: 0;
 }
 h1 {
@@ -24,7 +24,7 @@ h1 {
   }
 }
 h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
 
   @include breakpoint (m) {
     font-size: 3.6rem;
@@ -33,6 +33,7 @@ h2 {
 }
 p {
   font-size: 1.6rem;
+
 
   @include breakpoint (m) {
     font-size: 2.4rem;

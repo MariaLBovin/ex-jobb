@@ -5,36 +5,33 @@
     &-container {
         @extend %container;
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
 
         @include breakpoint (s) {
             flex-direction: row;
         }
     
     }
-    &-wrapper {
 
-         @include breakpoint (s) {
-            padding-right: calc($gutter *2);
-         }
-        
-        
+    &-header {
+        padding-bottom: calc($gutter /2);
+        text-align: center;
     }
-    &-content {
-        &-header {
-            padding-bottom: calc($gutter /2);
 
-        }
-    }
     &-slider {
         display: flex;
         align-items: center;
         overflow: hidden;
         position: relative; 
 
+        &-wrapper {
+            margin-bottom: $gutter;
+            @include breakpoint (s) {
+               padding-right: calc($gutter *2);
+            }
 
-    }
-    &-list {
+       }
+       &-list {
         @extend %listreset;
         display: flex;
         flex-direction: row;
@@ -44,7 +41,17 @@
         @include breakpoint (s) {
             flex-direction: column;
         }
-        
+        &Button {
+            @extend %buttonreset;
+            background-color: $red;
+            width:60px;
+            height: 60px;
+            border-radius: 50%;
+
+
+        }
+        }
+
         &-item {
             word-break: break-all;
             hyphens: auto;
@@ -65,29 +72,78 @@
             }
 
         }
-
         &-button {
             @extend %buttonreset;
-            background-color: $red;
-            width:60px;
-            height: 60px;
-            border-radius: 50%;
-
-
+            position: absolute;
+            top: 16px;
+            font-size: 32px;
+    
+            @include breakpoint (s) {
+                display: none;
+            }
+    
+            &Next {
+                right: 0px;
+            }
         }
+
     }
-    &-button {
-        @extend %buttonreset;
-        position: absolute;
-        top: 16px;
-        font-size: 32px;
-
-        @include breakpoint (s) {
-            display: none;
+    
+    &-content {
+        &-wrapper {
+            
+        }
+        &-list{
+            @extend %listreset;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: calc($gutter/2);
+            
+            &Button {
+                @extend %buttonreset;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: calc($gutter * 4);
+            }
         }
 
-        &-next {
-            right: 0px;
+        &-item {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            
+        }
+
+        &-img {
+            padding-bottom: calc($gutter/2);
+
+            &Wrapper {
+                margin-bottom: auto;
+            }
+        }
+        &-text {
+            margin-bottom: auto;
+        }
+        &-title {
+            font-weight: 700;
+            padding-bottom: calc($gutter/4);
+        }
+        &-button {
+            @extend %buttonreset;
+            width: 100%;
+            height: 24px;
+            background-color: $blue;
+            border-radius: 5px;
+            box-shadow:  0 5px 5px black;
+            align-self: flex-end;
+
+            &Wrapper {
+                width: 100%;
+                margin-top: auto;
+            }
         }
     }
 }

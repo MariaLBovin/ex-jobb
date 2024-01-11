@@ -56,22 +56,22 @@ const Carousel = ({categories} :CarouselProps) => {
 
     
         return circularCategories.map((category, index) => (
-          <li key={index} className="categories-list-item">
-            <button className="categories-list-button">
+          <li key={index} className="categories-slider-item">
+            <button className="categories-slider-listButton">
               <span className="material-symbols-outlined">{category.icon}</span>
             </button>
-            <p className="categories-list-itemText">{category.text}</p>
+            <p className="categories-slider-itemText">{category.text}</p>
           </li>
         ));
       };
     
       return (
         <div className="categories-slider">
-          <ul className="categories-list">{renderCategories()}</ul>
-          <button className="categories-button categories-button-prev" onClick={prevSlide}>
+          <ul className="categories-slider-list">{renderCategories()}</ul>
+          <button className="categories-slider-button categories-slider-buttonPrev" onClick={prevSlide}>
             <span className="material-symbols-outlined">navigate_before</span>
           </button>
-          <button className="categories-button categories-button-next" onClick={nextSlide}>
+          <button className="categories-slider-button categories-slider-buttonNext" onClick={nextSlide}>
             <span className="material-symbols-outlined">navigate_next</span>
           </button>
         </div>
