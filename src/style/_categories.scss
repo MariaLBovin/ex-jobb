@@ -157,10 +157,11 @@
             border-radius: 5px;
             box-shadow:  0 5px 5px black;
             align-self: flex-end;
-
+            margin-top: auto;
             &Wrapper {
                 width: 100%;
-                align-self: end;
+                
+                display: flex;
             }
         }
     }

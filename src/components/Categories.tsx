@@ -2,7 +2,7 @@ import Carousel from "./Partials/Carousel";
 import { categories } from "../arrays/categories";
 import DisplayBooks from "./Partials/DisplayBooks";
 import { useContext, useEffect} from "react";
-import { getBooksByCategory } from "../services/CategoryCollector";
+import { getAllBooks, getInitalBooks } from "../services/CategoryCollector";
 import { BooksContext, IGetBooksContext } from "../context/IGetBooksContext";
 
 const Categories  = () => {
@@ -11,23 +11,46 @@ const Categories  = () => {
  
   useEffect(() => {
     const fetchInitalData = async () => {
-
+      
       setBookResponse({ kind: "", totalItems: 0, items: [] });
       try {
-        const response = await getBooksByCategory({subject: "fiction"})
+        const response = await getInitalBooks({subject: "fiction"})
 
         if (response){
 
           setBookResponse(response)
+          sessionStorage.setItem('bookData', JSON.stringify(response));
+          }
 
-        }
       } catch (error) {
+        console.log(error);
+        
+    }     
+
+  }
+  fetchInitalData();
+
+  const fetchAllData = async () => {
+      const subjects= ["juvenile%fiction", "true%crime", "poetry", "biography%autobiography" ]
+      try {
+        const response = await getAllBooks({subjects})
+
+        const existingData = JSON.parse(sessionStorage.getItem('bookData') || '{}')
+
+        const updatedData = {
+          ...existingData,
+          items: response
+        };
+        sessionStorage.setItem('bookData', JSON.stringify(updatedData))
+
+        
+      }catch (error){
         console.log(error);
         
       }
     }
-    fetchInitalData();
     
+    fetchAllData();
   },[setBookResponse])
 
 

@@ -9,7 +9,6 @@ const DisplayBooks = () => {
     book.volumeInfo
   ))
 
-  console.log(books);
   
   
   return (
