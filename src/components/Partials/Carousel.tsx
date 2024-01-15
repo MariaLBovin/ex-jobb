@@ -4,13 +4,15 @@ interface Category {
     id: number;
     icon: string;
     text: string;
+    query: string[]
   }
   
   interface CarouselProps {
     categories: Category[];
+    changeCategory: (selectedCategory: string[]) => void,
   }
-
-const Carousel = ({categories} :CarouselProps) => {
+  
+const Carousel = ({categories, changeCategory} :CarouselProps) => {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const [isDesktop, setIsDesktop] = useState(window.innerWidth > 760); 
@@ -46,7 +48,7 @@ const Carousel = ({categories} :CarouselProps) => {
     
       const renderCategories = () => {
         
-        const circularCategories = isDesktop
+      const circularCategories = isDesktop
         ? categories
         : [
             categories[calculateIndex(activeIndex)],
@@ -57,7 +59,7 @@ const Carousel = ({categories} :CarouselProps) => {
     
         return circularCategories.map((category, index) => (
           <li key={index} className="categories-slider-item">
-            <button className="categories-slider-listButton">
+            <button className="categories-slider-listButton" onClick={() => changeCategory(category.query)}>
               <span className="material-symbols-outlined">{category.icon}</span>
             </button>
             <p className="categories-slider-itemText">{category.text}</p>

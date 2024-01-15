@@ -1,4 +1,4 @@
-import { categories } from "../../arrays/categories";
+import { categoriesArray } from "../../arrays/categoriesArray";
 
 interface DesktopNavProps {
     subMenuOpen: boolean;
@@ -9,7 +9,7 @@ const SubMenu = ({subMenuOpen} :DesktopNavProps) => {
     <div className="header-nav-innerWrapper">
       <nav className="header-nav-innerNav" aria-label="sub" aria-hidden={subMenuOpen ? "false" : "true"}>
         <ul className={`header-nav-innerMenu ${subMenuOpen && 'active'}`} aria-label="main">
-            {categories.map((category) => (
+            {categoriesArray.map((category) => (
                 <li className="header-nav-innerItem" key={category.id}> 
                     {category.text}
                 </li>

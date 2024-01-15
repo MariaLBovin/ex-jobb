@@ -3,6 +3,7 @@ export class CategoriesClass {
         public id: number,
         public icon: string,
         public text: string,
+        public query: string[],
     )
     {}
 }

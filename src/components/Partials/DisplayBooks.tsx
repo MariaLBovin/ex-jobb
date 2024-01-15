@@ -2,20 +2,26 @@ import { useContext } from "react"
 import { BooksContext } from "../../context/IGetBooksContext"
 
 
+
 const DisplayBooks = () => {
   const {bookResponse} =useContext(BooksContext)
 
-  const books = bookResponse.items.slice(0,5).map((book) => (
-    book.volumeInfo
-  ))
+  const sortedBooks = bookResponse
+  .slice(0, 5)
+  .sort((a, b) => {
+    const dateA: Date = new Date(a.volumeInfo.publishedDate);
+    const dateB: Date = new Date(b.volumeInfo.publishedDate);
+    return dateB.getTime() - dateA.getTime();
+  });
 
+  const books = sortedBooks.map((book) => book.volumeInfo)
   
   
   return (
     <>
     <ul className="categories-content-list">
-      {books.map((book) => (
-        <li className="categories-content-item">
+      {books.map((book, index) => (
+        <li className="categories-content-item" key={index}>
           <div className="categories-content-imgWrapper">
             <img className="categories-content-img" 
               src={book.imageLinks.smallThumbnail}
@@ -25,9 +31,15 @@ const DisplayBooks = () => {
           <div className="categories-content-innerWrapper">
           <div className="categories-content-text">
           <p className="categories-content-title">{book.title}</p>
-          {book.authors.map((author) => (
-            <p className="categories-content-author">{author}</p>
-          ))}
+          {book.authors && book.authors.length > 0 ? (
+              book.authors.map((author, authorIndex) => (
+                <p className="categories-content-author" key={authorIndex}>
+                  {author}
+                </p>
+              ))
+            ) : (
+              <p className="categories-content-author"></p>
+            )}
           </div>
           <div className="categories-content-buttonWrapper">
             <button className="categories-content-button">Läs mer</button>

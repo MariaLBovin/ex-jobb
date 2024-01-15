@@ -1,9 +1,9 @@
 ///Skönlitteratur
-GET https://www.googleapis.com/books/v1/volumes?q=*+subject:fiction&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+GET https://www.googleapis.com/books/v1/volumes?q=*+subject:fiction&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&filter=partial&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
 
 ###
 ///Barnböcker
-GET https://www.googleapis.com/books/v1/volumes?q=*+subject:juvenile%fiction&langRestrict=sv&startIndex=0&maxReslut=2&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+GET https://www.googleapis.com/books/v1/volumes?q=*+subject:juvenile%fiction&filter=partial&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&projection=lite&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
 
 ###
 ///True crime
@@ -43,6 +43,6 @@ GET https://www.googleapis.com/books/v1/volumes?q=*+subject:psychology&langRestr
 
 ###
 ///Enskild bok
-GET https://www.googleapis.com/books/v1/volumes?q=markoolio&langRestrict=sv&startIndex=0&maxReslut=40&orderBy=newest&printType=books&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+GET https://www.googleapis.com/books/v1/volumes?q=guld+inauthor:hagmar&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
 
 

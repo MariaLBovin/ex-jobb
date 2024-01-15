@@ -3,14 +3,14 @@ import Header from "./Header"
 import { useEffect, useState } from "react"
 import { BooksContext} from "../context/IGetBooksContext";
 
-import { IBookList } from "../models/IBookList";
+import { IBookItem } from "../models/IBookItem";
 
 
 const Layout = () => {
 
   const [mainMenuOpen, setmainMenuOpen] =useState(false);
   const [subMenuOpen, setSubMenuOpen] = useState(false);
-  const [bookResponse, setBookResponse] = useState<IBookList>({ kind: "", totalItems: 0, items: [] });
+  const [bookResponse, setBookResponse] = useState<IBookItem[]>([]);
 
 useEffect(() => {
   const handleViewportChange = () => {
