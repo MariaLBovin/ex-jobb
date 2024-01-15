@@ -17,20 +17,32 @@ const Categories  = () => {
       
       setBookResponse([]);
 
-      try {
-        const response = await getInitalBooks({subject: "fiction"})
+      const existingData = JSON.parse(sessionStorage.getItem('bookData') || '{}')
 
-        if (response){
-          const bookItem = response.items
-          setBookResponse(bookItem)
-
-          sessionStorage.setItem('bookData', JSON.stringify(response));
-          }
-
-      } catch (error) {
-        console.log(error);
+      if(existingData) {
+        console.log('existingData',existingData);
         
-    }     
+         const books = existingData.items.items
+         console.log('books', books);
+         
+         setBookResponse(books)
+      } else {
+        try {
+          const response = await getInitalBooks({subject: "fiction"})
+  
+          if (response){
+            const bookItem = response.items
+            setBookResponse(bookItem)
+  
+            sessionStorage.setItem('bookData', JSON.stringify(response));
+            }
+  
+        } catch (error) {
+          console.log(error);
+          
+      }     
+      }
+      
 
   }
   fetchInitalData();
@@ -40,7 +52,7 @@ const Categories  = () => {
       const subjects = categoriesArray.map((category) => category.query).flat().map((subject) => subject.replace(/\s+/g, '%'))
 
       console.log(subjects);
-      
+    
 
       try {
         const response = await getAllBooks({subjects})
