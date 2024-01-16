@@ -1,13 +1,27 @@
 import { createContext } from "react";
 import { IBookItem } from "../models/IBookItem";
 
-
 export interface IGetBooksContext {
-    bookResponse: IBookItem [],
+    bookResponse: IBookItem[];
     setBookResponse: React.Dispatch<React.SetStateAction<IBookItem[]>>;
-}
-
-export const BooksContext = createContext<IGetBooksContext>({
+    selectedCategory: string[];
+    setSelectedCategory: React.Dispatch<React.SetStateAction<string[]>>;
+  }
+  
+  export const BooksContext = createContext<IGetBooksContext>({
     bookResponse: [],
     setBookResponse: () => {},
-});
+    selectedCategory: [],
+    setSelectedCategory: () => {},
+  });
+
+
+// export interface IGetBooksContext {
+//     bookResponse: IBookItem [],
+//     setBookResponse: React.Dispatch<React.SetStateAction<IBookItem[]>>;
+// }
+
+// export const BooksContext = createContext<IGetBooksContext>({
+//     bookResponse: [],
+//     setBookResponse: () => {},
+// });

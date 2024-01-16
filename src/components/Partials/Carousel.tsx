@@ -9,7 +9,7 @@ interface Category {
   
   interface CarouselProps {
     categories: Category[];
-    changeCategory: (selectedCategory: string[]) => void,
+    changeCategory: (selectedCategory: string[], categoryText: string) => void,
   }
   
 const Carousel = ({categories, changeCategory} :CarouselProps) => {
@@ -59,7 +59,7 @@ const Carousel = ({categories, changeCategory} :CarouselProps) => {
     
         return circularCategories.map((category, index) => (
           <li key={index} className="categories-slider-item">
-            <button className="categories-slider-listButton" onClick={() => changeCategory(category.query)}>
+            <button className="categories-slider-listButton" onClick={() => changeCategory(category.query, category.text)}>
               <span className="material-symbols-outlined">{category.icon}</span>
             </button>
             <p className="categories-slider-itemText">{category.text}</p>

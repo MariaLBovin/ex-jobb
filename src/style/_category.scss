@@ -1,0 +1,56 @@
+@import './variables';
+@import './mixins';
+
+.category {
+    &-container {
+        @extend %container;
+        padding-top: $gutter
+    }
+    &-header {
+        padding-bottom: calc($gutter/2);
+    }
+    &-wrapper {
+        display: flex;
+        flex-direction: column
+    }
+
+    &-list {
+        @extend %listreset;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap:$gutter;
+    }
+    &-item {
+        width: 100%;
+        display: grid;
+        
+    }
+    &-text {
+        align-self: start;
+    }
+    &-img {
+        width: 100%;
+        &Wrapper {
+            align-self: start;
+            width: 100%;
+        }
+    }
+    &-title {
+        font-weight: 700;
+        padding-bottom: 8px
+    }
+    &-button {
+        @extend %buttonreset;
+        width: 100%;
+        height: 24px;
+        background-color: $blue;
+        border-radius: 5px;
+        box-shadow:  0 5px 5px black;
+        margin-top: auto;
+
+        &Wrapper {
+            width: 100%;
+            align-self: end;
+        }
+    }
+}

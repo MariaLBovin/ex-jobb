@@ -1,21 +1,35 @@
 import { useContext } from "react"
 import { BooksContext } from "../../context/IGetBooksContext"
+import { Link} from "react-router-dom";
+
+interface DisplayBooksProps {
+  categoryText: string | undefined
+}
 
 
+const DisplayBooks = ({categoryText} :DisplayBooksProps) => {
+  const {bookResponse, selectedCategory} =useContext(BooksContext)
+  
+  
 
-const DisplayBooks = () => {
-  const {bookResponse} =useContext(BooksContext)
+  const category = categoryText;
 
   const sortedBooks = bookResponse
-  .slice(0, 5)
-  .sort((a, b) => {
-    const dateA: Date = new Date(a.volumeInfo.publishedDate);
-    const dateB: Date = new Date(b.volumeInfo.publishedDate);
-    return dateB.getTime() - dateA.getTime();
-  });
+    .filter((book) => {
+      return (
+        selectedCategory &&
+        book.volumeInfo.categories &&
+        book.volumeInfo.categories.some(cat => selectedCategory.includes(cat))
+      );
+    })
+    .slice(0, 5)
+    .sort((a, b) => {
+      const dateA: Date = new Date(a.volumeInfo.publishedDate);
+      const dateB: Date = new Date(b.volumeInfo.publishedDate);
+      return dateB.getTime() - dateA.getTime();
+    });
 
   const books = sortedBooks.map((book) => book.volumeInfo)
-  
   
   return (
     <>
@@ -28,7 +42,6 @@ const DisplayBooks = () => {
               alt={book.title}> 
             </img>
           </div>
-          <div className="categories-content-innerWrapper">
           <div className="categories-content-text">
           <p className="categories-content-title">{book.title}</p>
           {book.authors && book.authors.length > 0 ? (
@@ -44,13 +57,14 @@ const DisplayBooks = () => {
           <div className="categories-content-buttonWrapper">
             <button className="categories-content-button">Läs mer</button>
           </div>
-          </div>
-          
         </li>
       ))}
+      <Link to='/category' state={category}>
       <button className="categories-content-listButton">Se alla böcker
       <span className="material-symbols-outlined">last_page</span>
       </button>
+      </Link>
+      
     </ul>
     
     </>

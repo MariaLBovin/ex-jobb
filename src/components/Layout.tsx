@@ -11,6 +11,7 @@ const Layout = () => {
   const [mainMenuOpen, setmainMenuOpen] =useState(false);
   const [subMenuOpen, setSubMenuOpen] = useState(false);
   const [bookResponse, setBookResponse] = useState<IBookItem[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string[]>([])
 
 useEffect(() => {
   const handleViewportChange = () => {
@@ -35,12 +36,12 @@ setSubMenuOpen(!subMenuOpen);
 
 return (
     <>
-    <Header 
+    <Header
       onToggleMainMenu={toggleMainMenu}
       mainMenuOpen={mainMenuOpen}
       onToggleSubMenu={toggleSubMenu}
       subMenuOpen={subMenuOpen}></Header>
-    <BooksContext.Provider value={{bookResponse, setBookResponse}}>
+    <BooksContext.Provider value={{bookResponse, setBookResponse, selectedCategory, setSelectedCategory }}>
     <main className={`main ${mainMenuOpen ? "overlay" : ""}`}>
         <Outlet></Outlet>
     </main>
@@ -48,7 +49,7 @@ return (
     <footer></footer>
     </>
   )
-  
+
 }
 
 export default Layout
