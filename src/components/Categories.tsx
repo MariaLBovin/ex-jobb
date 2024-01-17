@@ -5,27 +5,22 @@ import { useContext, useState} from "react";
 import { BooksContext, IGetBooksContext } from "../context/IGetBooksContext";
 import { IBookItem } from "../models/IBookItem";
 
-
-
 const Categories  = () => {
   
   const {setBookResponse, setSelectedCategory} = useContext<IGetBooksContext>(BooksContext);
   const [categoryText, setCategoryText] = useState<string>('Skönlitteratur')
 
   const changeCategory = (selectedCategory: string[], categoryText: string) => {
-    const category = categoryText || '';
-    const selected = selectedCategory
-  
+    // console.log(selectedCategory);
+    
     const storedBooks = JSON.parse(sessionStorage.getItem('bookData') || '{}');
-    console.log(storedBooks.items);
     
     const storedBooksArray = Array.from<IBookItem>(storedBooks.items)
       .filter(e => e)
       .filter(book => book.volumeInfo.categories && book.volumeInfo.categories.length > 0);
        
-    
       const filteredBooks = storedBooksArray.filter((book: IBookItem) => {
-        const selectedCategoriesLower = selected.map(cat => cat.toLowerCase());
+        const selectedCategoriesLower = selectedCategory.map(cat => cat.toLowerCase());
         const bookCategoriesLower = book.volumeInfo.categories.map(cat => cat.toLowerCase());
 
         return selectedCategoriesLower.some(cat => bookCategoriesLower.includes(cat));
@@ -33,8 +28,8 @@ const Categories  = () => {
     
     
     setBookResponse(filteredBooks)
-    setCategoryText(category);
-    setSelectedCategory(selected);
+    setCategoryText(categoryText);
+    setSelectedCategory(selectedCategory);
     
   };
   

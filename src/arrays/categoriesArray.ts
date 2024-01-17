@@ -6,5 +6,5 @@ export const categoriesArray : CategoriesClass[] = [
     { id: 3, icon: "history_edu", text: "Lyrik", query: ["Poetry"] },
     { id: 4, icon: "local_police", text: "True crime", query:["True Crime"] },
     { id: 5, icon: "person_book", text: "Biografier", query:["Biography & Autobiography"] },
-    { id: 6, icon: "lightbulb", text: "Fakta", query: ["family & relationship", "gardening", "law", "political science", "pshycology"  ] },
+    { id: 6, icon: "lightbulb", text: "Fakta", query: ["Family & Relationship", "Gardening", "Law", "Political Science", "Pshycology"  ] },
   ];

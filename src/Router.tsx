@@ -3,6 +3,7 @@ import { paths } from "./config/paths";
 import Home from "./components/Home";
 import Layout from "./components/Layout";
 import Category from "./components/Category";
+import DisplaySinglebook from "./components/Partials/DisplaySinglebook";
 
 export const router =createHashRouter([
     {
@@ -18,10 +19,10 @@ export const router =createHashRouter([
             path: paths.category,
             element: <Category />,
           },
-        //   {
-        //     path: paths.ad,
-        //     element: <Ad />,
-        //   },
+          {
+            path: paths.book,
+            element: <DisplaySinglebook />,
+          },
         //   {
         //     path: paths.contact,
         //     element: <Contact />,

@@ -1,6 +1,6 @@
 export interface IPaths {
     home: string;
     category: string;
-    // ad: string;
+    book: string;
     // contact: string;
   }

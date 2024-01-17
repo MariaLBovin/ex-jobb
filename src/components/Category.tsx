@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { BooksContext } from "../context/IGetBooksContext"
-import { useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 
 const Category = () => {
@@ -9,11 +9,10 @@ const Category = () => {
   const navigate = useNavigate()
 
   
-
-  const books = bookResponse.map((book) => book.volumeInfo)
+  const books = bookResponse.map((book) => book)
 
   const handleNavigate = () => {
-    navigate(-1)
+    navigate('/')
   };
 
   return (
@@ -26,15 +25,15 @@ const Category = () => {
         <li className="category-item" key={index}>
           <div className="category-imgWrapper">
             <img className="category-img" 
-              src={book.imageLinks.smallThumbnail}
-              alt={book.title}> 
+              src={book.volumeInfo.imageLinks.smallThumbnail}
+              alt={book.volumeInfo.title}> 
             </img>
           </div>
           
           <div className="category-text">
-          <p className="category-title">{book.title}</p>
-          {book.authors && book.authors.length > 0 ? (
-              book.authors.map((author, authorIndex) => (
+          <p className="category-title">{book.volumeInfo.title}</p>
+          {book.volumeInfo.authors && book.volumeInfo.authors.length > 0 ? (
+              book.volumeInfo.authors.map((author, authorIndex) => (
                 <p className="category-author" key={authorIndex}>
                   {author}
                 </p>
@@ -44,7 +43,9 @@ const Category = () => {
             )}
           </div>
           <div className="category-buttonWrapper">
+            <Link to={`/book/${book.id}`}>
             <button className="category-button">Läs mer</button>
+            </Link>
           </div>
         </li>
       ))}

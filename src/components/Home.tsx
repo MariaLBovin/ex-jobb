@@ -6,49 +6,47 @@ import { IGetBooksContext, BooksContext } from "../context/IGetBooksContext";
 import { getInitalBooks, getAllBooks } from "../services/CategoryCollector";
 import { IBookItem } from "../models/IBookItem";
 
-
-
 const Home = () => {
 
-  const {setBookResponse, setSelectedCategory} = useContext<IGetBooksContext>(BooksContext);
-
+  const {setBookResponse, selectedCategory, setSelectedCategory} = useContext<IGetBooksContext>(BooksContext);
 
   useEffect(() => {
     const fetchInitalData = async () => {
 
       setBookResponse([]);
-      setSelectedCategory(['']);
+      // setSelectedCategory(['']);
 
-      // const existingData = JSON.parse(sessionStorage.getItem('bookData') || '{}')
+      const existingData = JSON.parse(sessionStorage.getItem('bookData') || '{}')
 
-      // if(existingData) {
+      if(existingData && existingData.items && existingData.items.length > 0) {
 
+        const books = Array.from<IBookItem>(existingData.items)
+        .filter(e => e)
+        .filter(book => book.volumeInfo.categories && book.volumeInfo.categories.length > 0);
 
+        const initialCategory = selectedCategory && selectedCategory.length > 0 ? selectedCategory : ['Fiction'];
+        // console.log(initialCategory);
+        
 
-      //    const books = Array.from<IBookItem>(existingData.items)
-      //    .filter(e => e);
-      //   console.log(books);
+         const initialBooks = books.filter((book: IBookItem) => {
+          const bookCategories = book.volumeInfo.categories;
+          return bookCategories.some(cat => initialCategory.includes(cat));
+        });
+        // console.log(initialBooks);
+        
+         setBookResponse(initialBooks)
+         setSelectedCategory(initialCategory);
 
-      //    const initialBooks = books.filter((book: IBookItem) => {
-      //     const initialCategory = 'fiction';
-      //     const bookCategories = book.volumeInfo.categories.map(cat => cat.toLowerCase());
-
-      //     return bookCategories.includes(initialCategory);
-      //   });
-
-
-      //    setBookResponse(initialBooks)
-      //    setSelectedCategory(['Fiction'])
-      // } else {
-      //   console.log('else');
+      } else {
 
         try {
           const response = await getInitalBooks({subject: "fiction"})
+          // console.log(response);
 
           if (response){
             const bookItem = response.items
             setBookResponse(bookItem)
-            setSelectedCategory(['Fiction'])
+
 
             sessionStorage.setItem('bookData', JSON.stringify(response));
             }
@@ -56,10 +54,8 @@ const Home = () => {
         } catch (error) {
           console.log(error);
 
-      // }
       }
-
-
+      }
   }
   fetchInitalData();
 
@@ -69,15 +65,18 @@ const Home = () => {
     .map((category) => category.query)
     .flat()
     .map((subject) => subject.replace(/\s+/g, '%'))
-    .filter((subject) => subject.toLowerCase() !== 'fiction');
 
 
+    const existingData = JSON.parse(sessionStorage.getItem('bookData') || '{}')
+
+    if(existingData && existingData.items && existingData.items.length > 40){
+      // console.log('data finns');
+      
+    } else {
       try {
         const response = await getAllBooks({subjects})
 
         const existingData = JSON.parse(sessionStorage.getItem('bookData') || '{}')
-        console.log(response.items);
-        
 
         const updatedData = {
           ...existingData,
@@ -92,8 +91,10 @@ const Home = () => {
       }
     }
 
+    }
+
     fetchAllData();
-  },[setBookResponse, setSelectedCategory])
+  },[setBookResponse, selectedCategory, setSelectedCategory])
 
   return (
     <>
