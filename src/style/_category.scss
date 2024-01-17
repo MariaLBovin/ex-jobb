@@ -11,7 +11,12 @@
     }
     &-wrapper {
         display: flex;
-        flex-direction: column
+        flex-direction: column;
+
+        &-button {
+            @extend %secondarybutton;
+           
+        }
     }
 
     &-list {
@@ -19,6 +24,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap:$gutter;
+        padding-bottom: $gutter;
     }
     &-item {
         width: 100%;
@@ -40,17 +46,14 @@
         padding-bottom: 8px
     }
     &-button {
-        @extend %buttonreset;
+        @extend %primarybutton;
         width: 100%;
         height: 24px;
-        background-color: $blue;
-        border-radius: 5px;
-        box-shadow:  0 5px 5px black;
-        margin-top: auto;
 
         &Wrapper {
             width: 100%;
             align-self: end;
         }
     }
+    
 }

@@ -54,7 +54,7 @@ const DisplayBooks = ({categoryText} :DisplayBooksProps) => {
           </div>
         </li>
       ))}
-      <Link to='/category' state={stateText}>
+      <Link to='/category' state={stateText} className="categories-content-listLink">
       <button className="categories-content-listButton">Se alla böcker
       <span className="material-symbols-outlined">last_page</span>
       </button>

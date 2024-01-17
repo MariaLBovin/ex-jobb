@@ -1,0 +1,52 @@
+@import './variables';
+@import './mixins';
+
+.bookpage {
+    &-container {
+        @extend %container;
+
+    }
+    &-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: $gutter;
+    }
+    &-img{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-bottom: calc($gutter/2);
+    }
+    &-header {
+        text-align: center;
+        padding-bottom: calc($gutter/2);
+        border-bottom: 1px solid $yellow;
+    }
+    &-heading{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: calc($gutter/2) 0;
+        
+        &-info{
+            
+        }
+        &-button {
+           @extend %primarybutton;
+           width: 30%;
+           align-self: flex-end;
+        }
+    }
+    &-info{
+        padding: calc($gutter/2) 0;
+
+        &-header{
+            padding-bottom: calc($gutter/4);
+        }
+    }
+    &-button {
+        @extend %secondarybutton;
+        width: 100%;
+    }
+    
+}

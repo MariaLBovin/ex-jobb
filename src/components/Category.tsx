@@ -50,7 +50,7 @@ const Category = () => {
         </li>
       ))}
       </ul> 
-      <button className="categories-content-listButton" onClick={handleNavigate}>Tillbaka
+      <button className="category-wrapper-button" onClick={handleNavigate}>Tillbaka
       <span className="material-symbols-outlined">first_page</span>
       </button>
 

@@ -111,14 +111,16 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: $gutter;
+
+            &Link {
+                
+                align-self: center
+            }
             
             &Button {
-                @extend %buttonreset;
+                @extend %secondarybutton;
                 width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                padding-top: calc($gutter * 4);
+                
             }
         }
 
@@ -149,17 +151,14 @@
             padding-bottom: calc($gutter/4);
         }
         &-button {
-            @extend %buttonreset;
+            @extend %primarybutton;
             width: 100%;
             height: 24px;
-            background-color: $blue;
-            border-radius: 5px;
-            box-shadow:  0 5px 5px black;
-            margin-top: auto;
-
+            
             &Wrapper {
                 width: 100%;
                 align-self: end;
+                
             }
         }
     }

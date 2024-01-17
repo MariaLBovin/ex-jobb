@@ -26,29 +26,36 @@ const DisplaySinglebook = () => {
               alt={book?.volumeInfo.title}> 
             </img>
             </div>
-            <div className='bookpage-heading'>
-                <h1 className='bookpage-heading-header'>{book?.volumeInfo.title}</h1>
+            
+                <h1 className='bookpage-header'>{book?.volumeInfo.title}</h1>
+                <div className='bookpage-heading'>
                 <div className='bookpage-heading-info'>
                     {book?.volumeInfo.authors && book.volumeInfo.authors.length > 0 ? (
                         book.volumeInfo.authors.map((author :string, authorIndex : number) => (
                 <p className="bookpage-heading-text" key={authorIndex}>
-                  {author}
+                  Författare: {author}
                 </p>
                 ))
                 ) : (
                 <p className="bookpage-heading-text"></p>
                 )}
-                <p className='bookpage-heading-text'>{book?.volumeInfo.publishedDate}</p>
-                <p className='bookpage-heading-text'>{book?.volumeInfo.publisher}</p>
+                <p className='bookpage-heading-text'>Utgivningsdatum: {book?.volumeInfo.publishedDate}</p>
+                <p className='bookpage-heading-text'>Förlag: {book?.volumeInfo.publisher}</p>
                 </div>
-                <button className='bookpage-heading-button'>Köp</button>
+                
             </div>
+            <button className='bookpage-heading-button'>
+                    <a href={`https://www.bokus.com/bok/${book?.volumeInfo.industryIdentifiers[0].identifier}`} target="_blank">Köp</a>
+                    
+                </button>
             <div className='bookpage-info'>
-                <h2 className='bookpage-info-header'>Om boken</h2>
+                <h2 className='bookpage-info-header'>Om boken:</h2>
                 <p className='bookpage-info-text'>{book?.volumeInfo.description}</p>
             </div>
         </article>
-        <button className='bookpage-button'onClick={handleNavigate}>Tillbaka</button>
+        <button className="bookpage-button" onClick={handleNavigate}>Tillbaka
+      <span className="material-symbols-outlined">first_page</span>
+      </button>
     </section>
     </>
   )

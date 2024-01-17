@@ -23,7 +23,7 @@
         position: fixed;
         right: 16px;
 
-        @include breakpoint (s) {
+        @include breakpoint (m) {
             display: none;
         }
     }
@@ -62,7 +62,7 @@
                     left: 0;
                     box-shadow: 0 5px 5px black;
 
-                    @include breakpoint (s) {
+                    @include breakpoint (m) {
                         display: flex;
                         flex-direction: row;
                         padding: 0;
@@ -71,9 +71,7 @@
                         box-shadow: 0 0 0;
                     }
                 }
-
-            
-
+                
         }
         &-item {
 

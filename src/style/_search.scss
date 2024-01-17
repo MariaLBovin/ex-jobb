@@ -19,6 +19,7 @@
 
     &-hero {
         display: none;
+
         @include breakpoint (s) {
             flex:1;
             display: flex;
@@ -32,6 +33,10 @@
     }
     &-wrapper {
         flex: 1;
+
+        @include breakpoint(s){
+            flex:2
+        }
     }
     &-header {
         color: $primary;
@@ -69,8 +74,11 @@
         @include breakpoint (s) {
             height: 70px;
             width: 80%;
-            font-size: 2rem;
             padding-left: $gutter;
+
+            @include breakpoint (m) {
+                font-size: 2rem;
+            }
         }
     }
     &-button {
