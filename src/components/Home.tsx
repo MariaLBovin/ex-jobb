@@ -14,7 +14,7 @@ const Home = () => {
     const fetchInitalData = async () => {
 
       setBookResponse([]);
-      // setSelectedCategory(['']);
+      
 
       const existingData = JSON.parse(sessionStorage.getItem('bookData') || '{}')
 
@@ -25,14 +25,12 @@ const Home = () => {
         .filter(book => book.volumeInfo.categories && book.volumeInfo.categories.length > 0);
 
         const initialCategory = selectedCategory && selectedCategory.length > 0 ? selectedCategory : ['Fiction'];
-        // console.log(initialCategory);
-        
-
+       
          const initialBooks = books.filter((book: IBookItem) => {
           const bookCategories = book.volumeInfo.categories;
           return bookCategories.some(cat => initialCategory.includes(cat));
         });
-        // console.log(initialBooks);
+        
         
          setBookResponse(initialBooks)
          setSelectedCategory(initialCategory);

@@ -37,6 +37,15 @@
         @include breakpoint(s){
             flex:2
         }
+
+        &-inner {
+            background-color: $yellow;
+            border-radius: 0 15px;
+            padding: calc($gutter / 2);
+            margin-bottom: $gutter;
+    }
+    
+
     }
     &-header {
         color: $primary;
@@ -49,10 +58,14 @@
     }
 
     &-text {
-        background-color: $yellow;
-        border-radius: 0 15px;
-        padding: calc($gutter / 2);
-        margin-bottom: $gutter;
+        padding-bottom: 8px;
+        &-fake {
+            font-size: 1.4rem;
+        }
+        &-button {
+            @extend %primarybutton;
+            padding: 4px 8px;
+        }
     }
     &-form {
         display: flex;

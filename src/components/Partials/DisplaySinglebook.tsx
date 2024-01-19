@@ -20,11 +20,14 @@ const DisplaySinglebook = () => {
     <>
     <section className='bookpage-container'>
         <article className='bookpage-wrapper'>
-            <div className='bookpage-img'>
-            <img className="bookpage-img-src" 
-              src={book?.volumeInfo.imageLinks.smallThumbnail}
-              alt={book?.volumeInfo.title}> 
-            </img>
+          <div className='bookpage-img'>
+            {book?.volumeInfo.imageLinks ? (
+              <img className="bookpage-img-src"
+                src={book?.volumeInfo.imageLinks.smallThumbnail}
+                alt={book?.volumeInfo.title}/>
+              ) : (
+              <p>No image available</p>
+            )}
             </div>
             
                 <h1 className='bookpage-header'>{book?.volumeInfo.title}</h1>

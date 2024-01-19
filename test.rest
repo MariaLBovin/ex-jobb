@@ -43,6 +43,6 @@ GET https://www.googleapis.com/books/v1/volumes?q=*+subject:psychology&langRestr
 
 ###
 ///Enskild bok
-GET https://www.googleapis.com/books/v1/volumes?q=femtio%meter%under%ytan+inauthor:palmkvist&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
+GET https://www.googleapis.com/books/v1/volumes?q=intitle:snöblind+inauthor:ragnar%jonasson&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
 
 

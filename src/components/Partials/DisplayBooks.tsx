@@ -11,7 +11,8 @@ interface DisplayBooksProps {
 const DisplayBooks = ({categoryText} :DisplayBooksProps) => {
   const {bookResponse} =useContext(BooksContext)  
   const stateText = categoryText
-
+  console.log(bookResponse);
+  
   const sortedBooks = bookResponse
     .slice(0, 5)
     .sort((a, b) => {
