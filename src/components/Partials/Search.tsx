@@ -1,8 +1,5 @@
-
-import axios from "axios";
-
 import { FormEvent, useContext, useState } from "react";
-import { getSingleBook } from "../../services/SingleBookCollector";
+import { getBookRecommendation, getSingleBook } from "../../services/BooksCollector";
 import { Link } from "react-router-dom";
 import { BooksContext, IGetBooksContext } from "../../context/IGetBooksContext";
 import { IBookItem } from "../../models/IBookItem";
@@ -11,67 +8,64 @@ import { IBookItem } from "../../models/IBookItem";
 const Search =  () => {
   const {setBookResponse} =useContext<IGetBooksContext>(BooksContext)
   const [title, setTitle] = useState('')
-  const [pText, setPText] = useState(`Vill du få tips om vad du ska läsa härnäst? 
-Skriv in titeln på din favoritbok eller den bok du senast läst så 
-  genereras ett tips till dig baserat på ditt sökord.`)
+  
   const [bookData, setBookdata] = useState<IBookItem []| null>(null)
-  const [searchPerformed, setSearchPerformed] = useState(false)
+  const [searchPerformed, setSearchPerformed] =  useState(false)
+  
+  const initalText = `Vill du få tips om vad du ska läsa härnäst? 
+  Skriv in titeln på din favoritbok eller den bok du senast läst så 
+  genereras ett tips till dig baserat på ditt sökord.`
+  const [pText, setPText] = useState(initalText)
+ 
+  const getRecommendation = async(e:FormEvent) => {
+    e.preventDefault();
 
-  const testApi = async (e: FormEvent) => {
-    e.preventDefault()
+    try {
+      const response = await getBookRecommendation(title)
 
-    const API_KEY = import.meta.env.VITE_API2_KEY;
-    const BASE_URL= import.meta.env.VITE_BASE2_URL
+      if (response) {
+        console.log(response);
+        
+        const text= response.data.choices[0].text;
+        console.log(text);
 
-    const APIBody = {
-      model: "gpt-3.5-turbo-instruct",
-      prompt: `'Rekommendera en bok baserat på ${title}. Svara bara med titel och författare. '`,
-      temperature: 0.1,
-      max_tokens: 15,
-      top_p: 1,
-    }
-
-    const response = await axios.post(BASE_URL, APIBody, {
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + API_KEY,
-        }
-    });
-    const data = response.data
-    const text = data.choices[0].text
-
-    const fetchBook = async () => {
-        const startIndex = text.indexOf('"') + 1;
-        const endIndex = text.indexOf('"', startIndex);
-        if (startIndex !== -1 && endIndex !== -1) {
-          const title = text.substring(startIndex, endIndex); 
-          const author = text.substring(endIndex + 5);
-
-        try {
-          const response = await getSingleBook({title: title, author: author})
-
-          if(response.totalItems > 0){
-            console.log(response);
-            const books = response.items.filter(e => e)
-            setBookdata(books)
-            setBookResponse((prevbooks) => [...prevbooks,...books])
-            
+        const fetchBook = async () => {
+          const startIndex = text.indexOf('"') + 1;
+          const endIndex = text.indexOf('"', startIndex);
+          if (startIndex !== -1 && endIndex !== -1) {
+            const title = text.substring(startIndex, endIndex); 
+            const author = text.substring(endIndex + 5);
+  
+          try {
+            const response = await getSingleBook({title: title, author: author})
+  
+            if(response.totalItems > 0){
+              console.log(response);
+              const books = response.items.filter(e => e)
+              setBookdata(books)
+              setBookResponse((prevbooks) => [...prevbooks,...books])
+              
+            }
+              
+            }catch(error) {
+              console.log(error);
           }
-            
-          }catch(error) {
-            console.log(error);
-        }
-       }
-       setSearchPerformed(true)
-    }
-     
-    setPText(`Jag rekommenderar att du läser ${text}. `)
-    setTitle('');
-    console.log(title);
+         }
+         setSearchPerformed(true)
+      }
+      setPText(`Jag rekommenderar att du läser ${text}. `)
+      setTitle('');
+      console.log(title);
     
-    fetchBook()
+      fetchBook()
+      }
+
+    }catch (error) {
+      console.log(error);
+      
     }
-    
+  } 
+
     const book = bookData?.[0]
 
   return (
@@ -92,7 +86,7 @@ Skriv in titeln på din favoritbok eller den bok du senast läst så
             )
           )}
             </article>
-            <form className="search-form" onSubmit={testApi}>
+            <form className="search-form" onSubmit={getRecommendation}>
                 <input className="search-input" placeholder="Ange titel på din favoritbok" onChange={(e) =>setTitle(e.target.value)}></input>
                 <button className="search-button" type='submit'>Få tips</button>
             </form>

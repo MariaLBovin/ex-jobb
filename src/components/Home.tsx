@@ -3,7 +3,7 @@ import BookSearch from "./Booksearch"
 import { categoriesArray } from "../arrays/categoriesArray";
 import { useContext, useEffect } from "react";
 import { IGetBooksContext, BooksContext } from "../context/IGetBooksContext";
-import { getInitalBooks, getAllBooks } from "../services/CategoryCollector";
+import { getInitalBooks, getAllBooks } from "../services/BooksCollector";
 import { IBookItem } from "../models/IBookItem";
 
 const Home = () => {
