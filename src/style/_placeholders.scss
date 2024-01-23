@@ -8,20 +8,11 @@
     padding-right: calc($gutter / 2);
     padding-left: calc($gutter / 2);
 
-
-    @include breakpoint(s) {
-        max-width: $tablet;
+    @include breakpoint (m) {
+        padding-right: $gutter;
+        padding-left: $gutter;
     }
 
-    @include breakpoint(m) {
-        max-width: $desktop;
-        padding-right: calc($gutter *2);
-        padding-left: calc($gutter * 2);
-    }
-
-    @include breakpoint(l) {
-        max-width: $desktop-large
-    }
 }
 
 /*--------------------- resets -------------------*/

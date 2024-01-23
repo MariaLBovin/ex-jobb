@@ -32,7 +32,7 @@ const DisplayBooks = ({categoryText} :DisplayBooksProps) => {
         <li className="categories-content-item" key={index}>
           <div className="categories-content-imgWrapper">
             <img className="categories-content-img" 
-              src={book.volumeInfo.imageLinks.smallThumbnail}
+              src={book.volumeInfo.imageLinks.thumbnail}
               alt={book.volumeInfo.title}> 
             </img>
           </div>
@@ -55,11 +55,14 @@ const DisplayBooks = ({categoryText} :DisplayBooksProps) => {
           </div>
         </li>
       ))}
+      <li className="categories-content-item">
       <Link to='/category' state={stateText} className="categories-content-listLink">
       <button className="categories-content-listButton">Se alla böcker
       <span className="material-symbols-outlined">last_page</span>
       </button>
       </Link>
+      </li>
+      
       
     </ul>
     

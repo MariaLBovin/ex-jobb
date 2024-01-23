@@ -15,7 +15,7 @@ const Layout = () => {
 
 useEffect(() => {
   const handleViewportChange = () => {
-    setmainMenuOpen(window.innerWidth > 760);
+    setmainMenuOpen(window.innerWidth > 990);
   };
 
   window.addEventListener("resize", handleViewportChange);

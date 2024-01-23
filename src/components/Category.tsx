@@ -17,19 +17,20 @@ const Category = () => {
 
   return (
     <>
-    <section className="category-container">
-      <h1 className="category-header">{state}</h1>
-      <div className="category-wrapper">
+    <section className="category">
+      <div className='category-hero'>
+      <h1 className="category-hero-header">{state}</h1>
+      </div>
+      <div className="category-container">
       <ul className="category-list">
       {books.map((book, index) => (
         <li className="category-item" key={index}>
           <div className="category-imgWrapper">
             <img className="category-img" 
-              src={book.volumeInfo.imageLinks.smallThumbnail}
+              src={book.volumeInfo.imageLinks.thumbnail}
               alt={book.volumeInfo.title}> 
             </img>
           </div>
-          
           <div className="category-text">
           <p className="category-title">{book.volumeInfo.title}</p>
           {book.volumeInfo.authors && book.volumeInfo.authors.length > 0 ? (
@@ -47,10 +48,11 @@ const Category = () => {
             <button className="category-button">Läs mer</button>
             </Link>
           </div>
+
         </li>
       ))}
       </ul> 
-      <button className="category-wrapper-button" onClick={handleNavigate}>Tillbaka
+      <button className="category-container-button" onClick={handleNavigate}>Tillbaka
       <span className="material-symbols-outlined">first_page</span>
       </button>
 

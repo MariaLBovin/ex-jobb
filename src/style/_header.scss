@@ -75,7 +75,7 @@
         }
         &-item {
 
-            @include breakpoint (s) {
+            @include breakpoint (m) {
                 width: 200px;
                 text-align: center;
             }
@@ -83,7 +83,7 @@
         
         &-inner {
             &Wrapper {
-                @include breakpoint (s) {
+                @include breakpoint (m) {
                     display: flex;
                     flex-direction: column;
                     background-color: $secondary;
@@ -95,10 +95,14 @@
                 }
             }
             &Nav {
-                display: flex;
-                justify-content: end;
-                position: relative;
-                right: 180px;
+
+                @include breakpoint (m) {
+                    display: flex;
+                    justify-content: end;
+                    position: relative;
+                    right: 180px;
+                }
+                
             }
             &Menu {
                 @extend %listreset;

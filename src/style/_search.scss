@@ -28,6 +28,10 @@
             &-img {
                 opacity: .5;
             }
+
+            @include breakpoint (m){
+                padding-right: calc($gutter/2);
+            }
         }
         
     }
@@ -36,6 +40,11 @@
 
         @include breakpoint(s){
             flex:2
+        }
+
+        @include breakpoint (m) {
+            padding-left: calc($gutter/2);
+            padding-right: $gutter;
         }
 
         &-inner {
@@ -52,19 +61,32 @@
         padding-bottom: $gutter;
 
         @include breakpoint (m) {
-            padding-bottom: 0;
+            
             line-height: 1.25;
         }
     }
 
     &-text {
         padding-bottom: 8px;
+
         &-fake {
             font-size: 1.4rem;
+
+            @include breakpoint (s) {
+                font-size: 1.8rem;
+            }
+            @include breakpoint (m) {
+                font-size: 2.4rem
+            }
+            @include breakpoint (l) {
+                font-size: 2.8rem;
+            }
         }
         &-button {
             @extend %primarybutton;
             padding: 4px 8px;
+
+            
         }
     }
     &-form {
@@ -90,8 +112,9 @@
             padding-left: $gutter;
 
             @include breakpoint (m) {
-                font-size: 2rem;
+                font-size: 2.4rem;
             }
+
         }
     }
     &-button {
@@ -105,6 +128,10 @@
         @include breakpoint (s) {
             height: 70px;
             width: 150px;
+        }
+
+        @include breakpoint (m) {
+            font-size: 2rem;
         }
     }
 }

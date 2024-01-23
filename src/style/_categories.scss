@@ -4,16 +4,14 @@
 .categories {
     &-container {
         @extend %container;
-        
-    
+
     }
     &-inner{
         display: flex;
         flex-direction: column;
 
         @include breakpoint (s) {
-            flex-direction: row;
-            
+            flex-direction: row;  
         }
     }
 
@@ -32,8 +30,9 @@
             margin-bottom: $gutter;
 
             @include breakpoint (s) {
-               padding-right: calc($gutter *2);
+               padding-right: $gutter;
                width: 30%;
+               flex: 1;
             }
 
        }
@@ -98,6 +97,15 @@
     }
     
     &-content {
+        &-wrapper {
+            @include breakpoint (s) {
+                flex: 2;
+            }
+
+            @include breakpoint (l) {
+                flex: 3;
+            }
+        }
         &-innerWrapper {
             display: flex;
             flex-direction: column;
@@ -109,37 +117,67 @@
         &-list{
             @extend %listreset;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: $gutter;
+            grid-template-columns: repeat(auto-fill, minmax(calc(50% - calc($gutter / 2)), 1fr));
+            
+            @include breakpoint (s) {
+                grid-template-columns: repeat(auto-fill, minmax(calc(33% - calc($gutter / 2)), 1fr));
+            }
+
+            @include breakpoint (m) {
+                grid-template-columns: repeat(auto-fill, minmax(calc(33% - $gutter), 1fr));
+            }
+
+            @include breakpoint (l) {
+                grid-template-columns: repeat(auto-fill, minmax(calc(25% - $gutter), 1fr));
+            }
 
             &Link {
+                align-self: center;
                 
-                align-self: center
+
+                @include breakpoint (m) {
+                    font-size: 2rem
+                }
+                @include breakpoint (l) {
+                    font-size: 2.4rem;
+                    
+                }
             }
             
             &Button {
                 @extend %secondarybutton;
                 width: 100%;
                 
+                @include breakpoint(l) {
+                    
+
+                    span {
+                        font-size: 4rem;
+                    }
+                }
             }
         }
 
         &-item {
-            width: 100%;
+            margin: calc($gutter/4);
             display:grid;
-            
 
             @include breakpoint (s) {
                 margin: calc($gutter/4);
-
             }
-            
+
+            @include breakpoint (m) {  
+                margin: calc($gutter/2);
+            }
         }
+
         &-text {
             align-self: start;
+            text-wrap: wrap;
         }
         &-img {
-
+            width: 100%;
+            
             &Wrapper {
                 align-self: start;
                 width: 100%;
@@ -150,15 +188,20 @@
             font-weight: 700;
             padding-bottom: calc($gutter/4);
         }
+        
         &-button {
             @extend %primarybutton;
             width: 100%;
             height: 24px;
+
+            @include breakpoint (s) {
+                height: 45px;
+                font-size: 2rem;
+            }
             
             &Wrapper {
                 width: 100%;
                 align-self: end;
-                
             }
         }
     }
