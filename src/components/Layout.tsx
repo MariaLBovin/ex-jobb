@@ -36,12 +36,12 @@ setSubMenuOpen(!subMenuOpen);
 
 return (
     <>
+    <BooksContext.Provider value={{bookResponse, setBookResponse, selectedCategory, setSelectedCategory }}>
     <Header
       onToggleMainMenu={toggleMainMenu}
       mainMenuOpen={mainMenuOpen}
       onToggleSubMenu={toggleSubMenu}
       subMenuOpen={subMenuOpen}></Header>
-    <BooksContext.Provider value={{bookResponse, setBookResponse, selectedCategory, setSelectedCategory }}>
     <main className={`main ${mainMenuOpen ? "overlay" : ""}`}>
         <Outlet></Outlet>
     </main>

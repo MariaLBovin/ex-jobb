@@ -5,13 +5,12 @@ import { Link} from "react-router-dom";
 
 interface DisplayBooksProps {
   categoryText: string;
-  
 }
 
 const DisplayBooks = ({categoryText} :DisplayBooksProps) => {
   const {bookResponse} =useContext(BooksContext)  
   const stateText = categoryText
-  console.log(bookResponse);
+
   
   const sortedBooks = bookResponse
     .slice(0, 5)
@@ -23,14 +22,11 @@ const DisplayBooks = ({categoryText} :DisplayBooksProps) => {
 
   const imgZoom = 10;
   
-    
   return (
     <>
       <ul className="categories-content-list">
         {sortedBooks.map((book, index) => {
           const { title, authors, imageLinks } = book.volumeInfo;
-
-          // Replace the existing zoom value in the URL
           const zoomedUrl = imageLinks.thumbnail.replace(/zoom=\d+/, `zoom=${imgZoom}`);
 
           return (
@@ -63,7 +59,7 @@ const DisplayBooks = ({categoryText} :DisplayBooksProps) => {
           );
         })}
         <li className="categories-content-item">
-          <Link to="/category" state={stateText} className="categories-content-listLink">
+          <Link to={`/category/${stateText}`} state={stateText} className="categories-content-listLink">
             <button className="categories-content-listButton">
               Se alla böcker
               <span className="material-symbols-outlined">last_page</span>

@@ -1,19 +1,13 @@
 import { useEffect, useState } from "react";
+import { CategoriesClass } from "../../models/CategoriesClass";
 
-interface Category {
-    id: number;
-    icon: string;
-    text: string;
-    query: string[]
-  }
-  
+
   interface CarouselProps {
-    categories: Category[];
+    categories: CategoriesClass[];
     changeCategory: (selectedCategory: string[], categoryText: string) => void,
   }
   
 const Carousel = ({categories, changeCategory} :CarouselProps) => {
-
     const [activeIndex, setActiveIndex] = useState(0);
     const [isDesktop, setIsDesktop] = useState(window.innerWidth > 760); 
 
@@ -47,8 +41,7 @@ const Carousel = ({categories, changeCategory} :CarouselProps) => {
       };
     
       const renderCategories = () => {
-        
-      const circularCategories = isDesktop
+        const circularCategories = isDesktop
         ? categories
         : [
             categories[calculateIndex(activeIndex)],

@@ -11,10 +11,8 @@ const Categories  = () => {
   const [categoryText, setCategoryText] = useState<string>('Skönlitteratur')
 
   const changeCategory = (selectedCategory: string[], categoryText: string) => {
-    // console.log(selectedCategory);
-    
     const storedBooks = JSON.parse(sessionStorage.getItem('bookData') || '{}');
-    
+
     const storedBooksArray = Array.from<IBookItem>(storedBooks.items)
       .filter(e => e)
       .filter(book => book.volumeInfo.categories && book.volumeInfo.categories.length > 0);
@@ -33,7 +31,6 @@ const Categories  = () => {
     
   };
   
-
   return (
 
     <>

@@ -12,25 +12,21 @@ const Home = () => {
 
   useEffect(() => {
     const fetchInitalData = async () => {
-
       setBookResponse([]);
-      
-
       const existingData = JSON.parse(sessionStorage.getItem('bookData') || '{}')
 
       if(existingData && existingData.items && existingData.items.length > 0) {
-
         const books = Array.from<IBookItem>(existingData.items)
         .filter(e => e)
         .filter(book => book.volumeInfo.categories && book.volumeInfo.categories.length > 0);
 
         const initialCategory = selectedCategory && selectedCategory.length > 0 ? selectedCategory : ['Fiction'];
        
+          
          const initialBooks = books.filter((book: IBookItem) => {
           const bookCategories = book.volumeInfo.categories;
           return bookCategories.some(cat => initialCategory.includes(cat));
         });
-        
         
          setBookResponse(initialBooks)
          setSelectedCategory(initialCategory);
@@ -39,8 +35,7 @@ const Home = () => {
 
         try {
           const response = await getInitalBooks({subject: "fiction"})
-          // console.log(response);
-
+          
           if (response){
             const bookItem = response.items
             setBookResponse(bookItem)
@@ -73,22 +68,17 @@ const Home = () => {
     } else {
       try {
         const response = await getAllBooks({subjects})
-
         const existingData = JSON.parse(sessionStorage.getItem('bookData') || '{}')
-
         const updatedData = {
           ...existingData,
           items: response.items
         };
         sessionStorage.setItem('bookData', JSON.stringify(updatedData))
 
-
       }catch (error){
         console.log(error);
-
       }
     }
-
     }
 
     fetchAllData();

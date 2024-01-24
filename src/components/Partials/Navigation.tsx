@@ -21,8 +21,9 @@ const Navigation = ({mainMenuOpen, toggleSubMenu, subMenuOpen} :NavigationProps)
                 <span className="material-symbols-outlined">expand_less</span>
                 )}
                 </button>
+                <SubMenu subMenuOpen={subMenuOpen}></SubMenu>
             </li>
-            <SubMenu subMenuOpen={subMenuOpen}></SubMenu>   
+               
             <li className="header-nav-item">Meny</li>
           </ul>
         </nav>

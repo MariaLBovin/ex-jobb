@@ -15,13 +15,3 @@ export interface IGetBooksContext {
     setSelectedCategory: () => {},
   });
 
-
-// export interface IGetBooksContext {
-//     bookResponse: IBookItem [],
-//     setBookResponse: React.Dispatch<React.SetStateAction<IBookItem[]>>;
-// }
-
-// export const BooksContext = createContext<IGetBooksContext>({
-//     bookResponse: [],
-//     setBookResponse: () => {},
-// });
