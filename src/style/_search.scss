@@ -76,11 +76,9 @@
                 font-size: 1.8rem;
             }
             @include breakpoint (m) {
-                font-size: 2.4rem
+                font-size: 2.0rem
             }
-            @include breakpoint (l) {
-                font-size: 2.8rem;
-            }
+            
         }
         &-button {
             @extend %primarybutton;

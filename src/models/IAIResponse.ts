@@ -1,5 +1,5 @@
 export interface IAIResponse {
-    data: {
+    
       choices: [{
         text: string;
         index: number;
@@ -15,5 +15,5 @@ export interface IAIResponse {
         completion_tokens: number;
         total_tokens: number;
       };
-    };
+    
   }

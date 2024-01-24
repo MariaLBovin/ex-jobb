@@ -7,7 +7,7 @@ import { IBookItem } from "../../models/IBookItem";
 
 const Search =  () => {
   const {setBookResponse} =useContext<IGetBooksContext>(BooksContext)
-  const [title, setTitle] = useState('')
+  const [searchString, setSearchString] = useState('')
   
   const [bookData, setBookdata] = useState<IBookItem []| null>(null)
   const [searchPerformed, setSearchPerformed] =  useState(false)
@@ -21,23 +21,23 @@ const Search =  () => {
     e.preventDefault();
 
     try {
-      const response = await getBookRecommendation(title)
+      const response = await getBookRecommendation(searchString)
 
       if (response) {
         console.log(response);
         
-        const text= response.data.choices[0].text;
+        const text= response.choices[0].text;
         console.log(text);
 
         const fetchBook = async () => {
           const startIndex = text.indexOf('"') + 1;
           const endIndex = text.indexOf('"', startIndex);
           if (startIndex !== -1 && endIndex !== -1) {
-            const title = text.substring(startIndex, endIndex); 
+            const extractedTitle = text.substring(startIndex, endIndex); 
             const author = text.substring(endIndex + 5);
   
           try {
-            const response = await getSingleBook({title: title, author: author})
+            const response = await getSingleBook({extractedTitle: extractedTitle, author: author})
   
             if(response.totalItems > 0){
               console.log(response);
@@ -50,13 +50,13 @@ const Search =  () => {
             }catch(error) {
               console.log(error);
           }
+          
          }
          setSearchPerformed(true)
+         setSearchString('');
       }
       setPText(`Jag rekommenderar att du läser ${text}. `)
-      setTitle('');
-      console.log(title);
-    
+      
       fetchBook()
       }
 
@@ -64,6 +64,7 @@ const Search =  () => {
       console.log(error);
       
     }
+    
   } 
 
     const book = bookData?.[0]
@@ -87,7 +88,7 @@ const Search =  () => {
           )}
             </article>
             <form className="search-form" onSubmit={getRecommendation}>
-                <input className="search-input" placeholder="Ange titel på din favoritbok" onChange={(e) =>setTitle(e.target.value)}></input>
+                <input className="search-input" placeholder="Ange titel på din favoritbok" onChange={(e) =>setSearchString(e.target.value)}></input>
                 <button className="search-button" type='submit'>Få tips</button>
             </form>
         </div>

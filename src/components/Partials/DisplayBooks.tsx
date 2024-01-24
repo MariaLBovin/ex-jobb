@@ -21,53 +21,58 @@ const DisplayBooks = ({categoryText} :DisplayBooksProps) => {
       return dateB.getTime() - dateA.getTime();
     });
 
-  const books = sortedBooks.map((book) => book)
-
-
+  const imgZoom = 10;
+  
     
   return (
     <>
-    <ul className="categories-content-list">
-      {books.map((book, index) => (
-        <li className="categories-content-item" key={index}>
-          <div className="categories-content-imgWrapper">
-            <img className="categories-content-img" 
-              src={book.volumeInfo.imageLinks.thumbnail}
-              alt={book.volumeInfo.title}> 
-            </img>
-          </div>
-          <div className="categories-content-text">
-          <p className="categories-content-title">{book.volumeInfo.title}</p>
-          {book.volumeInfo.authors && book.volumeInfo.authors.length > 0 ? (
-              book.volumeInfo.authors.map((author :string, authorIndex : number) => (
-                <p className="categories-content-author" key={authorIndex}>
-                  {author}
-                </p>
-              ))
-            ) : (
-              <p className="categories-content-author"></p>
-            )}
-          </div>
-          <div className="categories-content-buttonWrapper">
-            <Link to={`/book/${book.id}`}>
-            <button className="categories-content-button">Läs mer</button>
-            </Link>
-          </div>
+      <ul className="categories-content-list">
+        {sortedBooks.map((book, index) => {
+          const { title, authors, imageLinks } = book.volumeInfo;
+
+          // Replace the existing zoom value in the URL
+          const zoomedUrl = imageLinks.thumbnail.replace(/zoom=\d+/, `zoom=${imgZoom}`);
+
+          return (
+            <li className="categories-content-item" key={index}>
+              <div className="categories-content-imgWrapper">
+                <img
+                  className="categories-content-img"
+                  src={zoomedUrl}
+                  alt={title}
+                />
+              </div>
+              <div className="categories-content-text">
+                <p className="categories-content-title">{title}</p>
+                {authors && authors.length > 0 ? (
+                  authors.map((author: string, authorIndex: number) => (
+                    <p className="categories-content-author" key={authorIndex}>
+                      {author}
+                    </p>
+                  ))
+                ) : (
+                  <p className="categories-content-author"></p>
+                )}
+              </div>
+              <div className="categories-content-buttonWrapper">
+                <Link to={`/book/${book.id}`}>
+                  <button className="categories-content-button">Läs mer</button>
+                </Link>
+              </div>
+            </li>
+          );
+        })}
+        <li className="categories-content-item">
+          <Link to="/category" state={stateText} className="categories-content-listLink">
+            <button className="categories-content-listButton">
+              Se alla böcker
+              <span className="material-symbols-outlined">last_page</span>
+            </button>
+          </Link>
         </li>
-      ))}
-      <li className="categories-content-item">
-      <Link to='/category' state={stateText} className="categories-content-listLink">
-      <button className="categories-content-listButton">Se alla böcker
-      <span className="material-symbols-outlined">last_page</span>
-      </button>
-      </Link>
-      </li>
-      
-      
-    </ul>
-    
+      </ul>
     </>
-  )
+  );
 }
 
 export default DisplayBooks

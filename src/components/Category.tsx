@@ -8,58 +8,60 @@ const Category = () => {
   const {bookResponse} = useContext(BooksContext)
   const navigate = useNavigate()
 
-  
   const books = bookResponse.map((book) => book)
+  const imgZoom = 10;
 
   const handleNavigate = () => {
     navigate('/')
   };
 
   return (
-    <>
-    <section className="category">
-      <div className='category-hero'>
-      <h1 className="category-hero-header">{state}</h1>
-      </div>
-      <div className="category-container">
-      <ul className="category-list">
-      {books.map((book, index) => (
-        <li className="category-item" key={index}>
-          <div className="category-imgWrapper">
-            <img className="category-img" 
-              src={book.volumeInfo.imageLinks.thumbnail}
-              alt={book.volumeInfo.title}> 
-            </img>
+      <>
+        <section className="category">
+          <div className="category-hero">
+            <h1 className="category-hero-header">{state}</h1>
           </div>
-          <div className="category-text">
-          <p className="category-title">{book.volumeInfo.title}</p>
-          {book.volumeInfo.authors && book.volumeInfo.authors.length > 0 ? (
-              book.volumeInfo.authors.map((author, authorIndex) => (
-                <p className="category-author" key={authorIndex}>
-                  {author}
-                </p>
-              ))
-            ) : (
-              <p className="category-author"></p>
-            )}
+          <div className="category-container">
+            <ul className="category-list">
+              {books.map((book, index) => {
+                const { title, authors, imageLinks } = book.volumeInfo;
+                const zoomedUrl = imageLinks.thumbnail.replace(/zoom=\d+/, `zoom=${imgZoom}`);
+  
+                return (
+                  <li className="category-item" key={index}>
+                    <div className="category-imgWrapper">
+                      <img className="category-img" src={zoomedUrl} alt={title} />
+                    </div>
+                    <div className="category-text">
+                      <p className="category-title">{title}</p>
+                      {authors && authors.length > 0 ? (
+                        authors.map((author, authorIndex) => (
+                          <p className="category-author" key={authorIndex}>
+                            {author}
+                          </p>
+                        ))
+                      ) : (
+                        <p className="category-author"></p>
+                      )}
+                    </div>
+                    <div className="category-buttonWrapper">
+                      <Link to={`/book/${book.id}`}>
+                        <button className="category-button">Läs mer</button>
+                      </Link>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="category-footer">
+              <button className="category-footer-button" onClick={handleNavigate}>
+                Tillbaka
+                <span className="material-symbols-outlined">first_page</span>
+              </button>
+            </div>
           </div>
-          <div className="category-buttonWrapper">
-            <Link to={`/book/${book.id}`}>
-            <button className="category-button">Läs mer</button>
-            </Link>
-          </div>
-
-        </li>
-      ))}
-      </ul> 
-      <button className="category-container-button" onClick={handleNavigate}>Tillbaka
-      <span className="material-symbols-outlined">first_page</span>
-      </button>
-
-      </div>
-      
-    </section>
-    </>
+        </section>
+      </>
   )
 }
 

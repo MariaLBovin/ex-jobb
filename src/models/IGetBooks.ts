@@ -4,7 +4,7 @@ export interface IGetBooks {
 }
 
 export interface IGetBook{
-    title: string;
+    extractedTitle: string;
     author: string
 }
 
