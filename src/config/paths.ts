@@ -4,5 +4,5 @@ export const paths: IPaths = {
   home: "/",
   category: "/category",
   book: "/book/:id",
-  // contact: "/contact",
+  about: "/contact",
 };

@@ -25,7 +25,7 @@ const Navigation = ({mainMenuOpen, toggleSubMenu, subMenuOpen} :NavigationProps)
                 <SubMenu subMenuOpen={subMenuOpen}></SubMenu>
             </li>
             <li className="header-nav-item">
-              <NavLink to='/' 
+              <NavLink to='/contact' 
               className={isActive => "nav-link" + (!isActive ? " unselected" : "")}>
                 Kontakt
               </NavLink>

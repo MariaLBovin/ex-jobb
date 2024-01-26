@@ -1,17 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-const Logo = () => {
+export const Logo = () => {
   return (
     <>
     <div className="header-logo">
-        <Link to='/'>
+        <NavLink to='/'>
         <img className="header-logo" src="/logo.png"/>
-        </Link>
+        </NavLink>
           
       </div>
     </>
   )
 }
-
-export default Logo

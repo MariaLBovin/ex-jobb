@@ -1,0 +1,48 @@
+@import './variables';
+@import './mixins';
+
+.about{
+    &-container {
+        @extend %container;
+        
+    }
+    &-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    &-content {
+        display: flex;
+        flex-direction: column;
+        gap: calc($gutter / 2);
+
+        &-header {
+            text-align: center;
+        }
+
+        &-text{
+            &Span {
+                color: $secondary;
+                text-decoration: underline;
+            }
+        }
+
+        &-link {
+            :hover{
+                text-decoration: underline;
+            }
+            &Button{
+                @extend %primarybutton;
+                padding: calc($gutter /2);
+            }
+        }
+        &-contact{
+            display: flex;
+            flex-direction: row;
+
+            &Text{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import { FormEvent, useContext, useState } from "react";
 import { getBookRecommendation, getSingleBook } from "../../services/BooksCollector";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { BooksContext, IGetBooksContext } from "../../context/IGetBooksContext";
 import { IBookItem } from "../../models/IBookItem";
 
@@ -81,9 +81,9 @@ const Search =  () => {
             <p className="search-text-fake">Det här verkar vara en bok som OpenAi har hittat på... Om du gillar titeln så kanske du ska skriva den?! Eller prova sök igen.</p>
           ) : (
             book && (
-              <Link to={`/book/${book.id}`}>
+              <NavLink to={`/book/${book.id}`}>
                 <button className='search-text-button'>Läs mer om boken</button>
-              </Link>
+              </NavLink>
             )
           )}
             </article>

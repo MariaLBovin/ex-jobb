@@ -4,12 +4,14 @@ import Home from "./components/Home";
 import Layout from "./components/Layout";
 import Category from "./components/Category";
 import DisplaySinglebook from "./components/Partials/DisplaySinglebook";
+import ErrorPage from "./components/ErrorPage";
+import AboutPage from "./components/AboutPage";
 
 export const router =createHashRouter([
     {
         path: paths.home,
         element: <Layout />,
-        
+        errorElement: <ErrorPage/>,
         children: [
           {
             path: paths.home,
@@ -23,10 +25,10 @@ export const router =createHashRouter([
             path: paths.book,
             element: <DisplaySinglebook />,
           },
-        //   {
-        //     path: paths.contact,
-        //     element: <Contact />,
-        //   },
+          {
+            path: paths.about,
+            element: <AboutPage />,
+          },
         ],
       },
 ])

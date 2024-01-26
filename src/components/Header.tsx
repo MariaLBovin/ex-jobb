@@ -1,4 +1,4 @@
-import Logo from "./Partials/Logo";
+import {Logo} from "./Partials/Logo";
 import Navigation from "./Partials/Navigation";
 
 
@@ -9,7 +9,6 @@ interface HeaderProps {
     subMenuOpen: boolean;
   }
 const Header = ({ onToggleMainMenu, mainMenuOpen, onToggleSubMenu, subMenuOpen }: HeaderProps) => {
-
 
   return (
     <>

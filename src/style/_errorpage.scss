@@ -1,0 +1,67 @@
+@import './variables';
+@import './mixins';
+
+.error {
+    &-container {
+        @extend %container;
+    }
+
+    &-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        @include breakpoint (s){
+            flex-direction: row;
+            margin-top: $gutter;
+        }
+    }
+
+    &-img {
+        &-src {
+            filter: brightness(0) saturate(100%) invert(23%) sepia(96%) saturate(310%) hue-rotate(140deg) brightness(97%) contrast(95%);
+        }
+        
+
+        @include breakpoint (s){
+            flex:1;
+            width: 50%;
+            padding: calc($gutter / 2);
+        }
+    }
+    
+    &-inner {
+        display: flex;
+        flex-direction: column;
+        padding: calc($gutter / 2);
+        margin-bottom: $gutter;
+        margin-top: -100px;
+
+        @include breakpoint (s){
+            margin-top:0;
+            
+            justify-content: center;
+            flex: 1;
+            
+        }
+        
+            &-heading{
+                text-align: center;
+                font-size: 14rem;
+            }
+            &-text{
+                padding-bottom: $gutter;
+            }
+            &-link {
+                width: 100%;
+                justify-content: center;
+                display: flex;
+        
+                &Button {
+                    @extend %secondarybutton;
+                    padding: calc($gutter/2)
+                }
+            }
+    }
+    
+    
+}
