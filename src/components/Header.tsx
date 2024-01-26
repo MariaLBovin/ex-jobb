@@ -18,14 +18,12 @@ const Header = ({ onToggleMainMenu, mainMenuOpen, onToggleSubMenu, subMenuOpen }
             <Logo></Logo>
             <button className="header-button" onClick={onToggleMainMenu} aria-expanded={mainMenuOpen ? "true" : "false"}>
             {mainMenuOpen ? (
-            <span className="material-symbols-outlined header-symbol">close</span>
+            <span className="material-symbols-outlined header-button-symbol">close</span>
           ) : (
-            <span className="material-symbols-outlined header-symbol">menu</span>
+            <span className="material-symbols-outlined header-button-symbol">menu</span>
           )}
             </button>
             <Navigation mainMenuOpen={mainMenuOpen} toggleSubMenu={onToggleSubMenu} subMenuOpen={subMenuOpen}></Navigation>
-            
-              
             </div>
         </header>
     </>

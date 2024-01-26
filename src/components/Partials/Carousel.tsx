@@ -15,9 +15,7 @@ const Carousel = ({categories, changeCategory} :CarouselProps) => {
       const handleResize = () => {
         setIsDesktop(window.innerWidth > 760); 
       };
-  
       window.addEventListener("resize", handleResize);
-  
       return () => {
         window.removeEventListener("resize", handleResize);
       };
@@ -27,9 +25,8 @@ const Carousel = ({categories, changeCategory} :CarouselProps) => {
         setActiveIndex((prevIndex) =>
           prevIndex === categories.length - 1 ? 0 : (prevIndex + 1) % categories.length
         );
-        console.log(activeIndex +2);
-        
       };
+
       const prevSlide = () => {
         setActiveIndex((prevIndex) =>
           prevIndex === 0 ? categories.length - 1 : (prevIndex - 1) % categories.length
@@ -47,9 +44,7 @@ const Carousel = ({categories, changeCategory} :CarouselProps) => {
             categories[calculateIndex(activeIndex)],
             categories[calculateIndex(activeIndex + 1)],
           ];
-  
 
-    
         return circularCategories.map((category, index) => (
           <li key={index} className="categories-slider-item">
             <button className="categories-slider-listButton" onClick={() => changeCategory(category.query, category.text)}>
@@ -71,7 +66,6 @@ const Carousel = ({categories, changeCategory} :CarouselProps) => {
           </button>
         </div>
       );
-
 }
 
 export default Carousel

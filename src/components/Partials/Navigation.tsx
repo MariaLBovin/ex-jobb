@@ -1,4 +1,5 @@
 import SubMenu from "./SubMenu";
+import { NavLink } from "react-router-dom";
 
 interface NavigationProps {
     toggleSubMenu: () => void;
@@ -9,11 +10,11 @@ interface NavigationProps {
 const Navigation = ({mainMenuOpen, toggleSubMenu, subMenuOpen} :NavigationProps) => {
   return (
     <>
-      <div className="header-nav-wrapper">
         <nav className="header-nav" aria-label="main" aria-hidden={mainMenuOpen ? "false" : "true"}>
-        <ul className={`header-nav-list ${mainMenuOpen  && 'active'}` }>
+        <div className={`header-nav-element ${mainMenuOpen && 'active'}`}>
+        <ul className="header-nav-list">
             <li className="header-nav-item">
-              <button className="header-nav-innerButton" onClick={toggleSubMenu} aria-expanded={subMenuOpen ? "true" : "false"}>
+              <button className="header-nav-itemButton" onClick={toggleSubMenu} aria-expanded={subMenuOpen ? "true" : "false"}>
                 Kategorier
                 {!subMenuOpen ? (
                 <span className="material-symbols-outlined">expand_more</span>
@@ -23,13 +24,16 @@ const Navigation = ({mainMenuOpen, toggleSubMenu, subMenuOpen} :NavigationProps)
                 </button>
                 <SubMenu subMenuOpen={subMenuOpen}></SubMenu>
             </li>
-               
-            <li className="header-nav-item">Meny</li>
+            <li className="header-nav-item">
+              <NavLink to='/' 
+              className={isActive => "nav-link" + (!isActive ? " unselected" : "")}>
+                Kontakt
+              </NavLink>
+            </li>
           </ul>
-        </nav>
-        
-      </div>  
-      
+          </div>
+          
+        </nav> 
     </>
   )
 }

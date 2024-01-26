@@ -3,53 +3,37 @@ import { categoriesArray } from "../arrays/categoriesArray";
 import DisplayBooks from "./Partials/DisplayBooks";
 import { useContext, useState} from "react";
 import { BooksContext, IGetBooksContext } from "../context/IGetBooksContext";
-import { IBookItem } from "../models/IBookItem";
+import { changeCategory } from "../utils/changeCategoryUtils";
 
-const Categories  = () => {
-  
-  const {setBookResponse, setSelectedCategory} = useContext<IGetBooksContext>(BooksContext);
-  const [categoryText, setCategoryText] = useState<string>('Skönlitteratur')
+const Categories = () => {
+  const { setBookResponse, setSelectedCategory } = useContext<IGetBooksContext>(BooksContext);
+  const [categoryText, setCategoryText] = useState<string>('Skönlitteratur');
 
-  const changeCategory = (selectedCategory: string[], categoryText: string) => {
-    const storedBooks = JSON.parse(sessionStorage.getItem('bookData') || '{}');
+  const displayCategory = (selectedCategory: string[], categoryText: string) => {
+    const filteredBooks = changeCategory(selectedCategory);
 
-    const storedBooksArray = Array.from<IBookItem>(storedBooks.items)
-      .filter(e => e)
-      .filter(book => book.volumeInfo.categories && book.volumeInfo.categories.length > 0);
-       
-      const filteredBooks = storedBooksArray.filter((book: IBookItem) => {
-        const selectedCategoriesLower = selectedCategory.map(cat => cat.toLowerCase());
-        const bookCategoriesLower = book.volumeInfo.categories.map(cat => cat.toLowerCase());
-
-        return selectedCategoriesLower.some(cat => bookCategoriesLower.includes(cat));
-      });
-    
-    
-    setBookResponse(filteredBooks)
+    setBookResponse(filteredBooks);
     setCategoryText(categoryText);
     setSelectedCategory(selectedCategory);
-    
   };
-  
+
   return (
-
     <>
-    <section className="categories-container">
-      <h2 className="categories-header">Boktips baserat på kategorier</h2>
-      <div className="categories-inner">
-      <div className="categories-slider-wrapper">
-        <Carousel categories={categoriesArray} changeCategory={changeCategory}></Carousel>
-      </div>
-      <div className="categories-content-wrapper">
-        <DisplayBooks categoryText={categoryText}></DisplayBooks>
-      </div>
-      </div>
-      
-    </section>
-    
+      <section className="categories-container">
+        <h2 className="categories-header">Boktips baserat på kategorier</h2>
+        <div className="categories-inner">
+          <div className="categories-slider-wrapper">
+            <Carousel categories={categoriesArray} changeCategory={displayCategory}></Carousel>
+          </div>
+          <div className="categories-content-wrapper">
+            <DisplayBooks categoryText={categoryText}></DisplayBooks>
+          </div>
+        </div>
+      </section>
     </>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;
+
 

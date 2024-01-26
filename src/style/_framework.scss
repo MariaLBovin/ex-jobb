@@ -38,7 +38,4 @@ img {
 .overlay {
     opacity: .3;
 
-    @include breakpoint (s){
-        opacity: 1;
-    }
 }

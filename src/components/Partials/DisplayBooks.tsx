@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { BooksContext } from "../../context/IGetBooksContext"
-import { Link} from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 
 interface DisplayBooksProps {
@@ -11,7 +11,6 @@ const DisplayBooks = ({categoryText} :DisplayBooksProps) => {
   const {bookResponse} =useContext(BooksContext)  
   const stateText = categoryText
 
-  
   const sortedBooks = bookResponse
     .slice(0, 5)
     .sort((a, b) => {
@@ -51,20 +50,20 @@ const DisplayBooks = ({categoryText} :DisplayBooksProps) => {
                 )}
               </div>
               <div className="categories-content-buttonWrapper">
-                <Link to={`/book/${book.id}`}>
+                <NavLink to={`/book/${book.id}`}>
                   <button className="categories-content-button">Läs mer</button>
-                </Link>
+                </NavLink>
               </div>
             </li>
           );
         })}
         <li className="categories-content-item">
-          <Link to={`/category/${stateText}`} state={stateText} className="categories-content-listLink">
+          <NavLink to={`/category?text=:${stateText}`} state={stateText} className="categories-content-listLink">
             <button className="categories-content-listButton">
               Se alla böcker
               <span className="material-symbols-outlined">last_page</span>
             </button>
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </>
