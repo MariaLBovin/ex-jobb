@@ -8,9 +8,13 @@
     padding-right: calc($gutter / 2);
     padding-left: calc($gutter / 2);
 
-    @include breakpoint (m) {
+    @include breakpoint (s) {
         padding-right: $gutter;
         padding-left: $gutter;
+    }
+    @include breakpoint (l) {
+        padding-right: calc($gutter * 2);
+        padding-left: calc($gutter * 2);
     }
 
 }

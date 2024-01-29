@@ -4,6 +4,7 @@ import { useState } from "react"
 import { BooksContext} from "../context/IGetBooksContext";
 
 import { IBookItem } from "../models/IBookItem";
+import Footer from "./Footer";
 
 const Layout = () => {
 const [mainMenuOpen, setmainMenuOpen] =useState(false);
@@ -34,7 +35,7 @@ return (
         <Outlet></Outlet>
     </main>
     </BooksContext.Provider>
-    <footer></footer>
+    <Footer></Footer>
     </>
   )
 

@@ -1,0 +1,64 @@
+@import './variables';
+@import './mixins';
+
+.footer {
+    &-container {
+        background-color: $secondary;
+        display: flex;
+        flex-direction: row;
+        color: $primary;
+        font-weight: 200;
+    }
+    &-content{
+        @extend %container;
+
+        &-text {
+            padding: calc($gutter/2) 0  ;
+            font-size: 1.4rem;
+        }
+        &-logo {
+            &-list {
+                @extend %listreset;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: baseline;
+
+                @include breakpoint (s) {
+                    gap: 8px;
+                }
+
+            }
+            &-item {
+                padding: 4px 6px 0 0 ;
+                align-items: baseline;
+
+                & img {
+                    width: 20px;
+                    height: 20px;
+                    filter: invert(93%) sepia(1%) saturate(1234%) hue-rotate(64deg) brightness(104%) contrast(105%);
+                }
+                &Link {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 4px;
+                }
+
+                &Text {
+                    font-size: 1.4rem;
+                    
+                }
+            }
+        }
+    }
+    &-img {
+        display: flex;
+
+        & img {
+            align-self: flex-end;
+
+            @include breakpoint (s) {
+                width: 150px;
+            }
+        }
+    }
+}

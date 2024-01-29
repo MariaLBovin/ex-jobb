@@ -1,51 +1,48 @@
-import { NavLink } from "react-router-dom";
-import { aboutArray } from "../arrays/aboutArray"
+import  ViteLogo from '/brand-vite.svg';
+import ReactLogo from '/react.svg';
+import TSLogo from '/typescript.svg';
+import ScssLogo from '/brand_sass_icon.svg'
+import OpenAiLogo from '/openai.svg';
+import GoogleLogo from '/google.svg';
+import { NavLink } from 'react-router-dom';
 
 const AboutPage = () => {
-    const aboutInfo = aboutArray[0]; 
+    
 
   return (
     <>
     <section className="about-container">
+        <h1 className="about-header">Välkommen till Bokai, din digitala boktipsare!</h1>
         <div className="about-wrapper">
-            <div className="about-content">
-                <h1 className="about-content-header">Hej!</h1>
-                <p className="about-content-text">{aboutInfo.about}</p>
-                <p className="about-content-text">För att skapa sidan har jag använt mig av {aboutInfo.techstack}.</p>
-                <p className="about-content-text">Hoppas du gillar sidan! Om du vill se fler projekt jag har gjort kan du besöka min  
-                <span className="about-content-textSpan">
-                <NavLink to={aboutInfo.webpage} className='about-content-link'> portfolio</NavLink>
-                </span>
-                </p> 
-                <div className="about-content-contact">
-                    <div className="about-content-contactText">
-                    <p className="">Eller kontakta mig på mail</p>
-                    <NavLink to={aboutInfo.contact} className='about-content-link'>
-                        <button className="about-content-linkButton">
-                        <span className="material-symbols-outlined">contact_mail</span>
-                        </button>
-                    </NavLink>
-                    </div>
-                    <div className="about-content-contactText">
-                    <p className="about-content-text">eller via LinkedIn</p>
-                    <NavLink to={aboutInfo.linkeIn} className="about-content-link">
-                        <button className="about-content-linkButton">
-                            <img src="/linkedIn.png"></img>
-                        </button>
-                    </NavLink>
-                    </div>
-                
-                    
+                <div className="about-content">
+                    <h2 className='about-content-header'>Om projektet</h2>
+                    <p className="about-content-text">Bokai är framtagen som ett examensarbete  inom ramen för Frontend developer-utbildningen på Medieinstitutet. Syftet med sidan är att underlätta för användaren att hitta sin nästa läsupplevelse.</p>
+                </div> 
+                <div className="about-tech">
+                    <h2 className='about-tech-header'>Techstack</h2>
+                    <ul className="about-tech-list">
+                        <li className="about-tech-item">Vite
+                            <img src={ViteLogo} alt='vite-logo'></img>
+                        </li>
+                        <li className="about-tech-item">React
+                            <img src={ReactLogo} alt='vite-logo'></img>
+                        </li>
+                        <li className="about-tech-item">Typescript
+                            <img src={TSLogo} alt='vite-logo'></img>
+                        </li>
+                        <li className="about-tech-item">Scss
+                            <img src={ScssLogo} alt='vite-logo'></img>
+                        </li>
+                        <li className="about-tech-item">Open AI
+                            <img src={OpenAiLogo} alt='vite-logo'></img>
+                        </li>
+                        <li className="about-tech-item">Google Books API
+                            <img src={GoogleLogo} alt='vite-logo'></img>
+                        </li>
+                    </ul>
+                    <p className='about-tech-text'>Läs mer om projektet på <NavLink to='https://github.com/MariaLBovin/bokai'>Github</NavLink></p> 
                 </div>
-                
-                
             </div>
-            <div className="about-img">
-                <img className="about-img-src" src={aboutInfo.img}></img>
-            </div>
-            
-        </div>
-        
     </section>
     </>
   )
