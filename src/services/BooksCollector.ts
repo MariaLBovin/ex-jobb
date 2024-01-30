@@ -5,6 +5,7 @@ import { IGetAllBooks, IGetBook, IGetBooks } from "../models/IGetBooks";
 import { get, post } from "./ServiceBse";
 import { IAIResponse } from "../models/IAIResponse";
 
+
 interface IAPIBody {
   model: string,
   prompt: string,
