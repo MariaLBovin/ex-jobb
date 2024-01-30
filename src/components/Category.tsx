@@ -55,7 +55,7 @@ const Category = () => {
             <div className="category-footer">
               <button className="category-footer-button" onClick={handleNavigate}>
                 Tillbaka
-                <span className="material-symbols-outlined">first_page</span>
+                <i className="fa-solid fa-angles-left"></i>
               </button>
             </div>
           </div>

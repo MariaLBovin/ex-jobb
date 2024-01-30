@@ -1,10 +1,10 @@
 import { CategoriesClass } from "../models/CategoriesClass";
 
 export const categoriesArray : CategoriesClass[] = [
-    { id: 1, icon: "book_4", text: "Skönlitteratur", query:["Fiction"] },
-    { id: 2, icon: "family_star", text: "Barn & ungdom", query: ["Juvenile Fiction"]},
-    { id: 3, icon: "history_edu", text: "Lyrik", query: ["Poetry"] },
-    { id: 4, icon: "local_police", text: "True crime", query:["True Crime"] },
-    { id: 5, icon: "person_book", text: "Biografier", query:["Biography & Autobiography"] },
-    { id: 6, icon: "lightbulb", text: "Fakta", query: ["Family & Relationship", "Gardening", "Law", "Political Science", "Pshycology"  ] },
+    { id: 1, icon: "fa-solid fa-book", text: "Skönlitteratur", query:["Fiction"] },
+    { id: 2, icon: "fa-solid fa-child-reaching", text: "Barn & ungdom", query: ["Juvenile Fiction"]},
+    { id: 3, icon: "fa-solid fa-feather", text: "Lyrik", query: ["Poetry"] },
+    { id: 4, icon: "fa-solid fa-magnifying-glass", text: "True crime", query:["True Crime"] },
+    { id: 5, icon: "fa-solid fa-face-smile", text: "Biografier", query:["Biography & Autobiography"] },
+    { id: 6, icon: "fa-solid fa-circle-question", text: "Fakta", query: ["Family & Relationship", "Gardening", "Law", "Political Science", "Pshycology"  ] },
   ];

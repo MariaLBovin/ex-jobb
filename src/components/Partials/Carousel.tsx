@@ -48,7 +48,7 @@ const Carousel = ({categories, changeCategory} :CarouselProps) => {
         return circularCategories.map((category, index) => (
           <li key={index} className="categories-slider-item">
             <button className="categories-slider-listButton" onClick={() => changeCategory(category.query, category.text)}>
-              <span className="material-symbols-outlined">{category.icon}</span>
+              <i className={category.icon}></i>
             </button>
             <p className="categories-slider-itemText">{category.text}</p>
           </li>
@@ -59,10 +59,10 @@ const Carousel = ({categories, changeCategory} :CarouselProps) => {
         <div className="categories-slider">
           <ul className="categories-slider-list">{renderCategories()}</ul>
           <button className="categories-slider-button categories-slider-buttonPrev" onClick={prevSlide}>
-            <span className="material-symbols-outlined">navigate_before</span>
+            <i className="fa-solid fa-angle-left"></i>
           </button>
           <button className="categories-slider-button categories-slider-buttonNext" onClick={nextSlide}>
-            <span className="material-symbols-outlined">navigate_next</span>
+            <i className="fa-solid fa-angle-right"></i>
           </button>
         </div>
       );

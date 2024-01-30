@@ -53,7 +53,7 @@ const DisplaySinglebook = () => {
         </article>
         <div className="bookpage-footer">
           <button className="bookpage-footer-button" onClick={handleNavigate}>Tillbaka
-            <span className="material-symbols-outlined">first_page</span>
+            <i className="fa-solid fa-angles-left"></i>
           </button>
         </div>
         

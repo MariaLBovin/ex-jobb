@@ -29,19 +29,21 @@
         position: fixed;
         right: 16px;
         z-index: 999;
+        display: flex;
+        align-self: flex-end;
+
 
         @include breakpoint (m) {
             display: none;
         }
 
         &-symbol {
-                    line-height: 1.5;
                     color: $primary;
-                    font-size: 3.2rem;  
+                    font-size: 2.4rem;  
+                    line-height: 1;
                 }
     }
     &-nav {
-        
         &-element {
             display: none;
             
@@ -93,6 +95,7 @@
                 color: inherit;
                 display: flex;
                 align-items: center;
+                gap: 8px;
             }
         } 
         &-inner {
@@ -130,7 +133,12 @@
                 }
             }
             &Item {
-                font-size: 2.4rem;
+                font-size: 1.8rem;
+                font-weight: 200;
+
+                @include breakpoint (s) {
+                    font-size: 2.4rem;
+                }
 
                 &:hover{
                     text-decoration: underline;

@@ -86,6 +86,7 @@
             padding: calc($gutter /4) calc($gutter/ 2);
             display: flex;
             flex-direction: row-reverse;
+            gap: 8px;
             
             @include breakpoint (m) {
                 font-size: 2.4rem;

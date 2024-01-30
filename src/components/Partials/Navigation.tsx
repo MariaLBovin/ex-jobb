@@ -17,9 +17,9 @@ const Navigation = ({mainMenuOpen, toggleSubMenu, subMenuOpen} :NavigationProps)
               <button className="header-nav-itemButton" onClick={toggleSubMenu} aria-expanded={subMenuOpen ? "true" : "false"}>
                 Kategorier
                 {!subMenuOpen ? (
-                <span className="material-symbols-outlined">expand_more</span>
+                <i className="fa-solid fa-angle-down"></i>
                 ) : (
-                <span className="material-symbols-outlined">expand_less</span>
+                <i className="fa-solid fa-angle-up"></i>
                 )}
                 </button>
                 <SubMenu subMenuOpen={subMenuOpen}></SubMenu>
