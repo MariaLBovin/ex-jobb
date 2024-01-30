@@ -60,7 +60,7 @@ const DisplayBooks = ({categoryText} :DisplayBooksProps) => {
         <li className="categories-content-item">
           <NavLink to={`/category?text=:${stateText}`} state={stateText} className="categories-content-listLink">
             <button className="categories-content-listButton">
-              Se alla böcker
+              Se fler
               <span className="material-symbols-outlined">last_page</span>
             </button>
           </NavLink>

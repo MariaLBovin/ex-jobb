@@ -9,7 +9,7 @@ const Category = () => {
   const navigate = useNavigate()
 
   const books = bookResponse.map((book) => book)
-  const imgZoom = 10;
+  const imgZoom = 5;
 
   const handleNavigate = () => {
     navigate('/')
@@ -26,11 +26,10 @@ const Category = () => {
               {books.map((book, index) => {
                 const { title, authors, imageLinks } = book.volumeInfo;
                 const zoomedUrl = imageLinks.thumbnail.replace(/zoom=\d+/, `zoom=${imgZoom}`);
-  
                 return (
                   <li className="category-item" key={index}>
                     <div className="category-imgWrapper">
-                      <img className="category-img" src={zoomedUrl} alt={title} />
+                      <img className="category-img" src={zoomedUrl} alt={title} loading="lazy"/>
                     </div>
                     <div className="category-text">
                       <p className="category-title">{title}</p>

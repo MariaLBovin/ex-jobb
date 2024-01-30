@@ -6,6 +6,7 @@
         @extend %container;
         display: flex;
         flex-direction: column;
+        padding-bottom: $gutter;
     }
 
     &-hero {
@@ -57,11 +58,13 @@
         align-self: start;
     }
     &-img {
-    
+        padding: calc($gutter /2);
         &Wrapper {
             width: 100%;
             display: flex;
-            
+            background-color: $yellow-light;
+            border-radius: 16px;
+            justify-content: center;
 
         }
     }

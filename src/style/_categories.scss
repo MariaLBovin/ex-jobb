@@ -4,6 +4,7 @@
 .categories {
     &-container {
         @extend %container;
+        padding-bottom: $gutter;
 
     }
     &-inner{
@@ -174,12 +175,14 @@
             text-wrap: wrap;
         }
         &-img {
-
-            
+            padding: calc($gutter / 2) 0;
             &Wrapper {
                 display:  flex;
                 align-self: start;
                 width: 100%;
+                background-color: $yellow-light;
+                border-radius: 16px;
+                justify-content: center;
             }
         }
 

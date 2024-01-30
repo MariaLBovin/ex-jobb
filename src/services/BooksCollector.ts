@@ -49,7 +49,7 @@ export const getAllBooks = async (params: IGetAllBooks): Promise<IBookList> => {
 
 export const getSingleBook =async (params:IGetBook) => {
     return await get<IBookList>(
-        `volumes?q=intitle:${params.title}+inauthor:${params.author}&${req_spec_single}&${api_key}`
+        `volumes?q=intitle:${params.extractedTitle}+inauthor:${params.author}&${req_spec_single}&${api_key}`
     )
 }
 
