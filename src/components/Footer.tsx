@@ -1,6 +1,4 @@
 import Img from '/me.png'; 
-import LinkedInLogo from '/linkedIn.svg';
-import GithubLogo from '/github.svg'
 import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
