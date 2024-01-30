@@ -19,7 +19,7 @@ const DisplayBooks = ({categoryText} :DisplayBooksProps) => {
       return dateB.getTime() - dateA.getTime();
     });
 
-  const imgZoom = 10;
+  const imgZoom = 5;
   
   return (
     <>
