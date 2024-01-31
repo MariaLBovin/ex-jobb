@@ -1,12 +1,14 @@
 import { useContext } from "react"
 import { BooksContext } from "../../context/IGetBooksContext"
 import { useNavigate, useParams } from "react-router-dom";
+import { useSessionStorage } from "../../hooks/useSessionStorage";
 
 const DisplaySinglebook = () => {
     const {bookResponse} = useContext(BooksContext);
     const {id} = useParams();
     const navigate = useNavigate();
-
+    useSessionStorage();
+    
     const book = bookResponse.find((book) => book.id === id)
     const imgZoom = 5;
 

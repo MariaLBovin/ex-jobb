@@ -3,11 +3,14 @@ import {useNavigate } from "react-router-dom"
 import Booklist from "./Partials/Booklist"
 import { useContext } from "react"
 import { BooksContext } from "../context/IGetBooksContext"
+import { useSessionStorage } from "../hooks/useSessionStorage"
+
 
 const Category = () => {
   const navigate = useNavigate()
   const {bookResponse, selectedCategoryText} = useContext(BooksContext)
   
+  useSessionStorage();
   const books = bookResponse.map((book) => book)
   const uniqueTitleContainer: { [key: string]: boolean } = {};
 

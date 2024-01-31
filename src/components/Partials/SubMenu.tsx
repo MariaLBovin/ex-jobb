@@ -19,6 +19,7 @@ const SubMenu = ({subMenuOpen, toggleSubMenu, toggleMainMenu} :DesktopNavProps) 
 
     setBookResponse(filteredBooks);
     setSelectedCategory(selectedCategory);
+      
     toggleSubMenu()
     toggleMainMenu()
 

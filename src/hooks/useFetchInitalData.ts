@@ -5,7 +5,7 @@ import { getInitalBooks } from "../services/BooksCollector";
 
 export const useFetchInitialData = () => {
 
-  const {setBookResponse, selectedCategory, setSelectedCategory} =useContext<IGetBooksContext>(BooksContext);
+  const {setBookResponse, selectedCategory, setSelectedCategory, selectedCategoryText} =useContext<IGetBooksContext>(BooksContext);
 
     useEffect(() => {
       const fetchInitialData = async () => {
@@ -18,7 +18,8 @@ export const useFetchInitialData = () => {
             .filter(book => book.volumeInfo.categories && book.volumeInfo.categories.length > 0);
   
           const initialCategory = selectedCategory && selectedCategory.length > 0 ? selectedCategory : ['Fiction'];
-  
+          const categoryText = selectedCategoryText ? selectedCategoryText : 'Skönlitteratur';
+
           const initialBooks = books.filter((book: IBookItem) => {
             const bookCategories = book.volumeInfo.categories;
             return bookCategories.some(cat => initialCategory.includes(cat));
@@ -26,6 +27,10 @@ export const useFetchInitialData = () => {
   
           setBookResponse(initialBooks);
           setSelectedCategory(initialCategory);
+          sessionStorage.setItem('books', JSON.stringify(initialBooks));
+          sessionStorage.setItem('selectedCategory', JSON.stringify(initialCategory));
+          sessionStorage.setItem('categoryText', JSON.stringify(categoryText));
+
         } else {
           try {
             const response = await getInitalBooks({ subject: 'fiction' });

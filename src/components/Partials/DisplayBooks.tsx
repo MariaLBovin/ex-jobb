@@ -7,6 +7,7 @@ import Booklist from "./Booklist";
 const DisplayBooks = () => {
   const {bookResponse, selectedCategoryText} =useContext(BooksContext)  
 
+
   const sortedBooks = bookResponse
     .slice(0, 6)
     .sort((a, b) => {
