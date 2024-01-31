@@ -6,21 +6,28 @@ import { changeCategory } from "../../utils/changeCategoryUtils";
 
 interface DesktopNavProps {
     subMenuOpen: boolean;
-    mainMenuOpen: boolean
     toggleSubMenu: () => void;
+    toggleMainMenu: () => void;
+
+
   }
 
-const SubMenu = ({subMenuOpen, toggleSubMenu, mainMenuOpen } :DesktopNavProps) => {
-  const {setSelectedCategory, setBookResponse} = useContext(BooksContext)
+const SubMenu = ({subMenuOpen, toggleMainMenu, toggleSubMenu} :DesktopNavProps) => {
+  const {setSelectedCategory, setBookResponse, setSelectedCategoryText} = useContext(BooksContext)
 
-  const displayChosenCategory = (selectedCategory: string[]) => {
-    
+  const displayChosenCategory = (selectedCategory: string[], categoryText: string) => {
     const filteredBooks = changeCategory(selectedCategory);
-
     setBookResponse(filteredBooks);
     setSelectedCategory(selectedCategory);
-      
-    toggleSubMenu()
+    setSelectedCategoryText(categoryText);
+    
+
+    if(window.innerWidth <= 760){
+      toggleMainMenu();
+      toggleSubMenu();
+    }else {
+      toggleSubMenu();
+    }
 
   }
   
@@ -31,7 +38,7 @@ const SubMenu = ({subMenuOpen, toggleSubMenu, mainMenuOpen } :DesktopNavProps) =
             {categoriesArray.map((category) => (
                 <li className="header-nav-innerItem" key={category.id}> 
                   <NavLink to={`/category?text=:${category.text}`} 
-                  onClick={() => displayChosenCategory(category.query)} 
+                  onClick={() => displayChosenCategory(category.query, category.text)} 
                   state= {category.text} 
                   className={isActive => "nav-link" + (!isActive ? " unselected" : "")}>
                   {category.text}

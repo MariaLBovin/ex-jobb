@@ -47,5 +47,5 @@ export const useFetchInitialData = () => {
       };
   
       fetchInitialData();
-    }, [setBookResponse, selectedCategory, setSelectedCategory]);
+    }, [setBookResponse, selectedCategory, setSelectedCategory, selectedCategoryText]);
   };
