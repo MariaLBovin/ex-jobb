@@ -5,8 +5,8 @@
     &-container {
         @extend %container;
         padding-bottom: $gutter;
-
     }
+
     &-inner{
         display: flex;
         flex-direction: column;
@@ -30,9 +30,9 @@
         &-wrapper {
             margin-bottom: $gutter;
 
-            @include breakpoint (s) {
+            @include breakpoint (l) {
                padding-right: $gutter;
-               width: 30%;
+
                flex: 1;
             }
 
@@ -53,12 +53,10 @@
             width:60px;
             height: 60px;
             border-radius: 50%;
-
         }
         }
 
         &-item {
-            word-break: break-all;
             hyphens: auto;
             display: flex;
             flex-direction: column;
@@ -70,13 +68,11 @@
                 width: 100%;
                 padding-bottom: $gutter;
             }
-
             &Text {
                 padding: 8px 8px 0 8px;
-                
             }
-
         }
+
         &-button {
             @extend %buttonreset;
             position: absolute;
@@ -95,7 +91,6 @@
                 right: 0px;
             }
         }
-
     }
     
     &-content {
@@ -120,6 +115,8 @@
             @extend %listreset;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(calc(50% - calc($gutter / 2)), 1fr));
+            gap: calc($gutter /2 );
+            padding-bottom: $gutter;
             
             @include breakpoint (s) {
                 grid-template-columns: repeat(auto-fill, minmax(calc(33% - calc($gutter / 2)), 1fr));
@@ -135,20 +132,17 @@
 
             &Link {
                 align-self: center;
-                
 
                 @include breakpoint (m) {
                     font-size: 2rem
                 }
                 @include breakpoint (l) {
                     font-size: 2.4rem;
-                    
                 }
             }
             
             &Button {
                 @extend %secondarybutton;
-                width: 100%;
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
@@ -156,57 +150,6 @@
                 @include breakpoint(l) {
        
                 }
-            }
-        }
-
-        &-item {
-            margin: calc($gutter/4);
-            display:grid;
-            
-
-            @include breakpoint (s) {
-                margin: calc($gutter/4);
-            }
-
-            @include breakpoint (m) {  
-                margin: calc($gutter/2);
-            }
-        }
-
-        &-text {
-            align-self: start;
-            text-wrap: wrap;
-        }
-        &-img {
-            padding: calc($gutter / 2) 0;
-            &Wrapper {
-                display:  flex;
-                align-self: start;
-                width: 100%;
-                background-color: $yellow-light;
-                border-radius: 16px;
-                justify-content: center;
-            }
-        }
-
-        &-title {
-            font-weight: 700;
-            padding-bottom: calc($gutter/4);
-        }
-        
-        &-button {
-            @extend %primarybutton;
-            width: 100%;
-            height: 32px;
-
-            @include breakpoint (s) {
-                height: 45px;
-                font-size: 2rem;
-            }
-            
-            &Wrapper {
-                width: 100%;
-                align-self: end;
             }
         }
     }

@@ -1,19 +1,19 @@
 import Carousel from "./Partials/Carousel";
 import { categoriesArray } from "../arrays/categoriesArray";
 import DisplayBooks from "./Partials/DisplayBooks";
-import { useContext, useState} from "react";
+import { useContext} from "react";
 import { BooksContext, IGetBooksContext } from "../context/IGetBooksContext";
 import { changeCategory } from "../utils/changeCategoryUtils";
 
 const Categories = () => {
-  const { setBookResponse, setSelectedCategory } = useContext<IGetBooksContext>(BooksContext);
-  const [categoryText, setCategoryText] = useState<string>('Skönlitteratur');
+  const { setBookResponse, setSelectedCategory, setSelectedCategoryText } = useContext<IGetBooksContext>(BooksContext);
+  
 
   const displayCategory = (selectedCategory: string[], categoryText: string) => {
     const filteredBooks = changeCategory(selectedCategory);
 
     setBookResponse(filteredBooks);
-    setCategoryText(categoryText);
+    setSelectedCategoryText(categoryText);
     setSelectedCategory(selectedCategory);
   };
 
@@ -26,7 +26,7 @@ const Categories = () => {
             <Carousel categories={categoriesArray} changeCategory={displayCategory}></Carousel>
           </div>
           <div className="categories-content-wrapper">
-            <DisplayBooks categoryText={categoryText}></DisplayBooks>
+            <DisplayBooks></DisplayBooks>
           </div>
         </div>
       </section>

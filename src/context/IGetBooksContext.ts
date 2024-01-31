@@ -6,6 +6,8 @@ export interface IGetBooksContext {
     setBookResponse: React.Dispatch<React.SetStateAction<IBookItem[]>>;
     selectedCategory: string[];
     setSelectedCategory: React.Dispatch<React.SetStateAction<string[]>>;
+    selectedCategoryText: string;
+    setSelectedCategoryText: React.Dispatch<React.SetStateAction<string>>;
   }
   
   export const BooksContext = createContext<IGetBooksContext>({
@@ -13,5 +15,7 @@ export interface IGetBooksContext {
     setBookResponse: () => {},
     selectedCategory: [],
     setSelectedCategory: () => {},
+    selectedCategoryText: '',
+    setSelectedCategoryText: () => {}
   });
 

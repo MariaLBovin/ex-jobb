@@ -1,15 +1,26 @@
+
+import {useNavigate } from "react-router-dom"
+import Booklist from "./Partials/Booklist"
 import { useContext } from "react"
 import { BooksContext } from "../context/IGetBooksContext"
-import { Link, useLocation, useNavigate } from "react-router-dom"
-
 
 const Category = () => {
-  const {state} = useLocation()
-  const {bookResponse} = useContext(BooksContext)
   const navigate = useNavigate()
-
+  const {bookResponse, selectedCategoryText} = useContext(BooksContext)
+  
   const books = bookResponse.map((book) => book)
-  const imgZoom = 5;
+  const uniqueTitleContainer: { [key: string]: boolean } = {};
+
+  const uniqueBooks = books.filter((book) => {
+  const normalizedTitle = book.volumeInfo.title.toLowerCase();
+
+  if (!uniqueTitleContainer[normalizedTitle]) {
+    uniqueTitleContainer[normalizedTitle] = true;
+    return true;
+  }
+
+  return false;
+});
 
   const handleNavigate = () => {
     navigate('/')
@@ -19,39 +30,12 @@ const Category = () => {
       <>
         <section className="category">
           <div className="category-hero">
-            <h1 className="category-hero-header">{state}</h1>
+            <h1 className="category-hero-header">{selectedCategoryText}</h1>
           </div>
           <div className="category-container">
-            <ul className="category-list">
-              {books.map((book, index) => {
-                const { title, authors, imageLinks } = book.volumeInfo;
-                const zoomedUrl = imageLinks.thumbnail.replace(/zoom=\d+/, `zoom=${imgZoom}`);
-                return (
-                  <li className="category-item" key={index}>
-                    <div className="category-imgWrapper">
-                      <img className="category-img" src={zoomedUrl} alt={title} loading="lazy"/>
-                    </div>
-                    <div className="category-text">
-                      <p className="category-title">{title}</p>
-                      {authors && authors.length > 0 ? (
-                        authors.map((author, authorIndex) => (
-                          <p className="category-author" key={authorIndex}>
-                            {author}
-                          </p>
-                        ))
-                      ) : (
-                        <p className="category-author"></p>
-                      )}
-                    </div>
-                    <div className="category-buttonWrapper">
-                      <Link to={`/book/${book.id}`}>
-                        <button className="category-button">Läs mer</button>
-                      </Link>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+          <ul className="category-list">
+            <Booklist books={uniqueBooks}></Booklist>
+          </ul>
             <div className="category-footer">
               <button className="category-footer-button" onClick={handleNavigate}>
                 Tillbaka

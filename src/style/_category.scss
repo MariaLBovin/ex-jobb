@@ -6,7 +6,7 @@
         @extend %container;
         display: flex;
         flex-direction: column;
-        padding-bottom: $gutter;
+        padding: $gutter calc($gutter * 2);
     }
 
     &-hero {
@@ -16,6 +16,10 @@
         &-header {
             padding: calc($gutter/2) $gutter;
             color: $primary;
+
+            @include breakpoint (m) {
+                padding: calc($gutter / 2) calc($gutter * 2);
+            }
         }
     }
 
@@ -23,6 +27,7 @@
         @extend %listreset;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(calc(50% - calc($gutter / 2)), 1fr));
+            gap: calc($gutter / 2);
             padding-bottom: $gutter;
             
             @include breakpoint (s) {
@@ -31,6 +36,7 @@
 
             @include breakpoint (m) {
                 grid-template-columns: repeat(auto-fill, minmax(calc(25% - $gutter), 1fr));
+                gap: $gutter;
             }
 
             @include breakpoint (l) {
@@ -38,16 +44,7 @@
             }
     }
     &-item {
-        margin: calc($gutter/4);
-            display:grid;
-
-            @include breakpoint (s) {
-                margin: calc($gutter/4);
-            }
-
-            @include breakpoint (m) {  
-                margin: calc($gutter/2);
-            }
+        display:grid;
 
             &-wrapper {
                 display: grid;
@@ -59,12 +56,14 @@
     }
     &-img {
         padding: calc($gutter /2);
+
         &Wrapper {
             width: 100%;
             display: flex;
             background-color: $yellow-light;
             border-radius: 16px;
             justify-content: center;
+            height: 200px;
 
         }
     }

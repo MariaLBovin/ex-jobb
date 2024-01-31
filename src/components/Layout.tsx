@@ -11,10 +11,10 @@ const [mainMenuOpen, setmainMenuOpen] =useState(false);
 const [subMenuOpen, setSubMenuOpen] = useState(false);
 const [bookResponse, setBookResponse] = useState<IBookItem[]>([]);
 const [selectedCategory, setSelectedCategory] = useState<string[]>([])
+const [selectedCategoryText, setSelectedCategoryText] = useState<string>('Skönlitteratur')
 
 const toggleMainMenu = () => {
   setmainMenuOpen(!mainMenuOpen);
-  console.log('toggle');
 };
 
 const toggleSubMenu = () => {
@@ -23,7 +23,7 @@ setSubMenuOpen(!subMenuOpen);
 
 return (
     <>
-    <BooksContext.Provider value={{bookResponse, setBookResponse, selectedCategory, setSelectedCategory }}>
+    <BooksContext.Provider value={{bookResponse, setBookResponse, selectedCategory, setSelectedCategory, selectedCategoryText, setSelectedCategoryText }}>
     <Header
       onToggleSubMenu={toggleSubMenu}
       onToggleMainMenu = {toggleMainMenu}
