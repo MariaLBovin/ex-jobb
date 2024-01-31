@@ -6,11 +6,11 @@ import { changeCategory } from "../../utils/changeCategoryUtils";
 
 interface DesktopNavProps {
     subMenuOpen: boolean;
+    mainMenuOpen: boolean
     toggleSubMenu: () => void;
-    toggleMainMenu: () => void;
   }
 
-const SubMenu = ({subMenuOpen, toggleSubMenu, toggleMainMenu} :DesktopNavProps) => {
+const SubMenu = ({subMenuOpen, toggleSubMenu, mainMenuOpen } :DesktopNavProps) => {
   const {setSelectedCategory, setBookResponse} = useContext(BooksContext)
 
   const displayChosenCategory = (selectedCategory: string[]) => {
@@ -21,7 +21,6 @@ const SubMenu = ({subMenuOpen, toggleSubMenu, toggleMainMenu} :DesktopNavProps) 
     setSelectedCategory(selectedCategory);
       
     toggleSubMenu()
-    toggleMainMenu()
 
   }
   
