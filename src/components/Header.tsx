@@ -22,7 +22,7 @@ const Header = ({ onToggleMainMenu, mainMenuOpen, onToggleSubMenu, subMenuOpen }
             <i className="fa-solid fa-bars header-button-symbol"></i>
           )}
             </button>
-            <Navigation mainMenuOpen={mainMenuOpen} toggleSubMenu={onToggleSubMenu} subMenuOpen={subMenuOpen} toggleMainMenu={onToggleMainMenu}></Navigation>
+            <Navigation mainMenuOpen={mainMenuOpen} toggleSubMenu={onToggleSubMenu} subMenuOpen={subMenuOpen}></Navigation>
             </div>
         </header>
     </>

@@ -2,13 +2,12 @@ import SubMenu from "./SubMenu";
 import { NavLink } from "react-router-dom";
 
 interface NavigationProps {
-    toggleMainMenu: () => void;
     toggleSubMenu: () => void;
     mainMenuOpen: boolean;
     subMenuOpen: boolean;
   }
 
-const Navigation = ({mainMenuOpen, toggleSubMenu, subMenuOpen, toggleMainMenu} :NavigationProps) => {
+const Navigation = ({mainMenuOpen, toggleSubMenu, subMenuOpen} :NavigationProps) => {
   return (
     <>
         <nav className="header-nav" aria-label="main" aria-hidden={mainMenuOpen ? "false" : "true"}>
@@ -23,7 +22,7 @@ const Navigation = ({mainMenuOpen, toggleSubMenu, subMenuOpen, toggleMainMenu} :
                 <i className="fa-solid fa-angle-up"></i>
                 )}
                 </button>
-                <SubMenu subMenuOpen={subMenuOpen} toggleSubMenu={toggleSubMenu} toggleMainMenu={toggleMainMenu}></SubMenu>
+                <SubMenu subMenuOpen={subMenuOpen} toggleSubMenu={toggleSubMenu} mainMenuOpen={mainMenuOpen}></SubMenu>
             </li>
             <li className="header-nav-item">
               <NavLink to='/contact' 
