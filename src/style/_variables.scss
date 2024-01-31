@@ -1,0 +1,35 @@
+/*-------------Breakpoint-sizes---------------*/
+$mobile: 420px;
+$tablet: 760px;
+$desktop: 990px;
+$desktop-large: 1240px;
+
+$breakpoints: (
+    'xs': (
+        max-width: $mobile,
+    ),
+    's': (
+        min-width: $tablet,
+    ),
+    'm': (
+        min-width: $desktop,
+    ),
+    'l': (
+        min-width: $desktop-large,
+    )
+
+);
+
+/*-----------------Columns and padding------------------*/
+$columns: 12;
+$gutter: 32px;
+
+
+/*------------- colors -----------------------*/
+$primary: #F7FFF7;
+$secondary: #1A535C;
+$red: #FF6B6B;
+$yellow: #FFE66D;
+$yellow-light:rgba(255, 230, 109, 0.8);
+$blue: #4ECDC4;
+$text-dark: #1C1B1F; 

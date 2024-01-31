@@ -1,0 +1,38 @@
+@import './variables';
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+#root {
+    display: flex;
+    flex-direction: column;
+}
+html,
+body {
+    height: 100%;
+
+}
+
+body {
+    overflow-x: hidden;
+    background-color: $primary;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+.main {
+    flex: 1;    
+}
+.hidden {
+  display: none;
+}
+.overlay {
+    opacity: .3;
+
+}

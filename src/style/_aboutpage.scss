@@ -1,0 +1,86 @@
+@import './variables';
+@import './mixins';
+
+.about{
+    &-container {
+        @extend %container;
+        height: 100vh;
+    }
+    &-header {
+        text-align: center;
+        padding: calc($gutter) 0;
+    }
+    &-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        @include breakpoint (s) {
+            flex-direction: row;
+            gap: $gutter;
+        }
+
+        
+    }
+    &-content {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: $gutter;
+
+        @include breakpoint (s) {
+            flex: 1
+        }
+
+        &-header {
+            padding-bottom: $gutter;
+
+            @include breakpoint (s) {
+                padding-bottom: calc($gutter / 2);
+            }
+        }
+
+        &-text{
+            &Span {
+                color: $secondary;
+                text-decoration: underline;
+            }
+        }
+    }
+    &-tech{
+
+        @include breakpoint (s) {
+            flex: 1;
+        }
+        &-header {
+            padding-bottom: $gutter;
+
+            @include breakpoint (s) {
+                padding-bottom: calc($gutter /2 );
+            }
+        }
+        &-list {
+            @extend %listreset;
+            display: flex;
+            flex-wrap: wrap;
+            gap: $gutter;
+            padding-bottom: $gutter;
+
+            @include breakpoint (s) {
+                gap: calc($gutter / 2);
+            }
+        }
+        &-item {
+            display: flex;
+            flex-direction: row;
+            gap: calc($gutter / 2 );
+            align-items: baseline;
+
+            & img{
+                height: 32px;
+
+            }
+        }
+        &-text {
+            text-decoration: underline;
+        }
+    }
+}

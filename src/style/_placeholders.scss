@@ -1,0 +1,55 @@
+@import 'variables';
+@import './mixins';
+
+/*------------------- placeholder components ----------------*/
+
+%container {
+    max-width: 100vw;
+    padding-right: calc($gutter / 2);
+    padding-left: calc($gutter / 2);
+
+    @include breakpoint (s) {
+        padding-right: $gutter;
+        padding-left: $gutter;
+    }
+    @include breakpoint (m) {
+        padding-right: calc($gutter * 2);
+        padding-left: calc($gutter * 2);
+    }
+
+}
+
+/*--------------------- resets -------------------*/
+%listreset {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+%buttonreset {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+%primarybutton{
+    @extend %buttonreset;
+        background-color: $blue;
+        border-radius: 5px;
+        box-shadow:  0 5px 5px black;
+        margin-top: auto;
+        color: black;
+        
+}
+%secondarybutton {
+    @extend %buttonreset;
+        align-items: center;
+        font-weight: 700;
+        background-color: $red;
+        padding: calc($gutter/4);
+        border-radius: 25px;
+        box-shadow:  0 5px 5px black;
+}

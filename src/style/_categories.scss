@@ -1,0 +1,156 @@
+@import './variables';
+@import './mixins';
+
+.categories {
+    &-container {
+        @extend %container;
+        padding-bottom: $gutter;
+    }
+
+    &-inner{
+        display: flex;
+        flex-direction: column;
+
+        @include breakpoint (s) {
+            flex-direction: row;  
+        }
+    }
+
+    &-header {
+        padding-bottom: calc($gutter /2);
+        text-align: center;
+    }
+
+    &-slider {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        position: relative; 
+
+        &-wrapper {
+            margin-bottom: $gutter;
+
+            @include breakpoint (l) {
+               padding-right: $gutter;
+
+               flex: 1;
+            }
+
+       }
+       &-list {
+        @extend %listreset;
+        display: flex;
+        flex-direction: row;
+        width: 200%;
+        justify-content: center;
+
+        @include breakpoint (s) {
+            flex-direction: column;
+        }
+
+        &Button {
+            @extend %secondarybutton;
+            width:60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        }
+
+        &-item {
+            hyphens: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50%;
+            flex: 0 0 50%;
+
+            @include breakpoint (s) {
+                width: 100%;
+                padding-bottom: $gutter;
+            }
+            &Text {
+                padding: 8px 8px 0 8px;
+            }
+        }
+
+        &-button {
+            @extend %buttonreset;
+            position: absolute;
+            top: 16px;
+            font-size: 32px;
+
+            & i {
+                font-size: 2.4rem;
+               }
+    
+            @include breakpoint (s) {
+                display: none;
+            }
+    
+            &Next {
+                right: 0px;
+            }
+        }
+    }
+    
+    &-content {
+        &-wrapper {
+            @include breakpoint (s) {
+                flex: 2;
+            }
+
+            @include breakpoint (l) {
+                flex: 3;
+            }
+        }
+        &-innerWrapper {
+            display: flex;
+            flex-direction: column;
+            @include breakpoint (s) {
+                width: 50%;
+            }
+        }
+
+        &-list{
+            @extend %listreset;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(calc(50% - calc($gutter / 2)), 1fr));
+            gap: calc($gutter /2 );
+            padding-bottom: $gutter;
+            
+            @include breakpoint (s) {
+                grid-template-columns: repeat(auto-fill, minmax(calc(33% - calc($gutter / 2)), 1fr));
+            }
+
+            @include breakpoint (m) {
+                grid-template-columns: repeat(auto-fill, minmax(calc(33% - $gutter), 1fr));
+            }
+
+            @include breakpoint (l) {
+                grid-template-columns: repeat(auto-fill, minmax(calc(25% - $gutter), 1fr));
+            }
+
+            &Link {
+                align-self: center;
+
+                @include breakpoint (m) {
+                    font-size: 2rem
+                }
+                @include breakpoint (l) {
+                    font-size: 2.4rem;
+                }
+            }
+            
+            &Button {
+                @extend %secondarybutton;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 8px;
+                @include breakpoint(l) {
+       
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,135 @@
+@import './variables';
+@import './mixins';
+
+.search {
+    &-container {
+        @extend %container;
+        background-color: $secondary;
+        padding-top: $gutter;
+        height: 80vh;
+        margin-bottom: $gutter;
+
+        @include breakpoint (s){
+            display: flex;
+            flex-direction: row;
+            padding-bottom: $gutter;
+            height: fit-content;
+        }
+    }
+
+    &-hero {
+        display: none;
+
+        @include breakpoint (s) {
+            flex:1;
+            display: flex;
+            justify-content: center;
+    
+            &-img {
+                opacity: .5;
+            }
+
+            @include breakpoint (m){
+                padding-right: calc($gutter/2);
+            }
+        }
+        
+    }
+    &-wrapper {
+        flex: 1;
+
+        @include breakpoint(s){
+            flex:2
+        }
+
+        @include breakpoint (m) {
+            padding-left: calc($gutter/2);
+            padding-right: $gutter;
+        }
+
+        &-inner {
+            background-color: $yellow;
+            border-radius: 0 15px;
+            padding: calc($gutter / 2);
+            margin-bottom: $gutter;
+    }
+    
+
+    }
+    &-header {
+        color: $primary;
+        padding-bottom: $gutter;
+
+        @include breakpoint (m) {
+            
+            line-height: 1.25;
+        }
+    }
+
+    &-text {
+        padding-bottom: 8px;
+
+        &-fake {
+            font-size: 1.4rem;
+
+            @include breakpoint (s) {
+                font-size: 1.8rem;
+            }
+            @include breakpoint (m) {
+                font-size: 2.0rem
+            }
+            
+        }
+        &-button {
+            @extend %primarybutton;
+            padding: 4px 8px;
+
+            
+        }
+    }
+    &-form {
+        display: flex;
+        flex-direction: column;
+        gap: calc($gutter / 2);
+
+        @include breakpoint (s) {
+            flex-direction: row;
+
+        }
+    }
+    &-input {
+        font-size: 1.6rem;
+        height: 30px;
+        box-shadow: 0 5px 5px black;
+        border: none;
+        
+
+        @include breakpoint (s) {
+            height: 70px;
+            width: 80%;
+            padding-left: $gutter;
+
+            @include breakpoint (m) {
+                font-size: 2.4rem;
+            }
+
+        }
+    }
+    &-button {
+        @extend %buttonreset;
+        background-color: $blue;
+        height: 45px;
+        width: 115px;
+        border-radius: 5px;
+        box-shadow: 0 5px 5px black;
+
+        @include breakpoint (s) {
+            height: 70px;
+            width: 150px;
+        }
+
+        @include breakpoint (m) {
+            font-size: 2rem;
+        }
+    }
+}
