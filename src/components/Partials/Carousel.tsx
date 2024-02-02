@@ -47,7 +47,7 @@ const Carousel = ({categories, changeCategory} :CarouselProps) => {
 
         return circularCategories.map((category, index) => (
           <li key={index} className="categories-slider-item">
-            <button className="categories-slider-listButton" aria-label="navigate" onClick={() => changeCategory(category.query, category.text)}>
+            <button className="categories-slider-listButton" aria-label="byt kategori" onClick={() => changeCategory(category.query, category.text)}>
               <i className={category.icon}></i>
             </button>
             <p className="categories-slider-itemText">{category.text}</p>
@@ -58,10 +58,10 @@ const Carousel = ({categories, changeCategory} :CarouselProps) => {
       return (
         <div className="categories-slider">
           <ul className="categories-slider-list">{renderCategories()}</ul>
-          <button className="categories-slider-button categories-slider-buttonPrev" aria-label="change" onClick={prevSlide}>
+          <button className="categories-slider-button categories-slider-buttonPrev" aria-label="Bläddra till föregående" onClick={prevSlide}>
             <i className="fa-solid fa-angle-left"></i>
           </button>
-          <button className="categories-slider-button categories-slider-buttonNext" aria-label="change"  onClick={nextSlide}>
+          <button className="categories-slider-button categories-slider-buttonNext" aria-label="Bläddra till nästa"  onClick={nextSlide}>
             <i className="fa-solid fa-angle-right"></i>
           </button>
         </div>

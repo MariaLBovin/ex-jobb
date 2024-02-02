@@ -35,7 +35,7 @@ const DisplaySinglebook = () => {
                     )}
                   <p className='bookpage-heading-text'>Utgivningsdatum: {book?.volumeInfo.publishedDate}</p>
                   <p className='bookpage-heading-text'>Förlag: {book?.volumeInfo.publisher}</p>
-                  <button className='bookpage-heading-button' aria-label="buy">
+                  <button className='bookpage-heading-button' aria-label="Köp boken på Bokus">
                     <a href={`https://www.bokus.com/bok/${book?.volumeInfo.industryIdentifiers[0].identifier}`} target="_blank">Köp</a>
                   </button>
                 </div>
@@ -56,7 +56,7 @@ const DisplaySinglebook = () => {
             </div> 
         </article>
         <div className="bookpage-footer">
-          <button className="bookpage-footer-button" onClick={handleNavigate} aria-label="navigate">Tillbaka
+          <button className="bookpage-footer-button" onClick={handleNavigate} aria-label="navigera tillbaka">Tillbaka
             <i className="fa-solid fa-angles-left"></i>
           </button>
         </div>

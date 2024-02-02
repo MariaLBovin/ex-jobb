@@ -33,7 +33,7 @@ const Category = () => {
             <Booklist books={filteredBooks} isCategoryPage={true}></Booklist>
           </ul>
             <div className="category-footer">
-              <button className="category-footer-button" aria-lable='navigate' onClick={handleNavigate}>
+              <button className="category-footer-button" aria-lable='navigate back' onClick={handleNavigate}>
                 Tillbaka
                 <i className="fa-solid fa-angles-left"></i>
               </button>

@@ -38,7 +38,7 @@
         align-self: flex-end;
 
 
-        @include breakpoint (m) {
+        @include breakpoint (s) {
             display: none;
         }
 
@@ -62,7 +62,7 @@
                 background-color: $secondary;
                 box-shadow: 0 5px 5px black;
             }
-
+            
             @include breakpoint (m) {
                 display: flex;
                 flex-direction:  row;

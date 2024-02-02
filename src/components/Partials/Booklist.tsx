@@ -33,7 +33,7 @@ const Booklist = ({books, isCategoryPage}: BooklistProps) => {
             </div>
             <div className="category-buttonWrapper">
                 <NavLink to={linkPath}>
-                    <button className="category-button" aria-label="navigate">Läs mer</button>
+                    <button className="category-button" aria-label="Läs mer">Läs mer</button>
                 </NavLink>
             </div>
         </li>

@@ -19,7 +19,7 @@
     &-hero {
         display: none;
 
-        @include breakpoint (s) {
+        @include breakpoint (m) {
             flex:1;
             display: flex;
             justify-content: center;

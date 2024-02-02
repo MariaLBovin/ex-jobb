@@ -24,7 +24,7 @@ const DisplayBooks = () => {
         <Booklist books={filteredBooks} isCategoryPage={false}></Booklist>
       </ul>
       <NavLink to={`/kategori/${selectedCategoryText}`} state={selectedCategoryText} className="categories-content-listLink" aria-label="navigate">
-            <button className="categories-content-listButton">
+            <button className="categories-content-listButton" aria-label="Se fler">
               Se fler
               <i className="fa-solid fa-angles-right"></i>
             </button>
