@@ -9,6 +9,7 @@
         @extend %listreset;
         display: flex;
         flex-direction: row;
+        align-items: baseline;
 
         &-item:first-child{
             padding-left: 0;

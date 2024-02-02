@@ -8,8 +8,6 @@ interface BooklistProps {
 const Booklist = ({books, isCategoryPage}: BooklistProps) => {
   const imgZoom = 5;
 
-  
-
   return (
     <>
     {books.map((book, index) => {

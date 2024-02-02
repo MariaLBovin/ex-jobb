@@ -4,6 +4,7 @@ import { useState } from "react"
 import { BooksContext} from "../context/IGetBooksContext";
 import { IBookItem } from "../models/IBookItem";
 import Footer from "./Footer";
+import ScrollToTop from "./Partials/ScrollToTop";
 
 const Layout = () => {
 const [mainMenuOpen, setmainMenuOpen] =useState(false);
@@ -22,6 +23,7 @@ setSubMenuOpen(!subMenuOpen);
 
 return (
     <>
+  <ScrollToTop></ScrollToTop>
     <BooksContext.Provider value={{bookResponse, setBookResponse, selectedCategory, setSelectedCategory, selectedCategoryText, setSelectedCategoryText }}>
     <Header
       onToggleSubMenu={toggleSubMenu}
