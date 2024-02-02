@@ -16,8 +16,6 @@ const Category = () => {
   const books = bookResponse.map((book) => book)
 
   const filteredBooks = filterUniqueBooks(books)
-  console.log(filteredBooks);
-  
 
   const handleNavigate = () => {
     navigate('/')

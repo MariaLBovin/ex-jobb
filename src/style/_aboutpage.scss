@@ -19,6 +19,10 @@
             flex-direction: row;
             gap: $gutter;
         }
+        @include breakpoint (m) {
+            gap: calc($gutter * 2);
+            padding:$gutter;
+        }
 
         
     }

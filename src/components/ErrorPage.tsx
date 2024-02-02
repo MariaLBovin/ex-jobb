@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom"
+import img from '/bookstack.png';
 
 const ErrorPage = () => {
   return (
@@ -6,7 +7,7 @@ const ErrorPage = () => {
     <section className="error-container">
         <div className="error-wrapper">
             <div className="error-img">
-            <img loading='lazy' className="error-img-src" src="/noun-stack-of-books.svg"></img>
+            <img loading='lazy' className="error-img-src" src={img}></img>
             </div>
             
             <div className="error-inner">

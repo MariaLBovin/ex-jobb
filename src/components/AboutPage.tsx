@@ -21,23 +21,29 @@ const AboutPage = () => {
                 <div className="about-tech">
                     <h2 className='about-tech-header'>Techstack</h2>
                     <ul className="about-tech-list">
-                        <li className="about-tech-item">Vite
+                        <li className="about-tech-item">
+                            <span className='about-tech-itemText'> Vite</span>
                             <img loading='lazy' src={ViteLogo} alt='vite-logo'></img>
                         </li>
-                        <li className="about-tech-item">React
-                            <img  loading='lazy' src={ReactLogo} alt='vite-logo'></img>
+                        <li className="about-tech-item">
+                            <span className='about-tech-itemText'>React</span>
+                            <img  loading='lazy' src={ReactLogo} alt='react-logo'></img>
                         </li>
-                        <li className="about-tech-item">Typescript
-                            <img loading='lazy' src={TSLogo} alt='vite-logo'></img>
+                        <li className="about-tech-item">
+                            <span className='about-tech-itemText'> Typescript</span>
+                            <img loading='lazy' src={TSLogo} alt='typescript-logo'></img>
                         </li>
-                        <li className="about-tech-item">Scss
-                            <img loading='lazy' src={ScssLogo} alt='vite-logo'></img>
+                        <li className="about-tech-item">
+                            <span className='about-tech-itemText'>Scss</span>
+                            <img loading='lazy' src={ScssLogo} alt='scss-logo'></img>
                         </li>
-                        <li className="about-tech-item">Open AI
-                            <img loading='lazy' src={OpenAiLogo} alt='vite-logo'></img>
+                        <li className="about-tech-item">
+                            <span className='about-tech-itemText'>Open Ai</span>
+                            <img loading='lazy' src={OpenAiLogo} alt='openAi-logo'></img>
                         </li>
-                        <li className="about-tech-item">Google Books API
-                            <img loading='lazy' src={GoogleLogo} alt='vite-logo'></img>
+                        <li className="about-tech-item">
+                            <span className='about-tech-itemText'>Google Books API</span>
+                            <img loading='lazy' src={GoogleLogo} alt='google-logo'></img>
                         </li>
                     </ul>
                     <p className='about-tech-text'>Läs mer om projektet på <NavLink to='https://github.com/MariaLBovin/bokai'>Github</NavLink></p> 

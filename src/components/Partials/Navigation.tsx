@@ -9,6 +9,12 @@ interface NavigationProps {
   }
 
 const Navigation = ({mainMenuOpen,  toggleSubMenu, subMenuOpen, toggleMainMenu} :NavigationProps) => {
+
+  const toggleMenu = () => {
+    if (window.innerWidth < 760){
+      toggleMainMenu();
+    }
+  }
   return (
     <>
         <nav className="header-nav" aria-label="main" aria-hidden={mainMenuOpen ? "false" : "true"}>
@@ -25,7 +31,7 @@ const Navigation = ({mainMenuOpen,  toggleSubMenu, subMenuOpen, toggleMainMenu} 
                 </button>
                 <SubMenu subMenuOpen={subMenuOpen} toggleSubMenu={toggleSubMenu} toggleMainMenu={toggleMainMenu}></SubMenu>
             </li>
-            <li className="header-nav-item">
+            <li className="header-nav-item" onClick={toggleMenu}>
               <NavLink to='/kontakt' 
               className={isActive => "nav-link" + (!isActive ? " unselected" : "")}>
                 Om Bokai

@@ -5,6 +5,7 @@
     &-container {
         @extend %container;
         padding-bottom: $gutter;
+        min-height: 100vh;
     }
     &-wrapper {
         display: flex;
@@ -64,6 +65,11 @@
            width: 30%;
            height: 45px;
            margin-left: auto;
+
+           @include breakpoint (m) {
+            height: 55px;
+            font-size: 3.2rem;
+           }
         }
       
         &-text:last-of-type{
