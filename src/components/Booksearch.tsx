@@ -6,7 +6,7 @@ const BookSearch = () => {
     <>
     <section className="search-container">
         <div className="search-hero">
-          <img className="search-hero-img" src={HeroImg}></img>
+          <img loading='lazy' className="search-hero-img" src={HeroImg}></img>
         </div>
         <Search></Search>
     </section>

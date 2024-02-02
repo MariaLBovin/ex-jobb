@@ -19,14 +19,19 @@
     }
     &-logo {
         width: 150px;
+        display: flex;
 
         @include breakpoint (m){
-            max-width: 100%;
+            width: 250px;
+        }
+        &-button {
+            @extend %buttonreset;
+            align-self: flex-end;
         }
     }
     &-button {
         @extend %buttonreset;
-        position: fixed;
+        position: absolute;
         right: 16px;
         z-index: 999;
         display: flex;

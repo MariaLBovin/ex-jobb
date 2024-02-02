@@ -82,14 +82,14 @@ const Search =  () => {
           ) : (
             book && (
               <NavLink to={`/book/${book.id}`}>
-                <button className='search-text-button'>Läs mer om boken</button>
+                <button className='search-text-button' aria-aria-label="navigate">Läs mer om boken</button>
               </NavLink>
             )
           )}
             </article>
             <form className="search-form" onSubmit={getRecommendation}>
                 <input className="search-input" placeholder="Ange titel på din favoritbok" onChange={(e) =>setSearchString(e.target.value)}></input>
-                <button className="search-button" type='submit'>Få tips</button>
+                <button className="search-button" type='submit' aria-label="search">Få tips</button>
             </form>
         </div>
     </>

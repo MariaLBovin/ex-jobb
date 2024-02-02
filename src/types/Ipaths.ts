@@ -1,6 +1,7 @@
 export interface IPaths {
     home: string;
     category: string;
-    book: string;
+    bookById: string;
+    categoryBookById: string;
     about: string;
   }

@@ -5,16 +5,15 @@
 
 %container {
     max-width: 100vw;
-    padding-right: calc($gutter / 2);
-    padding-left: calc($gutter / 2);
+    padding: $gutter calc($gutter / 2);
 
     @include breakpoint (s) {
-        padding-right: $gutter;
-        padding-left: $gutter;
+        padding: $gutter;
+
     }
+
     @include breakpoint (m) {
-        padding-right: calc($gutter * 2);
-        padding-left: calc($gutter * 2);
+        padding: $gutter calc($gutter * 2);
     }
 
 }

@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom"
 import Header from "./Header"
 import { useState } from "react"
 import { BooksContext} from "../context/IGetBooksContext";
-
 import { IBookItem } from "../models/IBookItem";
 import Footer from "./Footer";
 
@@ -21,7 +20,6 @@ const toggleSubMenu = () => {
 setSubMenuOpen(!subMenuOpen);
 };
 
-
 return (
     <>
     <BooksContext.Provider value={{bookResponse, setBookResponse, selectedCategory, setSelectedCategory, selectedCategoryText, setSelectedCategoryText }}>
@@ -32,9 +30,9 @@ return (
       subMenuOpen={subMenuOpen}
       >
     </Header>
-    <main className={`main ${mainMenuOpen || subMenuOpen ? "overlay" : ""}`}>
+    <div className={`main ${mainMenuOpen || subMenuOpen ? "overlay" : ""}`}>
         <Outlet></Outlet>
-    </main>
+    </div>
     </BooksContext.Provider>
     <Footer></Footer>
     </>

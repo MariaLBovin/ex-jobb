@@ -16,7 +16,7 @@ export const useFetchAllData = () => {
         const existingData = JSON.parse(sessionStorage.getItem('bookData') || '{}');
   
         if (existingData && existingData.items && existingData.items.length > 40) {
-          // console.log('data finns');
+          return
         } else {
           try {
             const response = await getAllBooks({ subjects });
