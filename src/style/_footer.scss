@@ -20,10 +20,14 @@
             padding: calc($gutter/2) 0  ;
             font-size: 1.4rem;
             
-
-            @include breakpoint (m) {
+            @include breakpoint (s) {
+                font-size: 1.8rem;
+            }
+            @include breakpoint (m){
+                font-size: 2.4rem;
                 padding: $gutter 0;
             }
+            
         }
         &-logo {
             &-list {
@@ -50,11 +54,27 @@
                     display: flex;
                     flex-direction: row;
                     gap: 4px;
+                    align-items: baseline;
+                    font-size: 1.4rem;
+
+                    @include breakpoint (s) {
+                        font-size: 1.8rem;
+                    }
+                    @include breakpoint (m){
+                        font-size: 2.4rem;
+                        gap: 8px;
+                    }
                 }
 
                 &Text {
                     font-size: 1.4rem;
-                    align-self: flex-end;
+
+                    @include breakpoint (s) {
+                        font-size: 1.8rem;
+                    }
+                    @include breakpoint (m){
+                        font-size: 2.4rem;
+                    }
                     
                 }
             }
@@ -68,6 +88,9 @@
 
             @include breakpoint (s) {
                 width: 150px;
+            }
+            @include breakpoint (m) {
+                width: 200px;
             }
         }
     }

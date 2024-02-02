@@ -20,7 +20,10 @@ const Breadcrumbs = () => {
                   <span className='breadcrumbs-list-itemText'>{categoryName}</span>
                 ) : (
                   <NavLink to={match.pathname} className='breadcrumbs-list-itemLink'>
+                    <span className='breadcrumbs-list-itemText'>
                     {index === 0 ? 'Hem' : categoryName ? `${categoryName} Kategori` : ''}
+                    </span>
+                    
                   </NavLink>
                 )}
               </li>

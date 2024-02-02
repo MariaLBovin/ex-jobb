@@ -5,7 +5,7 @@ import { useContext } from "react"
 import { BooksContext } from "../context/IGetBooksContext"
 import { useSessionStorage } from "../hooks/useSessionStorage"
 import { filterUniqueBooks } from "../utils/filterUniqeBooks"
-import Breadcrumbs from "./Breadcrumbs"
+import Breadcrumbs from "./Partials/Breadcrumbs"
 
 
 const Category = () => {

@@ -26,9 +26,9 @@ const Navigation = ({mainMenuOpen,  toggleSubMenu, subMenuOpen, toggleMainMenu} 
                 <SubMenu subMenuOpen={subMenuOpen} toggleSubMenu={toggleSubMenu} toggleMainMenu={toggleMainMenu}></SubMenu>
             </li>
             <li className="header-nav-item">
-              <NavLink to='/contact' 
+              <NavLink to='/kontakt' 
               className={isActive => "nav-link" + (!isActive ? " unselected" : "")}>
-                Kontakt
+                Om Bokai
               </NavLink>
             </li>
           </ul>
