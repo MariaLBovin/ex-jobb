@@ -23,7 +23,7 @@ concurrency:
 # Allow repo secrets
 env:
     VITE_BASE_URL: ${{secrets.VITE_BASE_URL}}
-    VITE_REQUEST_SPEC: ${{secrets.VITE_REQUEST_SPEC }}
+    VITE_REQUEST_SPEC: ${{secrets.VITE_REQUEST_SPEC}}
     VITE_REQUEST_SPEC_SINGLE: ${{secrets.VITE_REQUEST_SPEC_SINGLE}}
     VITE_API_KEY: ${{secrets.VITE_API_KEY}}
     VITE_API2_KEY: ${{secrets.VITE_API2_KEY}}
