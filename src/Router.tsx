@@ -20,9 +20,14 @@ export const router =createHashRouter([
           {
             path: paths.category,
             element: <Category />,
+            
           },
           {
-            path: paths.book,
+            path: paths.bookById,
+            element: <DisplaySinglebook />,
+          },
+          {
+            path: paths.categoryBookById,
             element: <DisplaySinglebook />,
           },
           {

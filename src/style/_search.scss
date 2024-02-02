@@ -7,7 +7,6 @@
         background-color: $secondary;
         padding-top: $gutter;
         height: 80vh;
-        margin-bottom: $gutter;
 
         @include breakpoint (s){
             display: flex;

@@ -3,19 +3,23 @@ import { IBookItem } from "../../models/IBookItem";
 
 interface BooklistProps {
     books: IBookItem[]
+    isCategoryPage: boolean
 }
-const Booklist = ({books}: BooklistProps) => {
+const Booklist = ({books, isCategoryPage}: BooklistProps) => {
   const imgZoom = 5;
+
+  
 
   return (
     <>
     {books.map((book, index) => {
     const { title, authors, imageLinks } = book.volumeInfo;
     const zoomedUrl = imageLinks.thumbnail.replace(/zoom=\d+/, `zoom=${imgZoom}`);
+    const linkPath = isCategoryPage ? `/kategori/bok/${book.id}` : `/bok/${book.id}`;
     return (
         <li className="category-item" key={index}>
             <div className="category-imgWrapper">
-                <img className="category-img" src={zoomedUrl} alt={title} loading="lazy"/>
+                <img loading='lazy' className="category-img" src={zoomedUrl} alt={title}/>
             </div>
             <div className="category-text">
                 <p className="category-title">{title}</p>
@@ -30,8 +34,8 @@ const Booklist = ({books}: BooklistProps) => {
                     )}
             </div>
             <div className="category-buttonWrapper">
-                <NavLink to={`/book/${book.id}`}>
-                    <button className="category-button">Läs mer</button>
+                <NavLink to={linkPath}>
+                    <button className="category-button" aria-label="navigate">Läs mer</button>
                 </NavLink>
             </div>
         </li>

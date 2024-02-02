@@ -2,11 +2,11 @@ import { useContext } from "react"
 import { BooksContext } from "../../context/IGetBooksContext"
 import { NavLink} from "react-router-dom";
 import Booklist from "./Booklist";
+import { filterUniqueBooks } from "../../utils/filterUniqeBooks";
 
 
 const DisplayBooks = () => {
   const {bookResponse, selectedCategoryText} =useContext(BooksContext)  
-
 
   const sortedBooks = bookResponse
     .slice(0, 6)
@@ -16,12 +16,14 @@ const DisplayBooks = () => {
       return dateB.getTime() - dateA.getTime();
     });
 
+    const filteredBooks = filterUniqueBooks(sortedBooks);
+
   return (
     <>
       <ul className="categories-content-list">
-        <Booklist books={sortedBooks}></Booklist>
+        <Booklist books={filteredBooks} isCategoryPage={false}></Booklist>
       </ul>
-      <NavLink to={`/category?text=:${selectedCategoryText}`} state={selectedCategoryText} className="categories-content-listLink">
+      <NavLink to={`/kategori/${selectedCategoryText}`} state={selectedCategoryText} className="categories-content-listLink" aria-label="navigate">
             <button className="categories-content-listButton">
               Se fler
               <i className="fa-solid fa-angles-right"></i>

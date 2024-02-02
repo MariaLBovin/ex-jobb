@@ -6,7 +6,6 @@
         @extend %container;
         display: flex;
         flex-direction: column;
-        padding: $gutter calc($gutter * 2);
     }
 
     &-hero {
@@ -53,6 +52,7 @@
     }
     &-text {
         align-self: start;
+        word-break: break-word;
     }
     &-img {
         padding: calc($gutter /2);

@@ -4,6 +4,8 @@ import Booklist from "./Partials/Booklist"
 import { useContext } from "react"
 import { BooksContext } from "../context/IGetBooksContext"
 import { useSessionStorage } from "../hooks/useSessionStorage"
+import { filterUniqueBooks } from "../utils/filterUniqeBooks"
+import Breadcrumbs from "./Breadcrumbs"
 
 
 const Category = () => {
@@ -12,18 +14,10 @@ const Category = () => {
   
   useSessionStorage();
   const books = bookResponse.map((book) => book)
-  const uniqueTitleContainer: { [key: string]: boolean } = {};
 
-  const uniqueBooks = books.filter((book) => {
-  const normalizedTitle = book.volumeInfo.title.toLowerCase();
-
-  if (!uniqueTitleContainer[normalizedTitle]) {
-    uniqueTitleContainer[normalizedTitle] = true;
-    return true;
-  }
-
-  return false;
-});
+  const filteredBooks = filterUniqueBooks(books)
+  console.log(filteredBooks);
+  
 
   const handleNavigate = () => {
     navigate('/')
@@ -36,11 +30,12 @@ const Category = () => {
             <h1 className="category-hero-header">{selectedCategoryText}</h1>
           </div>
           <div className="category-container">
+          <Breadcrumbs></Breadcrumbs>
           <ul className="category-list">
-            <Booklist books={uniqueBooks}></Booklist>
+            <Booklist books={filteredBooks} isCategoryPage={true}></Booklist>
           </ul>
             <div className="category-footer">
-              <button className="category-footer-button" onClick={handleNavigate}>
+              <button className="category-footer-button" aria-lable='navigate' onClick={handleNavigate}>
                 Tillbaka
                 <i className="fa-solid fa-angles-left"></i>
               </button>

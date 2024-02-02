@@ -22,22 +22,22 @@ const AboutPage = () => {
                     <h2 className='about-tech-header'>Techstack</h2>
                     <ul className="about-tech-list">
                         <li className="about-tech-item">Vite
-                            <img src={ViteLogo} alt='vite-logo'></img>
+                            <img loading='lazy' src={ViteLogo} alt='vite-logo'></img>
                         </li>
                         <li className="about-tech-item">React
-                            <img src={ReactLogo} alt='vite-logo'></img>
+                            <img  loading='lazy' src={ReactLogo} alt='vite-logo'></img>
                         </li>
                         <li className="about-tech-item">Typescript
-                            <img src={TSLogo} alt='vite-logo'></img>
+                            <img loading='lazy' src={TSLogo} alt='vite-logo'></img>
                         </li>
                         <li className="about-tech-item">Scss
-                            <img src={ScssLogo} alt='vite-logo'></img>
+                            <img loading='lazy' src={ScssLogo} alt='vite-logo'></img>
                         </li>
                         <li className="about-tech-item">Open AI
-                            <img src={OpenAiLogo} alt='vite-logo'></img>
+                            <img loading='lazy' src={OpenAiLogo} alt='vite-logo'></img>
                         </li>
                         <li className="about-tech-item">Google Books API
-                            <img src={GoogleLogo} alt='vite-logo'></img>
+                            <img loading='lazy' src={GoogleLogo} alt='vite-logo'></img>
                         </li>
                     </ul>
                     <p className='about-tech-text'>Läs mer om projektet på <NavLink to='https://github.com/MariaLBovin/bokai'>Github</NavLink></p> 

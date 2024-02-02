@@ -37,7 +37,7 @@ const SubMenu = ({subMenuOpen, toggleMainMenu, toggleSubMenu} :DesktopNavProps) 
         <ul className="header-nav-innerList" aria-label="sub" aria-hidden={subMenuOpen ? "false" : "true"}>
             {categoriesArray.map((category) => (
                 <li className="header-nav-innerItem" key={category.id}> 
-                  <NavLink to={`/category?text=:${category.text}`} 
+                  <NavLink to={`/kategori/${category.text}`} 
                   onClick={() => displayChosenCategory(category.query, category.text)} 
                   state= {category.text} 
                   className={isActive => "nav-link" + (!isActive ? " unselected" : "")}>
