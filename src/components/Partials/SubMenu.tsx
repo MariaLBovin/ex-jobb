@@ -17,10 +17,15 @@ const SubMenu = ({subMenuOpen, toggleMainMenu, toggleSubMenu} :DesktopNavProps) 
 
   const displayChosenCategory = (selectedCategory: string[], categoryText: string) => {
     const filteredBooks = changeCategory(selectedCategory);
+    console.log(filteredBooks);
+
+    sessionStorage.setItem('books', JSON.stringify(filteredBooks));
+    sessionStorage.setItem('categoryText', JSON.stringify(categoryText));
+    sessionStorage.setItem('selectedCategory', JSON.stringify(selectedCategory));
+    
     setBookResponse(filteredBooks);
     setSelectedCategory(selectedCategory);
     setSelectedCategoryText(categoryText);
-    
 
     if(window.innerWidth <= 760){
       toggleMainMenu();
@@ -28,7 +33,6 @@ const SubMenu = ({subMenuOpen, toggleMainMenu, toggleSubMenu} :DesktopNavProps) 
     }else {
       toggleSubMenu();
     }
-
   }
   
   return (
