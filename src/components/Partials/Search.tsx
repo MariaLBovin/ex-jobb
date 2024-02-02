@@ -44,13 +44,10 @@ const Search =  () => {
               const books = response.items.filter(e => e)
               setBookdata(books)
               setBookResponse((prevbooks) => [...prevbooks,...books])
-              
             }
-              
             }catch(error) {
               console.log(error);
           }
-          
          }
          setSearchPerformed(true)
          setSearchString('');
@@ -81,7 +78,7 @@ const Search =  () => {
             <p className="search-text-fake">Det här verkar vara en bok som OpenAi har hittat på... Om du gillar titeln så kanske du ska skriva den?! Eller prova sök igen.</p>
           ) : (
             book && (
-              <NavLink to={`/book/${book.id}`}>
+              <NavLink to={`/bok/${book.id}`}>
                 <button className='search-text-button' aria-aria-label="navigate">Läs mer om boken</button>
               </NavLink>
             )
