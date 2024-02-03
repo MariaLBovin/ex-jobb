@@ -8,6 +8,7 @@ import { IBookItem } from "../../models/IBookItem";
 const Search =  () => {
   const {setBookResponse} =useContext<IGetBooksContext>(BooksContext)
   const [searchString, setSearchString] = useState('')
+  const [error, setError] =useState(false)
   
   const [bookData, setBookdata] = useState<IBookItem []| null>(null)
   const [searchPerformed, setSearchPerformed] =  useState(false)
@@ -19,6 +20,11 @@ const Search =  () => {
  
   const getRecommendation = async(e:FormEvent) => {
     e.preventDefault();
+
+    if(searchString.length < 2) {
+      setError(true)
+      return;
+    }
 
     try {
       const response = await getBookRecommendation(searchString)
@@ -50,20 +56,18 @@ const Search =  () => {
           }
          }
          setSearchPerformed(true)
-         setSearchString('');
+         
       }
-      setPText(`Jag rekommenderar att du läser ${text}. `)
+      setPText(`Jag rekommenderar att du läser ${text}. `);
+      fetchBook();
+      setError(false);
+      setSearchString('');
+      }
       
-      fetchBook()
-      }
-
     }catch (error) {
       console.log(error);
-      
     }
-    
   } 
-
     const book = bookData?.[0]
 
   return (
@@ -85,7 +89,7 @@ const Search =  () => {
           )}
             </article>
             <form className="search-form" onSubmit={getRecommendation}>
-                <input className="search-input" placeholder="Ange titel på din favoritbok" onChange={(e) =>setSearchString(e.target.value)}></input>
+                <input className={`search-input ${error && 'error'}`} placeholder={error ? "Du måste ange minst två bokstäver" : "Ange titel på din favoritbok"} onChange={(e) =>setSearchString(e.target.value)}></input>
                 <button className="search-button" type='submit' aria-label="Få tips">Få tips</button>
             </form>
         </div>

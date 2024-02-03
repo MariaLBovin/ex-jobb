@@ -101,6 +101,10 @@
         height: 30px;
         box-shadow: 0 5px 5px black;
         border: none;
+
+            &.error{
+                border: 1px solid red;
+            }
         
 
         @include breakpoint (s) {

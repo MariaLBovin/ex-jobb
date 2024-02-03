@@ -15,10 +15,16 @@ const [selectedCategoryText, setSelectedCategoryText] = useState<string>('Skönl
 
 const toggleMainMenu = () => {
   setmainMenuOpen(!mainMenuOpen);
+
+  if(subMenuOpen) {
+    setSubMenuOpen(!subMenuOpen)
+  }
+
 };
 
 const toggleSubMenu = () => {
 setSubMenuOpen(!subMenuOpen);
+
 };
 
 return (
@@ -32,7 +38,9 @@ return (
       subMenuOpen={subMenuOpen}
       >
     </Header>
-    <div className={`main ${mainMenuOpen || subMenuOpen ? "overlay" : ""}`}>
+    
+    <div className={`main ${mainMenuOpen || subMenuOpen? "overlay" : ""}`}
+>
         <Outlet></Outlet>
     </div>
     </BooksContext.Provider>

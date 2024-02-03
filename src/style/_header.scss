@@ -8,6 +8,8 @@
         padding-top: calc($gutter / 2);
         padding-bottom: calc($gutter /2);
         z-index: 999;
+        position: sticky;
+        top:0;
 
     }
     &-wrapper {
