@@ -4,6 +4,7 @@
 .login {
     &-container {
         @extend %container;
+        min-height: 100vh;
     }
     &-header {
         padding-bottom: $gutter;

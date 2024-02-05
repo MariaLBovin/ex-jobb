@@ -17,6 +17,11 @@ const DisplaySinglebook = () => {
     const handleNavigate = () => {
         navigate(-1)
       };
+    
+    const handleSave = () => {
+      console.log('spara bok', book?.id);
+      
+    }
 
   return (
     <>
@@ -35,9 +40,13 @@ const DisplaySinglebook = () => {
                     )}
                   <p className='bookpage-heading-text'>Utgivningsdatum: {book?.volumeInfo.publishedDate}</p>
                   <p className='bookpage-heading-text'>Förlag: {book?.volumeInfo.publisher}</p>
+                  <div className='bookpage-heading-buttons'>
                   <button className='bookpage-heading-button' aria-label="Köp boken på Bokus">
                     <a href={`https://www.bokus.com/bok/${book?.volumeInfo.industryIdentifiers[0].identifier}`} target="_blank">Köp</a>
                   </button>
+                  <button className="bookpage-heading-button" onClick={handleSave}>Spara</button>
+                  </div>
+                 
                 </div>
                 <div className='bookpage-heading-image'>
                   {book?.volumeInfo.imageLinks ? (

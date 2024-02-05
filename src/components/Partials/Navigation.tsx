@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import SubMenu from "./SubMenu";
 import { NavLink } from "react-router-dom";
+import { LoginUserContext } from "../../context/LoginUserContext";
 
 interface NavigationProps {
     toggleSubMenu: () => void;
@@ -9,6 +11,8 @@ interface NavigationProps {
   }
 
 const Navigation = ({mainMenuOpen,  toggleSubMenu, subMenuOpen, toggleMainMenu} :NavigationProps) => {
+
+  const {loggedInUser} = useContext(LoginUserContext)
 
   const toggleMenu = () => {
     if (window.innerWidth < 760){
@@ -39,7 +43,12 @@ const Navigation = ({mainMenuOpen,  toggleSubMenu, subMenuOpen, toggleMainMenu} 
               
             </li>
             <li className="header-nav-item" onClick={toggleMenu}>
-            <NavLink to='/login'>Logga in</NavLink>
+                  { !loggedInUser ? (
+                    <NavLink to='/login'>Logga in</NavLink>
+                  ) : (
+                    <NavLink to='/min-sida'>Min bokhylla</NavLink>
+                  )
+                  }
             </li>
           </ul>
           </div>

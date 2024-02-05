@@ -38,8 +38,10 @@ import { useState } from "react";
 
     return (
       <>
+        <section className="login-container">
         <h2 className='login-header'>Skapa användare</h2>
-        <AuthForm handleAction={handleSignUp} error={error}></AuthForm>
+        <AuthForm handleAction={handleSignUp} error={error} isLoginPage={false}></AuthForm>
+        </section>
       </>
     );
   };

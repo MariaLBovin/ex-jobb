@@ -3,9 +3,10 @@ import { useState } from "react";
 interface IAuthformProps {
   handleAction: (email: string, password: string) => void;
   error: string;
+  isLoginPage: boolean
 }
 
-const AuthForm = ({handleAction, error} :IAuthformProps) => {
+const AuthForm = ({handleAction, error, isLoginPage} :IAuthformProps) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -21,7 +22,7 @@ const AuthForm = ({handleAction, error} :IAuthformProps) => {
             <input className="login-form-input"  type="password" value={password} placeholder="Minst sex bokstäver" onChange={(e) => setPassword(e.target.value)} />
           </label>
           <button type="button" onClick={() => handleAction(email, password)} className='login-form-button'>
-            Logga in
+            {isLoginPage ? 'Logga in' : 'Skapa användare'}
           </button>
           {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
