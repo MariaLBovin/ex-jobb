@@ -36,6 +36,10 @@ const Navigation = ({mainMenuOpen,  toggleSubMenu, subMenuOpen, toggleMainMenu} 
               className={isActive => "nav-link" + (!isActive ? " unselected" : "")}>
                 Om Bokai
               </NavLink>
+              
+            </li>
+            <li className="header-nav-item" onClick={toggleMenu}>
+            <NavLink to='/login'>Logga in</NavLink>
             </li>
           </ul>
           </div>

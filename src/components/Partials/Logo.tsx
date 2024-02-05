@@ -3,13 +3,17 @@ import LogoImg from '/logo.png';
 
 interface ILogoProps {
   toggleSubMenu: () => void;
+  subMenuOpen: boolean
 }
 
-export const Logo = ({toggleSubMenu}: ILogoProps) => {
-
+export const Logo = ({toggleSubMenu, subMenuOpen}: ILogoProps) => {
+  
   const toggleMenu = () => {
     if(window.innerWidth > 760){
+      if(subMenuOpen) {
         toggleSubMenu()
+      }
+        
     }
   }
 

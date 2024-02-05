@@ -6,6 +6,9 @@ import Category from "./components/Category";
 import DisplaySinglebook from "./components/Partials/DisplaySinglebook";
 import ErrorPage from "./components/ErrorPage";
 import AboutPage from "./components/AboutPage";
+import Login from "./components/Login";
+import CreateUserForm from "./components/Partials/CreateUserForm";
+import Profilepage from "./components/Profilepage";
 
 export const router =createHashRouter([
     {
@@ -34,6 +37,18 @@ export const router =createHashRouter([
             path: paths.about,
             element: <AboutPage />,
           },
+          {
+            path: paths.login,
+            element: <Login></Login>
+        },
+        {
+          path: paths.create,
+          element: <CreateUserForm></CreateUserForm>
+        },
+        {
+          path: paths.profilepage,
+          element: <Profilepage></Profilepage>
+        }
         ],
       },
 ])
