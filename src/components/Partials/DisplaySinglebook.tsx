@@ -2,11 +2,15 @@ import { useContext } from "react"
 import { BooksContext } from "../../context/IGetBooksContext"
 import { useNavigate, useParams } from "react-router-dom";
 import { useSessionStorage } from "../../hooks/useSessionStorage";
+import { addDoc, collection} from "firebase/firestore";
+import { LoginUserContext } from "../../context/LoginUserContext";
+import { db } from "../../services/Firebase";
 
 
 
 const DisplaySinglebook = () => {
     const {bookResponse} = useContext(BooksContext);
+    const {loggedInUser} = useContext(LoginUserContext)
     const {id} = useParams();
     const navigate = useNavigate();
     useSessionStorage();
@@ -18,10 +22,23 @@ const DisplaySinglebook = () => {
         navigate(-1)
       };
     
-    const handleSave = () => {
-      console.log('spara bok', book?.id);
-      
-    }
+      const handleSave = async () => {
+        try {
+          if (!loggedInUser) {
+            console.error('Användaren är inte inloggad');
+            return;
+          }
+
+          await addDoc(collection(db, 'user'), {
+            user: loggedInUser.uid,
+            bookId: book?.id,
+          });
+    
+          console.log('Boken har sparats för användaren:', loggedInUser.uid);
+        } catch (error) {
+          console.error('Fel vid sparande av bok:', error);
+        }
+      };
 
   return (
     <>
