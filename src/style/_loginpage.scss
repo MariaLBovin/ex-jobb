@@ -1,0 +1,72 @@
+@import './variables';
+@import './mixins';
+
+.login {
+    &-container {
+        @extend %container;
+    }
+    &-wrapper {
+        display: flex;
+        flex-direction:  column;
+        align-items: center;
+        @include breakpoint (m) {
+            padding: $gutter calc($gutter * 2);
+            
+        }
+    }
+    &-header {
+        padding-bottom: $gutter;
+    }
+    &-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: $gutter;
+
+    &-label {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 1.8rem;
+    }
+
+    &-input{
+        font-size: 1.6rem;
+        height: 45px;
+        box-shadow: 0 5px 5px black;
+        border: none;
+        padding: 0 8px;
+
+        @include breakpoint (s) {
+            height: 70px;
+
+            padding-left: $gutter;
+
+
+        }
+        @include breakpoint (m) {
+            font-size: 2.8rem;
+        }
+
+            &.error{
+                border: 1px solid red;
+            }
+    }
+
+    &-button{
+        @extend %primarybutton;
+        height: 45px;
+    }
+    }
+
+    &-link {
+        &-button {
+            @extend %primarybutton;
+            height: 45px;
+            padding: 0 8px;
+        }
+    }
+    &-text {
+        text-align: center;
+    }
+}

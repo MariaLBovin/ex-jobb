@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 import img from '/bookstack.png';
 
 const ErrorPage = () => {
@@ -9,7 +9,6 @@ const ErrorPage = () => {
             <div className="error-img">
             <img loading='lazy' className="error-img-src" src={img}></img>
             </div>
-            
             <div className="error-inner">
                 <h1 className="error-inner-heading">404</h1>
                 <p className="error-inner-text">Sidan du sökte efter verkar tyvärr inte finnas.</p>
@@ -17,9 +16,7 @@ const ErrorPage = () => {
                     <button className="error-inner-linkButton" aria-label='Navigera till startsida'>Gå tillbaka till startsidan</button>
                 </NavLink>
             </div>
-            
         </div>
-        
     </section>
     </>
   )

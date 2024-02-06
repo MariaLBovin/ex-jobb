@@ -5,7 +5,7 @@
     &-container {
         @extend %container;
         padding-bottom: $gutter;
-        min-height: 100vh;
+
     }
     &-wrapper {
         display: flex;
@@ -60,11 +60,17 @@
             justify-content: center; 
             flex: 1;
         }
+        &-buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            gap: 16px;
+        }
         &-button {
            @extend %primarybutton;
            width: 30%;
            height: 45px;
-           margin-left: auto;
+
 
            @include breakpoint (m) {
             height: 55px;

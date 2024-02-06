@@ -1,9 +1,10 @@
 
 import axios from "axios";
 import { IBookList } from "../models/IBookList";
-import { IGetAllBooks, IGetBook, IGetBooks } from "../models/IGetBooks";
+import { IGetAllBooks, IGetBook, IGetBookWithId, IGetBooks } from "../models/IGetBooks";
 import { get, post } from "./ServiceBse";
 import { IAIResponse } from "../models/IAIResponse";
+import { IBookItem } from "../models/IBookItem";
 
 
 interface IAPIBody {
@@ -46,8 +47,6 @@ export const getAllBooks = async (params: IGetAllBooks): Promise<IBookList> => {
     return combinedBookList;
   };
 
-
-
 export const getSingleBook =async (params:IGetBook) => {
     return await get<IBookList>(
         `volumes?q=intitle:${params.extractedTitle}+inauthor:${params.author}&${req_spec_single}&${api_key}`
@@ -64,4 +63,19 @@ export const getBookRecommendation = async (title: string) => {
   };
 
   return await post<IAIResponse>(APIBody, api_key_ai);
+};
+
+export const getBookWithId = async (params: IGetBookWithId): Promise<IBookItem[]> => {
+  const { bookIDs } = params;
+  const urls = bookIDs.map(id => `volumes/${id}?${api_key}`);
+
+  const responses = await axios.all(urls.map(url => get<IBookItem>(url)));
+
+  const combinedBookList: IBookItem[] = [];
+
+  responses.forEach(response => {
+    combinedBookList.push(response);
+  });
+
+  return combinedBookList;
 };

@@ -112,10 +112,11 @@
             width: 80%;
             padding-left: $gutter;
 
-            @include breakpoint (m) {
-                font-size: 2.8rem;
-            }
+            
 
+        }
+        @include breakpoint (m) {
+            font-size: 2.8rem;
         }
     }
     &-button {

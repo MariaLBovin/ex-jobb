@@ -7,11 +7,9 @@ import { changeCategory } from "../utils/changeCategoryUtils";
 
 const Categories = () => {
   const { setBookResponse, setSelectedCategory, setSelectedCategoryText } = useContext<IGetBooksContext>(BooksContext);
-  
-
   const displayCategory = (selectedCategory: string[], categoryText: string) => {
     const filteredBooks = changeCategory(selectedCategory);
-
+    
     sessionStorage.setItem('books', JSON.stringify(filteredBooks));
     sessionStorage.setItem('categoryText', JSON.stringify(categoryText));
     sessionStorage.setItem('selectedCategory', JSON.stringify(selectedCategory));

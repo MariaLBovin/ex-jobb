@@ -6,4 +6,7 @@ export const paths: IPaths = {
   bookById: "/bok/:id",
   categoryBookById: '/kategori/bok/:id',
   about: "/kontakt",
+  login: "/login",
+  create: '/skapa-användare',
+  profilepage: '/min-sida',
 };

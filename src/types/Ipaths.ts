@@ -4,4 +4,7 @@ export interface IPaths {
     bookById: string;
     categoryBookById: string;
     about: string;
+    login: string;
+    create: string;
+    profilepage: string;
   }

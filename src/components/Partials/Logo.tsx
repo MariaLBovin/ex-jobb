@@ -14,8 +14,7 @@ export const Logo = ({toggleSubMenu, subMenuOpen}: ILogoProps) => {
         toggleSubMenu()
     }
   }
-  
-  
+
   return (
     <>
     <div className="header-logo">
