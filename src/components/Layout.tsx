@@ -22,6 +22,7 @@ const toggleMainMenu = () => {
  
   if(subMenuOpen) {
     setSubMenuOpen(!subMenuOpen)
+    
   }
 };
 
