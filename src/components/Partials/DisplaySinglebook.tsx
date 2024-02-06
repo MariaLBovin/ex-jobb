@@ -1,10 +1,9 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { BooksContext } from "../../context/IGetBooksContext"
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSessionStorage } from "../../hooks/useSessionStorage";
-import { addDoc, collection} from "firebase/firestore";
 import { LoginUserContext } from "../../context/LoginUserContext";
-import { db } from "../../services/Firebase";
+import { handleSaveUserBook, removeFromDb } from "../../services/DatabaseCollector";
 
 
 const DisplaySinglebook = () => {
@@ -14,6 +13,7 @@ const DisplaySinglebook = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const isProfilePage =location.state ?? false;
+    const [isClicked, setClicked] = useState(false)
 
     console.log(isProfilePage);
     
@@ -33,21 +33,29 @@ const DisplaySinglebook = () => {
     
       const handleSave = async () => {
         try {
-          if (!loggedInUser) {
-            navigate('/login')
-            return
-          }
-
-          await addDoc(collection(db, 'user'), {
-            user: loggedInUser.uid,
-            bookId: book?.id,
-          });
-    
-          console.log('Boken har sparats för användaren:', loggedInUser.uid);
-        } catch (error) {
-          console.error('Fel vid sparande av bok:', error);
+          await handleSaveUserBook({loggedInUser, book})
+          setClicked(true);
+        }catch(error) {
+          console.log(error);
+          
         }
       };
+
+      const handleRemove= async() => {
+        try {
+          if (!loggedInUser || !book) {
+            console.error('Ingen inloggad användare eller bok tillgänglig');
+            return;
+          }
+      
+          await removeFromDb({ userId: loggedInUser.uid, bookId: book.id });
+          console.log('Boken har tagits bort från databasen');
+          setClicked(true)
+        } catch (error) {
+          console.error('Fel vid borttagning av bok:', error);
+        }
+
+      }
 
   return (
     <>
@@ -70,8 +78,23 @@ const DisplaySinglebook = () => {
                   <button className='bookpage-heading-button' aria-label="Köp boken på Bokus">
                     <a href={`https://www.bokus.com/bok/${book?.volumeInfo.industryIdentifiers[0].identifier}`} target="_blank">Köp</a>
                   </button>
-                  {!isProfilePage && <button className="bookpage-heading-button" onClick={handleSave}>Spara</button>}
-                  
+                  {!isProfilePage ? (
+                    <button
+                      className="bookpage-heading-button"
+                      onClick={handleSave}
+                      disabled={isClicked}
+                    >
+                      {isClicked ? 'Sparad' : 'Spara'}
+                    </button>
+                    ) : (
+                    <button
+                      className="bookpage-heading-button"
+                      onClick={handleRemove} 
+                      disabled={isClicked}
+                    >
+                     {isClicked ? 'Borttagen' : 'Ta bort'}
+                    </button>
+)}
                   </div>
                  
                 </div>
