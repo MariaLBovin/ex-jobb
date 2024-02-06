@@ -4,7 +4,15 @@
 .login {
     &-container {
         @extend %container;
-        min-height: 100vh;
+    }
+    &-wrapper {
+        display: flex;
+        flex-direction:  column;
+        align-items: center;
+        @include breakpoint (m) {
+            padding: $gutter calc($gutter * 2);
+            
+        }
     }
     &-header {
         padding-bottom: $gutter;
@@ -31,7 +39,7 @@
 
         @include breakpoint (s) {
             height: 70px;
-            width: 60%;
+
             padding-left: $gutter;
 
 
@@ -58,5 +66,7 @@
             padding: 0 8px;
         }
     }
-
+    &-text {
+        text-align: center;
+    }
 }

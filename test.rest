@@ -45,6 +45,9 @@ GET https://www.googleapis.com/books/v1/volumes?q=*+subject:psychology&langRestr
 ///Enskild bok
 GET https://www.googleapis.com/books/v1/volumes?q=intitle:snöblind+inauthor:ragnar%jonasson&key=AIzaSyC1yIVVKe0-O8JQrOE1FMVMCbShpkBEtSw
 
+### 
+//Enskild bok med id
 
+GET https://www.googleapis.com/books/v1/volumes/96XUEAAAQBAJ?key=AIzaSyD9TosCEVjEXrXO17S5wdSdHGUgZhJ37po
 
 

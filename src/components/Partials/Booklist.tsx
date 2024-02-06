@@ -2,15 +2,16 @@ import { NavLink} from "react-router-dom";
 import { IBookItem } from "../../models/IBookItem";
 
 interface BooklistProps {
-    books: IBookItem[]
+    books: IBookItem[] | null
     isCategoryPage: boolean
+    isProfilePage: boolean
 }
-const Booklist = ({books, isCategoryPage}: BooklistProps) => {
+const Booklist = ({books, isCategoryPage, isProfilePage}: BooklistProps) => {
   const imgZoom = 5;
 
   return (
     <>
-    {books.map((book, index) => {
+    {books?.map((book, index) => {
     const { title, authors, imageLinks } = book.volumeInfo;
     const zoomedUrl = imageLinks.thumbnail.replace(/zoom=\d+/, `zoom=${imgZoom}`);
     const linkPath = isCategoryPage ? `/kategori/bok/${book.id}` : `/bok/${book.id}`;
@@ -32,9 +33,10 @@ const Booklist = ({books, isCategoryPage}: BooklistProps) => {
                     )}
             </div>
             <div className="category-buttonWrapper">
-                <NavLink to={linkPath}>
-                    <button className="category-button" aria-label="Läs mer">Läs mer</button>
-                </NavLink>
+                <button className="category-button">
+                <NavLink to={linkPath} state={isProfilePage}>Läs mer</NavLink>
+                </button>
+                
             </div>
         </li>
     );

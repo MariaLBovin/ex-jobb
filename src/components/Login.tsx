@@ -8,7 +8,8 @@ const Login = () => {
   return (
     <>
     <section className='login-container'>
-        <LoginUserForm></LoginUserForm>
+      <div className="login-wrapper">
+      <LoginUserForm></LoginUserForm>
         <div className="login-link">
           <p className="login-text">Ny här?</p>
           <button className="login-link-button">
@@ -17,6 +18,8 @@ const Login = () => {
         </NavLink>
           </button>
         </div>
+      </div>
+        
         
         
     </section>

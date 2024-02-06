@@ -1,0 +1,41 @@
+@import './variables';
+@import './mixins';
+
+.profile{
+    &-container{
+        @extend %container;
+    }
+    &-header {
+        padding-bottom: $gutter;
+    }
+    &-list {
+        @extend %listreset;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(calc(50% - calc($gutter / 2)), 1fr));
+            gap: calc($gutter / 2);
+            padding-bottom: $gutter;
+            
+            @include breakpoint (s) {
+                grid-template-columns: repeat(auto-fill, minmax(calc(33% - calc($gutter / 2)), 1fr));
+            }
+
+            @include breakpoint (m) {
+                grid-template-columns: repeat(auto-fill, minmax(calc(25% - $gutter), 1fr));
+                gap: $gutter;
+            }
+
+            @include breakpoint (l) {
+                grid-template-columns: repeat(auto-fill, minmax(calc(20% - $gutter), 1fr));
+            }
+    }
+    &-wrapper {
+        &-inner {
+            display: flex;
+            flex-direction: column;
+            gap: calc($gutter/2);
+        }
+        &-link{
+            text-decoration: underline;
+        }
+    }
+}

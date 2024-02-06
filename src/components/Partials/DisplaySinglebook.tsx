@@ -1,11 +1,10 @@
 import { useContext } from "react"
 import { BooksContext } from "../../context/IGetBooksContext"
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSessionStorage } from "../../hooks/useSessionStorage";
 import { addDoc, collection} from "firebase/firestore";
 import { LoginUserContext } from "../../context/LoginUserContext";
 import { db } from "../../services/Firebase";
-
 
 
 const DisplaySinglebook = () => {
@@ -13,9 +12,19 @@ const DisplaySinglebook = () => {
     const {loggedInUser} = useContext(LoginUserContext)
     const {id} = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
+    const isProfilePage =location.state ?? false;
+
+    console.log(isProfilePage);
+    
     useSessionStorage();
+
     
     const book = bookResponse.find((book) => book.id === id)
+    console.log(bookResponse);
+    console.log(book);
+    
+    
     const imgZoom = 5;
 
     const handleNavigate = () => {
@@ -25,8 +34,8 @@ const DisplaySinglebook = () => {
       const handleSave = async () => {
         try {
           if (!loggedInUser) {
-            console.error('Användaren är inte inloggad');
-            return;
+            navigate('/login')
+            return
           }
 
           await addDoc(collection(db, 'user'), {
@@ -61,7 +70,8 @@ const DisplaySinglebook = () => {
                   <button className='bookpage-heading-button' aria-label="Köp boken på Bokus">
                     <a href={`https://www.bokus.com/bok/${book?.volumeInfo.industryIdentifiers[0].identifier}`} target="_blank">Köp</a>
                   </button>
-                  <button className="bookpage-heading-button" onClick={handleSave}>Spara</button>
+                  {!isProfilePage && <button className="bookpage-heading-button" onClick={handleSave}>Spara</button>}
+                  
                   </div>
                  
                 </div>
@@ -86,8 +96,6 @@ const DisplaySinglebook = () => {
             <i className="fa-solid fa-angles-left"></i>
           </button>
         </div>
-        
-      
     </section>
     </>
   )

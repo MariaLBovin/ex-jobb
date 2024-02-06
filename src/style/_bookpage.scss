@@ -5,7 +5,7 @@
     &-container {
         @extend %container;
         padding-bottom: $gutter;
-        min-height: 100vh;
+
     }
     &-wrapper {
         display: flex;

@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import SubMenu from "./SubMenu";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { LoginUserContext } from "../../context/LoginUserContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../../services/Firebase";
 
 interface NavigationProps {
     toggleSubMenu: () => void;
@@ -12,12 +14,29 @@ interface NavigationProps {
 
 const Navigation = ({mainMenuOpen,  toggleSubMenu, subMenuOpen, toggleMainMenu} :NavigationProps) => {
 
-  const {loggedInUser} = useContext(LoginUserContext)
+  const navigate=useNavigate()
+
+  const {loggedInUser, setLoggedInUser} = useContext(LoginUserContext)
 
   const toggleMenu = () => {
     if (window.innerWidth < 760){
       toggleMainMenu();
     }
+  }
+
+  const logOut = () => {
+    signOut(auth).then(()=> {
+      navigate('/')
+      console.log('utloggad');
+      
+      sessionStorage.removeItem('user');
+      sessionStorage.removeItem('userBooks');
+      setLoggedInUser(null)
+      toggleMenu();
+    }).catch((error) => {
+      console.log(error);
+      
+    }) 
   }
   return (
     <>
@@ -44,12 +63,18 @@ const Navigation = ({mainMenuOpen,  toggleSubMenu, subMenuOpen, toggleMainMenu} 
             </li>
             <li className="header-nav-item" onClick={toggleMenu}>
                   { !loggedInUser ? (
-                    <NavLink to='/login'>Logga in</NavLink>
+                    <button className="header-nav-itemButton">
+                      <NavLink to='/login'>Logga in</NavLink>
+                    </button>
+                    
                   ) : (
-                    <NavLink to='/min-sida'>Min bokhylla</NavLink>
+                    <NavLink to='/min-sida'>Bokhylla</NavLink>
                   )
                   }
             </li>
+            {loggedInUser && <li className="header-nav-item">
+              <button className="header-nav-itemButton" onClick={logOut}>Logga ut</button>
+            </li>}
           </ul>
           </div>
           
