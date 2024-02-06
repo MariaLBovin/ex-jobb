@@ -6,17 +6,13 @@ import Spinner from "./Partials/Spinner";
 import { useSessionStorage } from "../hooks/useSessionStorage";
 import { useFetchBookShelf } from "../hooks/useFetchBookShelf";
 
-
 const Profilepage = () => {
-  const {loggedInUser, loggedInUserBooks} = useContext(LoginUserContext);
-
+  const {loggedInUserBooks} = useContext(LoginUserContext);
   useSessionStorage();
-  console.log(loggedInUser);
-  
-  const {loading} = useFetchBookShelf()
+  const {loading} = useFetchBookShelf();
 
   const userBooks = loggedInUserBooks;
-  sessionStorage.setItem('books', JSON.stringify(userBooks))
+  sessionStorage.setItem('books', JSON.stringify(userBooks));
 
   return (
     <>
@@ -36,10 +32,9 @@ const Profilepage = () => {
     <ul className="profile-list">
       <Booklist books={userBooks} isCategoryPage={false} isProfilePage={true}></Booklist>
     </ul>
-  )}
+      )}
     </div>
     </section>
-
     </>
   )
 }

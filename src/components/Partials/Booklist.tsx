@@ -2,10 +2,11 @@ import { NavLink} from "react-router-dom";
 import { IBookItem } from "../../models/IBookItem";
 
 interface BooklistProps {
-    books: IBookItem[] | null
-    isCategoryPage: boolean
-    isProfilePage: boolean
+    books: IBookItem[] | null,
+    isCategoryPage: boolean,
+    isProfilePage: boolean,
 }
+
 const Booklist = ({books, isCategoryPage, isProfilePage}: BooklistProps) => {
   const imgZoom = 5;
 

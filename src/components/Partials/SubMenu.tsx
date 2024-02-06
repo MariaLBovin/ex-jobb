@@ -8,12 +8,10 @@ interface DesktopNavProps {
     subMenuOpen: boolean;
     toggleSubMenu: () => void;
     toggleMainMenu: () => void;
-
-
   }
 
 const SubMenu = ({subMenuOpen, toggleMainMenu, toggleSubMenu} :DesktopNavProps) => {
-  const {setSelectedCategory, setBookResponse, setSelectedCategoryText} = useContext(BooksContext)
+  const {setSelectedCategory, setBookResponse, setSelectedCategoryText} = useContext(BooksContext);
 
   const displayChosenCategory = (selectedCategory: string[], categoryText: string) => {
     const filteredBooks = changeCategory(selectedCategory);

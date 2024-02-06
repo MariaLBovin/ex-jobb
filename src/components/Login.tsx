@@ -1,7 +1,5 @@
-import { NavLink } from "react-router-dom"
-import LoginUserForm from "./Partials/LoginUserForm"
-
-
+import { NavLink } from "react-router-dom";
+import LoginUserForm from "./Partials/LoginUserForm";
 
 const Login = () => {
 
@@ -19,9 +17,6 @@ const Login = () => {
           </button>
         </div>
       </div>
-        
-        
-        
     </section>
     </>
   )

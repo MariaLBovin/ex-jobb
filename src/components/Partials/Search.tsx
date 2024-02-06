@@ -6,32 +6,30 @@ import { IBookItem } from "../../models/IBookItem";
 
 
 const Search =  () => {
-  const {setBookResponse} =useContext<IGetBooksContext>(BooksContext)
-  const [searchString, setSearchString] = useState('')
-  const [error, setError] =useState(false)
+  const {setBookResponse} =useContext<IGetBooksContext>(BooksContext);
+  const [searchString, setSearchString] = useState('');
+  const [error, setError] =useState(false);
   
-  const [bookData, setBookdata] = useState<IBookItem []| null>(null)
-  const [searchPerformed, setSearchPerformed] =  useState(false)
+  const [bookData, setBookdata] = useState<IBookItem []| null>(null);
+  const [searchPerformed, setSearchPerformed] =  useState(false);
   
   const initalText = `Vill du få tips om vad du ska läsa härnäst? 
   Skriv in titeln på din favoritbok eller den bok du senast läst så 
-  genereras ett tips till dig baserat på ditt sökord.`
-  const [pText, setPText] = useState(initalText)
+  genereras ett tips till dig baserat på ditt sökord.`;
+
+  const [pText, setPText] = useState(initalText);
  
   const getRecommendation = async(e:FormEvent) => {
     e.preventDefault();
 
     if(searchString.length < 2) {
-      setError(true)
+      setError(true);
       return;
     }
-
     try {
-      const response = await getBookRecommendation(searchString)
-
+      const response = await getBookRecommendation(searchString);
       if (response) {
-        console.log(response);
-        
+
         const text= response.choices[0].text;
         console.log(text);
 
@@ -43,32 +41,30 @@ const Search =  () => {
             const author = text.substring(endIndex + 5);
   
           try {
-            const response = await getSingleBook({extractedTitle: extractedTitle, author: author})
+            const response = await getSingleBook({extractedTitle: extractedTitle, author: author});
   
             if(response.totalItems > 0){
               console.log(response);
               const books = response.items.filter(e => e)
-              setBookdata(books)
-              setBookResponse((prevbooks) => [...prevbooks,...books])
+              setBookdata(books);
+              setBookResponse((prevbooks) => [...prevbooks,...books]);
             }
             }catch(error) {
               console.log(error);
           }
          }
-         setSearchPerformed(true)
-         
+         setSearchPerformed(true);
       }
       setPText(`Jag rekommenderar att du läser ${text}. `);
       fetchBook();
       setError(false);
-      setSearchString('');
       }
-      
     }catch (error) {
       console.log(error);
     }
+    setSearchString('');
   } 
-    const book = bookData?.[0]
+    const book = bookData?.[0];
 
   return (
     <>

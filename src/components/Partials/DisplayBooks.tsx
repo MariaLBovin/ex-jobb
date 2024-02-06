@@ -21,7 +21,7 @@ const DisplayBooks = () => {
   return (
     <>
       <ul className="categories-content-list">
-        <Booklist books={filteredBooks} isCategoryPage={false}></Booklist>
+        <Booklist books={filteredBooks} isCategoryPage={false} isProfilePage={false}></Booklist>
       </ul>
       <NavLink to={`/kategori/${selectedCategoryText}`} state={selectedCategoryText} className="categories-content-listLink" aria-label="navigate">
             <button className="categories-content-listButton" aria-label="Se fler">

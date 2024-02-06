@@ -11,9 +11,8 @@ export const Logo = ({toggleSubMenu, subMenuOpen}: ILogoProps) => {
   const toggleMenu = () => {
     if(window.innerWidth > 760){
       if(subMenuOpen) {
-        toggleSubMenu()
+        toggleSubMenu();
       }
-        
     }
   }
 

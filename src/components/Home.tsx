@@ -4,8 +4,6 @@ import { useFetchInitialData } from "../hooks/useFetchInitalData";
 import { useFetchAllData } from "../hooks/useFetchAllData";
 import { useFetchBookShelf } from "../hooks/useFetchBookShelf";
 
-
-
 const Home = () => {
   useFetchInitialData();
   useFetchAllData();

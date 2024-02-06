@@ -7,7 +7,6 @@ import GoogleLogo from '/google.svg';
 import { NavLink } from 'react-router-dom';
 
 const AboutPage = () => {
-    
 
   return (
     <>

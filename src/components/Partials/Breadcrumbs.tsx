@@ -1,7 +1,5 @@
 import { NavLink, useMatches } from 'react-router-dom';
 
-
-
 const Breadcrumbs = () => {
     const matches = useMatches();
 

@@ -1,24 +1,23 @@
 
-import {useNavigate } from "react-router-dom"
-import Booklist from "./Partials/Booklist"
-import { useContext } from "react"
-import { BooksContext } from "../context/IGetBooksContext"
-import { useSessionStorage } from "../hooks/useSessionStorage"
-import { filterUniqueBooks } from "../utils/filterUniqeBooks"
-import Breadcrumbs from "./Partials/Breadcrumbs"
-
+import {useNavigate } from "react-router-dom";
+import Booklist from "./Partials/Booklist";
+import { useContext } from "react";
+import { BooksContext } from "../context/IGetBooksContext";
+import { useSessionStorage } from "../hooks/useSessionStorage";
+import { filterUniqueBooks } from "../utils/filterUniqeBooks";
+import Breadcrumbs from "./Partials/Breadcrumbs";
 
 const Category = () => {
-  const navigate = useNavigate()
-  const {bookResponse, selectedCategoryText} = useContext(BooksContext)
+  const navigate = useNavigate();
+  const {bookResponse, selectedCategoryText} = useContext(BooksContext);
   
   useSessionStorage();
-  const books = bookResponse.map((book) => book)
+  const books = bookResponse.map((book) => book);
 
-  const filteredBooks = filterUniqueBooks(books)
+  const filteredBooks = filterUniqueBooks(books);
 
   const handleNavigate = () => {
-    navigate('/')
+    navigate('/');
   };
 
   return (
@@ -30,7 +29,7 @@ const Category = () => {
           <div className="category-container">
           <Breadcrumbs></Breadcrumbs>
           <ul className="category-list">
-            <Booklist books={filteredBooks} isCategoryPage={true}></Booklist>
+            <Booklist books={filteredBooks} isCategoryPage={true} isProfilePage={false}></Booklist>
           </ul>
             <div className="category-footer">
               <button className="category-footer-button" aria-lable='navigate back' onClick={handleNavigate}>

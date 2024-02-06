@@ -1,5 +1,5 @@
-import { useContext, useState } from "react"
-import { BooksContext } from "../../context/IGetBooksContext"
+import { useContext, useState } from "react";
+import { BooksContext } from "../../context/IGetBooksContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSessionStorage } from "../../hooks/useSessionStorage";
 import { LoginUserContext } from "../../context/LoginUserContext";
@@ -8,32 +8,24 @@ import { handleSaveUserBook, removeFromDb } from "../../services/DatabaseCollect
 
 const DisplaySinglebook = () => {
     const {bookResponse} = useContext(BooksContext);
-    const {loggedInUser} = useContext(LoginUserContext)
+    const {loggedInUser} = useContext(LoginUserContext);
     const {id} = useParams();
     const navigate = useNavigate();
     const location = useLocation();
     const isProfilePage =location.state ?? false;
-    const [isClicked, setClicked] = useState(false)
-
-    console.log(isProfilePage);
+    const [isClicked, setClicked] = useState(false);
     
     useSessionStorage();
 
-    
-    const book = bookResponse.find((book) => book.id === id)
-    console.log(bookResponse);
-    console.log(book);
-    
-    
+    const book = bookResponse.find((book) => book.id === id);
     const imgZoom = 5;
 
     const handleNavigate = () => {
         navigate(-1)
       };
-    
       const handleSave = async () => {
         try {
-          await handleSaveUserBook({loggedInUser, book})
+          await handleSaveUserBook({loggedInUser, book});
           setClicked(true);
         }catch(error) {
           console.log(error);
@@ -44,17 +36,17 @@ const DisplaySinglebook = () => {
       const handleRemove= async() => {
         try {
           if (!loggedInUser || !book) {
-            console.error('Ingen inloggad användare eller bok tillgänglig');
             return;
           }
-      
           await removeFromDb({ userId: loggedInUser.uid, bookId: book.id });
-          console.log('Boken har tagits bort från databasen');
-          setClicked(true)
+          setClicked(true);
+
+          setTimeout(() => {
+            navigate('/min-sida')
+          }, 1000);
         } catch (error) {
           console.error('Fel vid borttagning av bok:', error);
         }
-
       }
 
   return (
@@ -94,9 +86,8 @@ const DisplaySinglebook = () => {
                     >
                      {isClicked ? 'Borttagen' : 'Ta bort'}
                     </button>
-)}
+                    )}
                   </div>
-                 
                 </div>
                 <div className='bookpage-heading-image'>
                   {book?.volumeInfo.imageLinks ? (

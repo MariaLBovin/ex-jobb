@@ -6,7 +6,7 @@ import { IBookItem } from "../models/IBookItem";
 export const handleSaveUserBook = async ({loggedInUser, book}:  {loggedInUser:IUserInfo | null, book: IBookItem | undefined}) => {
   try {
     if(!loggedInUser){
-      return Promise.reject('Användaren är inte inloggad')
+      return Promise.reject('Användaren är inte inloggad');
     }
     await addDoc(collection(db, 'user'), {
       user: loggedInUser.uid,
@@ -30,7 +30,7 @@ export const fetchFromDb = async ({userId}: {userId: string | undefined}) => {
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         querySnapshot.forEach((doc) => {
           const bookId = doc.data().bookId;
-          bookIDs.push(bookId)
+          bookIDs.push(bookId);
         }); 
         unsubscribe();
         

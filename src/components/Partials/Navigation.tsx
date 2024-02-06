@@ -13,10 +13,8 @@ interface NavigationProps {
   }
 
 const Navigation = ({mainMenuOpen,  toggleSubMenu, subMenuOpen, toggleMainMenu} :NavigationProps) => {
-
-  const navigate=useNavigate()
-
-  const {loggedInUser, setLoggedInUser} = useContext(LoginUserContext)
+  const navigate=useNavigate();
+  const {loggedInUser, setLoggedInUser} = useContext(LoginUserContext);
 
   const toggleMenu = () => {
     if (window.innerWidth < 760){
@@ -26,16 +24,14 @@ const Navigation = ({mainMenuOpen,  toggleSubMenu, subMenuOpen, toggleMainMenu} 
 
   const logOut = () => {
     signOut(auth).then(()=> {
-      navigate('/')
-      console.log('utloggad');
+      navigate('/');
       
       sessionStorage.removeItem('user');
       sessionStorage.removeItem('userBooks');
-      setLoggedInUser(null)
+      setLoggedInUser(null);
       toggleMenu();
     }).catch((error) => {
       console.log(error);
-      
     }) 
   }
   return (
@@ -77,7 +73,6 @@ const Navigation = ({mainMenuOpen,  toggleSubMenu, subMenuOpen, toggleMainMenu} 
             </li>}
           </ul>
           </div>
-          
         </nav> 
     </>
   )
