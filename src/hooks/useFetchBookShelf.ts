@@ -11,9 +11,11 @@ export const useFetchBookShelf = () => {
         const fetchData = async () => {
           try {
             if (!loggedInUser) {
-              console.log('ingen inloggad användare');
+              
               return;
             }
+            console.log(loggedInUser);
+            
             const dbData = await fetchFromDb({userId: loggedInUser.uid});
             
             const bookIDs = dbData

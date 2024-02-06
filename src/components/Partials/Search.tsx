@@ -31,7 +31,6 @@ const Search =  () => {
       if (response) {
 
         const text= response.choices[0].text;
-        console.log(text);
 
         const fetchBook = async () => {
           const startIndex = text.indexOf('"') + 1;
@@ -44,16 +43,18 @@ const Search =  () => {
             const response = await getSingleBook({extractedTitle: extractedTitle, author: author});
   
             if(response.totalItems > 0){
-              console.log(response);
               const books = response.items.filter(e => e)
               setBookdata(books);
               setBookResponse((prevbooks) => [...prevbooks,...books]);
+              setSearchPerformed(true);
+            } else{
+              setBookdata(null)
             }
+            setSearchString('')
             }catch(error) {
               console.log(error);
           }
          }
-         setSearchPerformed(true);
       }
       setPText(`Jag rekommenderar att du läser ${text}. `);
       fetchBook();
@@ -61,8 +62,7 @@ const Search =  () => {
       }
     }catch (error) {
       console.log(error);
-    }
-    setSearchString('');
+    } 
   } 
     const book = bookData?.[0];
 
@@ -73,19 +73,21 @@ const Search =  () => {
             <article className="search-wrapper-inner">
               <p className="search-text">
               {pText}
-            </p>
-            {searchPerformed && !book ? (
-            <p className="search-text-fake">Det här verkar vara en bok som OpenAi har hittat på... Om du gillar titeln så kanske du ska skriva den?! Eller prova sök igen.</p>
-          ) : (
-            book && (
-              <NavLink to={`/bok/${book.id}`}>
-                <button className='search-text-button' aria-label="Läs mer">Läs mer om boken</button>
-              </NavLink>
-            )
-          )}
+              </p>
+              {searchPerformed && book ? (
+          <NavLink to={`/bok/${book.id}`}>
+            <button className='search-text-button' aria-label="Läs mer">Läs mer om boken</button>
+          </NavLink>
+        ) : searchPerformed && !book ? (
+          <p className="search-text-fake">Det här verkar vara en bok som OpenAi har hittat på... Om du gillar titeln så kanske du ska skriva den?! Eller prova sök igen.</p>
+        ) : null}
             </article>
-            <form className="search-form" onSubmit={getRecommendation}>
-                <input className={`search-input ${error && 'error'}`} placeholder={error ? "Du måste ange minst två bokstäver" : "Ange titel på din favoritbok"} onChange={(e) =>setSearchString(e.target.value)}></input>
+            <form className="search-form" onSubmit={(e) => getRecommendation(e)}>
+                <input 
+                className={`search-input ${error && 'error'}`} 
+                placeholder={error ? "Du måste ange minst två bokstäver" : "Ange titel på din favoritbok"} 
+                value={searchString}
+                onChange={(e) =>setSearchString( e.target.value)}></input>
                 <button className="search-button" type='submit' aria-label="Få tips">Få tips</button>
             </form>
         </div>

@@ -24,12 +24,15 @@ const DisplaySinglebook = () => {
         navigate(-1)
       };
       const handleSave = async () => {
+        if (!loggedInUser) {
+          navigate('/login');
+          return;
+        }
         try {
           await handleSaveUserBook({loggedInUser, book});
           setClicked(true);
         }catch(error) {
           console.log(error);
-          
         }
       };
 

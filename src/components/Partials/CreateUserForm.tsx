@@ -1,11 +1,15 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../services/Firebase";
 import AuthForm from "./AuthForm";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { LoginUserContext } from "../../context/LoginUserContext";
 
 
   const CreateUserForm = () => {
     const [error, setError] = useState('');
+    const {setLoggedInUser} = useContext(LoginUserContext);
+    const navigate = useNavigate()
 
     const isValidEmail = (email: string) => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,6 +34,15 @@ import { useState } from "react";
 
         await createUserWithEmailAndPassword(auth, email, password);
         console.log('Användare skapad');
+
+        await signInWithEmailAndPassword(auth, email, password);
+        console.log('Användare inloggad');
+
+        const user = {email: auth.currentUser?.email, uid: auth.currentUser?.uid}
+        sessionStorage.setItem('user', JSON.stringify(user));
+        setLoggedInUser(user);
+
+        navigate('/min-sida');
       } catch (error) {
         console.error('Fel vid registrering:');
         setError('Ett fel uppstod vid registrering. Försök igen senare.');
@@ -38,9 +51,11 @@ import { useState } from "react";
 
     return (
       <>
-        <section className="login-container">
+      <section className='login-container'>
+      <div className="login-wrapper">
         <h2 className='login-header'>Skapa användare</h2>
         <AuthForm handleAction={handleSignUp} error={error} isLoginPage={false}></AuthForm>
+        </div>
         </section>
       </>
     );
