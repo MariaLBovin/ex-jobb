@@ -28,7 +28,14 @@ env:
     VITE_API_KEY: ${{secrets.VITE_API_KEY}}
     VITE_API2_KEY: ${{secrets.VITE_API2_KEY}}
     VITE_BASE_URL_AI: ${{secrets.VITE_BASE_URL_AI}}
-
+    VITE_API3_KEY: ${{secrets.VITE_API3_KEY}}
+    VITE_AUTH_DOMAIN: ${{secrets.VITE_AUTH_DOMAIN}}
+    VITE_PROJECT_ID: ${{secrets.VITE_PROJECT_ID}}
+    VITE_STORAGE_BUCKET: ${{secrets.VITE_STORAGE_BUCKET}}
+    VITE_MESSAGE_ID: ${{secrets.VITE_MESSAGE_ID}}
+    VITE_APP_ID: ${{secrets.VITE_APP_ID}}
+    VITE_MEASURE_ID: ${{secrets.VITE_MEASURE_ID}}
+      
 jobs:
   # Single deploy job since we're just deploying
   deploy:
