@@ -18,7 +18,8 @@ export const useFetchInitialData = () => {
     const initialCategory =
       selectedCategory && selectedCategory.length > 0 ? selectedCategory : ['Fiction'];
     const categoryText = selectedCategoryText || 'Skönlitteratur';
-
+      console.log(initialCategory);
+      
     try {
       let books: IBookItem[]= [];
       if (existingData && existingData.items && existingData.items.length > 0) {
@@ -34,6 +35,7 @@ export const useFetchInitialData = () => {
             .filter(book => book.volumeInfo.categories && book.volumeInfo.categories.length > 0);
           setBookResponse(books);
           sessionStorage.setItem('bookData', JSON.stringify(response));
+          sessionStorage.setItem('categoryText', JSON.stringify(categoryText));
         }
       }
 
@@ -41,12 +43,14 @@ export const useFetchInitialData = () => {
         const bookCategories = book.volumeInfo.categories;
         return bookCategories.some(cat => initialCategory.includes(cat));
       });
-
+      
+      
       setBookResponse(initialBooks);
       setSelectedCategory(initialCategory);
       sessionStorage.setItem('books', JSON.stringify(initialBooks));
       sessionStorage.setItem('selectedCategory', JSON.stringify(initialCategory));
-      sessionStorage.setItem('categoryText', JSON.stringify(categoryText));
+      
+      
     } catch (error) {
       console.log(error);
     }

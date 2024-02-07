@@ -10,8 +10,13 @@ import Breadcrumbs from "./Partials/Breadcrumbs";
 const Category = () => {
   const navigate = useNavigate();
   const {bookResponse, selectedCategoryText} = useContext(BooksContext);
+
+  console.log(selectedCategoryText);
   
-  useSessionStorage();
+
+    useSessionStorage();
+
+  
   const books = bookResponse.map((book) => book);
 
   const filteredBooks = filterUniqueBooks(books);
