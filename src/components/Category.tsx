@@ -25,9 +25,12 @@ const Category = () => {
         <section className="category">
           <div className="category-hero">
             <h1 className="category-hero-header">{selectedCategoryText}</h1>
+            <Breadcrumbs></Breadcrumbs>
           </div>
+
           <div className="category-container">
-          <Breadcrumbs></Breadcrumbs>
+          
+          <div className="category-wrapper">
           <ul className="category-list">
             <Booklist books={filteredBooks} isCategoryPage={true} isProfilePage={false}></Booklist>
           </ul>
@@ -37,6 +40,8 @@ const Category = () => {
                 <i className="fa-solid fa-angles-left"></i>
               </button>
             </div>
+          </div>
+          
           </div>
         </section>
       </>

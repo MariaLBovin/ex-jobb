@@ -9,19 +9,23 @@
     }
 
     &-hero {
-        width: 100%;
         background-color: $secondary;
+        padding: calc($gutter/2) $gutter;
+
+        @include breakpoint (m) {
+            padding: calc($gutter / 2) calc($gutter * 2);
+        }
         
         &-header {
-            padding: calc($gutter/2) $gutter;
             color: $primary;
-
-            @include breakpoint (m) {
-                padding: calc($gutter / 2) calc($gutter * 2);
-            }
+ 
         }
     }
-
+    &-wrapper {
+        @include breakpoint(m) {
+            padding: $gutter calc($gutter * 2);
+        }
+    }
     &-list {
         @extend %listreset;
             display: grid;
@@ -67,7 +71,7 @@
             height: 200px;
 
             @include breakpoint (m) {
-                height: 200px;
+                height: 300px;
             }
         }
     }
@@ -87,6 +91,7 @@
         } 
         @include breakpoint (m) {
             height: 55px;
+            font-size: 3rem;
         }
 
         &Wrapper {
@@ -107,6 +112,9 @@
             @include breakpoint (m) {
                 font-size: 2.4rem;
                 padding: calc($gutter / 2);
+            }
+            @include breakpoint(l) {
+                font-size: 3rem;
             }
         }
     }

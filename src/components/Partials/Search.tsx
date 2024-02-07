@@ -5,8 +5,6 @@ import { BooksContext, IGetBooksContext } from "../../context/IGetBooksContext";
 import { IBookItem } from "../../models/IBookItem";
 import { useSessionStorage } from "../../hooks/useSessionStorage";
 
-
-
 const Search =  () => {
   const {setBookResponse} =useContext<IGetBooksContext>(BooksContext);
   const [searchString, setSearchString] = useState('');

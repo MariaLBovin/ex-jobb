@@ -22,12 +22,21 @@
     flex-direction: column;
     gap: 16px;
     padding-bottom: $gutter;
+    text-align:  center;
+
+    @include breakpoint (s) {
+        width: 600px;
+    }
 
     &-label {
         display: inline-flex;
         flex-direction: column;
         gap: 8px;
         font-size: 1.8rem;
+
+        @include breakpoint (s) {
+            font-size: 2.4rem;
+        }
     }
 
     &-input{
@@ -36,16 +45,16 @@
         box-shadow: 0 5px 5px black;
         border: none;
         padding: 0 8px;
+        width: 100%;
 
         @include breakpoint (s) {
             height: 70px;
-
             padding-left: $gutter;
-
 
         }
         @include breakpoint (m) {
             font-size: 2.8rem;
+            
         }
 
             &.error{
@@ -56,6 +65,11 @@
     &-button{
         @extend %primarybutton;
         height: 45px;
+
+        @include breakpoint (m) {
+            font-size: 3rem;
+            height: 70px;
+        }
     }
     }
 
@@ -64,6 +78,11 @@
             @extend %primarybutton;
             height: 45px;
             padding: 0 8px;
+
+            @include breakpoint (m) {
+                height: 60px;
+                font-size: 3rem;
+            }
         }
     }
     &-text {

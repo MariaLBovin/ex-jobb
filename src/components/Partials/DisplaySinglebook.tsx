@@ -8,7 +8,7 @@ import { handleSaveUserBook, removeFromDb } from "../../services/DatabaseCollect
 
 const DisplaySinglebook = () => {
     const {bookResponse} = useContext(BooksContext);
-    const {loggedInUser} = useContext(LoginUserContext);
+    const {loggedInUser, loggedInUserBooks} = useContext(LoginUserContext);
     const {id} = useParams();
     const navigate = useNavigate();
     const location = useLocation();
@@ -17,44 +17,82 @@ const DisplaySinglebook = () => {
     
     useSessionStorage();
 
-    
+    const cleanHtmlTags = (htmlText:string) => {
+      return htmlText.replace(/<\/?p>/g, ''); // This regex removes <p> and </p> tags
+    };
+  
     const book = bookResponse.find((book) => book.id === id);
+  
+    console.log(book);
+  
+    // Use the cleanHtmlTags function to remove <p> tags
+    const cleanedDescription = book?.volumeInfo.description
+      ? cleanHtmlTags(book.volumeInfo.description)
+      : '';
 
-    
+
     const imgZoom = 5;
+    const isBookAlreadySaved = loggedInUserBooks?.some(savedBook => savedBook.id === book?.id);
+
+    const renderBookButtons = () => {
+      if (isBookAlreadySaved) {
+        return (
+          <button
+            className="bookpage-heading-button"
+            onClick={handleSave}
+            disabled={true}
+          >
+            Sparad
+          </button>
+        );
+      }
+  
+      return (
+        <button
+          className="bookpage-heading-button"
+          onClick={handleSave}
+          disabled={isClicked}
+        >
+          {isClicked ? 'Sparad' : 'Spara'}
+        </button>
+      );
+    };
+    const handleNavigate = () => {
+      navigate(-1)
+    };
+    
+    const handleSave = async () => {
+      if (!loggedInUser) {
+        navigate('/login');
+        return;
+      }
+    
+      try {
+        
+        await handleSaveUserBook({ loggedInUser, book });
+        setClicked(true);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
     
-    const handleNavigate = () => {
-        navigate(-1)
-      };
-      const handleSave = async () => {
-        if (!loggedInUser) {
-          navigate('/login');
+    const handleRemove= async() => {
+      try {
+        if (!loggedInUser || !book) {
           return;
         }
-        try {
-          await handleSaveUserBook({loggedInUser, book});
-          setClicked(true);
-        }catch(error) {
-          console.log(error);
-        }
-      };
+        await removeFromDb({ userId: loggedInUser.uid, bookId: book.id });
+        setClicked(true);
 
-      const handleRemove= async() => {
-        try {
-          if (!loggedInUser || !book) {
-            return;
-          }
-          await removeFromDb({ userId: loggedInUser.uid, bookId: book.id });
-          setClicked(true);
-
-          setTimeout(() => {
-            navigate('/min-sida')
-          }, 1000);
-        } catch (error) {
-          console.error('Fel vid borttagning av bok:', error);
-        }
+        setTimeout(() => {
+          navigate('/min-sida')
+        }, 1000);
+      } catch (error) {
+        console.error('Fel vid borttagning av bok:', error);
       }
+    }
+
 
   return (
     <>
@@ -78,22 +116,16 @@ const DisplaySinglebook = () => {
                     <a href={`https://www.bokus.com/bok/${book?.volumeInfo.industryIdentifiers[0].identifier}`} target="_blank">Köp</a>
                   </button>
                   {!isProfilePage ? (
-                    <button
-                      className="bookpage-heading-button"
-                      onClick={handleSave}
-                      disabled={isClicked}
-                    >
-                      {isClicked ? 'Sparad' : 'Spara'}
-                    </button>
-                    ) : (
-                    <button
-                      className="bookpage-heading-button"
-                      onClick={handleRemove} 
-                      disabled={isClicked}
-                    >
-                     {isClicked ? 'Borttagen' : 'Ta bort'}
-                    </button>
-                    )}
+                  renderBookButtons()
+                ) : (
+                  <button
+                    className="bookpage-heading-button"
+                    onClick={handleRemove}
+                    disabled={isClicked}
+                  >
+                    {isClicked ? 'Borttagen' : 'Ta bort'}
+                  </button>
+                )}
                   </div>
                 </div>
                 <div className='bookpage-heading-image'>
@@ -108,7 +140,7 @@ const DisplaySinglebook = () => {
               </div>  
               <div className='bookpage-info'>
                 <h2 className='bookpage-info-header'>Om boken:</h2>
-                <p className='bookpage-info-text'>{book?.volumeInfo.description}</p>
+                <p className='bookpage-info-text'>{cleanedDescription}</p>
               </div>
             </div> 
         </article>

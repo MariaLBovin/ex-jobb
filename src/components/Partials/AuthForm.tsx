@@ -19,7 +19,7 @@ const AuthForm = ({handleAction, error, isLoginPage} :IAuthformProps) => {
           </label>
           <label className="login-form-label">
             Lösenord:
-            <input className="login-form-input"  type="password" value={password} placeholder="Minst sex bokstäver" onChange={(e) => setPassword(e.target.value)} />
+            <input className="login-form-input"  type="password" value={password} placeholder="Minst sex tecken" onChange={(e) => setPassword(e.target.value)} />
           </label>
           <button type="button" onClick={() => handleAction(email, password)} className='login-form-button'>
             {isLoginPage ? 'Logga in' : 'Skapa användare'}

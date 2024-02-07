@@ -4,6 +4,7 @@ import AuthForm from "./AuthForm";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginUserContext } from "../../context/LoginUserContext";
+import { FirebaseError } from "firebase/app";
 
 
   const CreateUserForm = () => {
@@ -43,9 +44,14 @@ import { LoginUserContext } from "../../context/LoginUserContext";
         setLoggedInUser(user);
 
         navigate('/min-sida');
-      } catch (error) {
+      } catch (error:unknown) {
         console.error('Fel vid registrering:');
-        setError('Ett fel uppstod vid registrering. Försök igen senare.');
+        if (error instanceof FirebaseError && error.code === 'auth/email-already-in-use') {
+          setError('Användarkontot finns redan. Logga in istället.');
+        } else {
+          setError('Ett fel uppstod vid registrering. Försök igen senare.');
+        }
+        
       }
     };
 

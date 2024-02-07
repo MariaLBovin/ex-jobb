@@ -6,13 +6,12 @@
         @extend %container;
         background-color: $secondary;
         padding-top: $gutter;
-        height: 80vh;
+        height: 70vh;
 
         @include breakpoint (s){
             display: flex;
             flex-direction: row;
             padding-bottom: $gutter;
-            height: fit-content;
         }
     }
 
@@ -29,7 +28,7 @@
             }
 
             @include breakpoint (m){
-                padding-right: calc($gutter/2);
+                padding-right: calc($gutter * 2);
             }
         }
         
@@ -42,7 +41,7 @@
         }
 
         @include breakpoint (m) {
-            padding-left: calc($gutter/2);
+            padding-left: calc($gutter * 2);
             padding-right: $gutter;
         }
 
@@ -82,8 +81,6 @@
         &-button {
             @extend %primarybutton;
             padding: 4px 8px;
-
-            
         }
     }
     &-form {
@@ -106,14 +103,9 @@
                 border: 1px solid red;
             }
         
-
         @include breakpoint (s) {
             height: 70px;
-            width: 80%;
             padding-left: $gutter;
-
-            
-
         }
         @include breakpoint (m) {
             font-size: 2.8rem;
