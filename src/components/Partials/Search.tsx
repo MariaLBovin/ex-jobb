@@ -12,7 +12,7 @@ const Search =  () => {
   const [searchString, setSearchString] = useState('');
   const [error, setError] =useState(false);
   
-  const [bookData, setBookdata] = useState<IBookItem []>([]);
+  const [bookData, setBookdata] = useState<IBookItem [] | null>(null);
   const [searchPerformed, setSearchPerformed] =  useState(false);
   const { updateSessionStorage } = useSessionStorage()
   
@@ -54,6 +54,7 @@ const Search =  () => {
               updateSessionStorage(books[0])
             } else{
               setSearchPerformed(true)
+              setBookdata(null)
             }
             setSearchString('')
             }catch(error) {
