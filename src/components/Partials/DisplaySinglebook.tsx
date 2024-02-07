@@ -17,9 +17,13 @@ const DisplaySinglebook = () => {
     
     useSessionStorage();
 
+    
     const book = bookResponse.find((book) => book.id === id);
+
+    
     const imgZoom = 5;
 
+    
     const handleNavigate = () => {
         navigate(-1)
       };

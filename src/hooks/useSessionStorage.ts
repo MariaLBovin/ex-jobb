@@ -1,6 +1,9 @@
 import { useContext, useEffect } from "react"
 import { BooksContext, IGetBooksContext } from "../context/IGetBooksContext"
 import { ILogInUserContext, LoginUserContext } from "../context/LoginUserContext"
+import { IBookItem } from "../models/IBookItem"
+
+
 
 export const useSessionStorage = () => {
     const {setBookResponse, setSelectedCategory, setSelectedCategoryText}=useContext<IGetBooksContext>(BooksContext)
@@ -21,4 +24,14 @@ export const useSessionStorage = () => {
         setLoggedInUserBooks(userBooks);
 
     },[setBookResponse, setSelectedCategory, setSelectedCategoryText, setLoggedInUser, setLoggedInUserBooks])
+
+    const updateSessionStorage = (newBook: IBookItem) => {
+        const storedBooks = JSON.parse(sessionStorage.getItem('books') || '[]');
+        const updatedBooks = [...storedBooks, newBook];
+        sessionStorage.setItem('books', JSON.stringify(updatedBooks));
+        console.log(updatedBooks);
+        
+      };
+    
+      return { updateSessionStorage };
 }

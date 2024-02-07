@@ -1,8 +1,10 @@
 import { FormEvent, useContext, useState } from "react";
-import { getBookRecommendation, getSingleBook } from "../../services/BooksCollector";
+import { getSingleBook, getBookRecommendation } from "../../services/BooksCollector";
 import { NavLink } from "react-router-dom";
 import { BooksContext, IGetBooksContext } from "../../context/IGetBooksContext";
 import { IBookItem } from "../../models/IBookItem";
+import { useSessionStorage } from "../../hooks/useSessionStorage";
+
 
 
 const Search =  () => {
@@ -10,8 +12,9 @@ const Search =  () => {
   const [searchString, setSearchString] = useState('');
   const [error, setError] =useState(false);
   
-  const [bookData, setBookdata] = useState<IBookItem []| null>(null);
+  const [bookData, setBookdata] = useState<IBookItem []>([]);
   const [searchPerformed, setSearchPerformed] =  useState(false);
+  const { updateSessionStorage } = useSessionStorage()
   
   const initalText = `Vill du få tips om vad du ska läsa härnäst? 
   Skriv in titeln på din favoritbok eller den bok du senast läst så 
@@ -41,14 +44,16 @@ const Search =  () => {
   
           try {
             const response = await getSingleBook({extractedTitle: extractedTitle, author: author});
-  
+
             if(response.totalItems > 0){
               const books = response.items.filter(e => e)
+
               setBookdata(books);
               setBookResponse((prevbooks) => [...prevbooks,...books]);
               setSearchPerformed(true);
+              updateSessionStorage(books[0])
             } else{
-              setBookdata(null)
+              setSearchPerformed(true)
             }
             setSearchString('')
             }catch(error) {
@@ -66,6 +71,7 @@ const Search =  () => {
   } 
     const book = bookData?.[0];
 
+  
   return (
     <>
     <div className="search-wrapper">

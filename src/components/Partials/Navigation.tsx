@@ -58,9 +58,9 @@ const Navigation = ({mainMenuOpen,  toggleSubMenu, subMenuOpen, toggleMainMenu} 
             </li>
             <li className="header-nav-item" onClick={toggleMenu}>
                   { !loggedInUser ? (
-                    <button className="header-nav-itemButton">
+                  
                       <NavLink to='/login'>Logga in</NavLink>
-                    </button>
+                    
                     
                   ) : (
                     <NavLink to='/min-sida'>Bokhylla</NavLink>
