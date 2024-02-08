@@ -17,7 +17,7 @@ const Category = () => {
   const filteredBooks = filterUniqueBooks(books);
 
   const handleNavigate = () => {
-    navigate('/');
+    navigate(-1);
   };
 
   return (

@@ -1,15 +1,13 @@
-import { useContext} from "react";
+import { useContext, useState} from "react";
 import { LoginUserContext } from "../context/LoginUserContext";
 import Booklist from "./Partials/Booklist";
 import { NavLink } from "react-router-dom";
 import Spinner from "./Partials/Spinner";
-import { useFetchBookShelf } from "../hooks/useFetchBookShelf";
 
 const Profilepage = () => {
   const {loggedInUserBooks} = useContext(LoginUserContext);
+  const [loading, setLoading] = useState(true);
 
-
-  const {loading} = useFetchBookShelf();
 
   const userBooks = loggedInUserBooks;
   console.log('loggedInUserBooks', userBooks);

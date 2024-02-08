@@ -11,6 +11,8 @@ export const useSessionStorage = () => {
 
     useEffect(() => {
         const books = JSON.parse(sessionStorage.getItem('books') || '{}');
+        console.log('sessionstorage', books);
+        
         const selectedCategoryText = JSON.parse(sessionStorage.getItem('categoryText') || '{}');
         const selectedCategory = JSON.parse(sessionStorage.getItem('selectedCategory') || '{}');
         const storedUser = sessionStorage.getItem('user');

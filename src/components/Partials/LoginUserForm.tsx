@@ -4,7 +4,7 @@ import { auth } from "../../services/Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { LoginUserContext } from "../../context/LoginUserContext";
-
+import { fetchBookShelf } from "../../utils/fetchBookShelf";
 
 
 const LoginUserForm =  () => {
@@ -20,6 +20,7 @@ const LoginUserForm =  () => {
             const user = {email: auth.currentUser?.email, uid: auth.currentUser?.uid}
             sessionStorage.setItem('user', JSON.stringify(user));
             setLoggedInUser(user);
+            fetchBookShelf({user})
         }catch (error) {
             console.log(error);
             setError('ett fel uppstod vid inloggningen')

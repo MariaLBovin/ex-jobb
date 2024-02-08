@@ -1,14 +1,10 @@
-import { useContext, useEffect } from "react";
+
 import { categoriesArray } from "../arrays/categoriesArray";
-import { BooksContext, IGetBooksContext } from "../context/IGetBooksContext";
 import { getAllBooks } from "../services/BooksCollector";
 import { IBookItem } from "../models/IBookItem";
 
-export const useFetchAllData = () => {
-    const {setBookResponse} = useContext<IGetBooksContext>(BooksContext);
+export const fetchAllData = async () => {
 
-    useEffect(() => {
-      const fetchAllData = async () => {
         const subjects = categoriesArray
           .map((category) => category.query)
           .flat()
@@ -21,6 +17,8 @@ export const useFetchAllData = () => {
           try {
             let books: IBookItem[] = []
             const response = await getAllBooks({ subjects });
+            console.log('hämtar all data');
+            
             if(response){
               books = response.items
               .filter(e => e)
@@ -33,9 +31,6 @@ export const useFetchAllData = () => {
             console.log(error);
           }
         }
-      };
-  
-      fetchAllData();
-    }, [setBookResponse]);
+        
   };
   

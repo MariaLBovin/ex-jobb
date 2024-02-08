@@ -5,8 +5,11 @@ import { useContext} from "react";
 import { BooksContext, IGetBooksContext } from "../context/IGetBooksContext";
 import { changeCategory } from "../utils/changeCategoryUtils";
 
+
+
 const Categories = () => {
   const { setBookResponse, setSelectedCategory, setSelectedCategoryText } = useContext<IGetBooksContext>(BooksContext);
+
   const displayCategory = (selectedCategory: string[], categoryText: string) => {
     const filteredBooks = changeCategory(selectedCategory);
     

@@ -1,18 +1,32 @@
 import Categories from "./Categories"
 import BookSearch from "./Booksearch"
-import { useFetchBookShelf } from "../hooks/useFetchBookShelf";
-import { useFetchAllData } from "../hooks/useFetchAllData";
-import { useFetchInitialData } from "../hooks/useFetchInitalData";
-import { useSessionStorage } from "../hooks/useSessionStorage";
+import { fetchAllData } from "../utils/fetchAllData";
+import { fetchInitialData } from "../utils/fetchInitalData";
+import { useContext, useEffect} from "react";
+import { BooksContext } from "../context/IGetBooksContext";
 
 
 const Home = () => {
+  const {setBookResponse, setSelectedCategory, setSelectedCategoryText} = useContext(BooksContext)
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchInitialData();
+        if(data){
+          const { books, initialCategory, categoryText } = data;
+          setBookResponse(books);
+          setSelectedCategory(initialCategory);
+          setSelectedCategoryText(categoryText);
+        }
+        await fetchAllData();
+      } catch (error) {
+        console.error('Fel vid hämtning av data:', error);
+      }
+    };
 
-  useFetchInitialData();
-  useFetchAllData();
-  useFetchBookShelf();
-  useSessionStorage();
+    fetchData();
+  }, [setBookResponse,setSelectedCategory,setSelectedCategoryText]);
 
   return (
     <>

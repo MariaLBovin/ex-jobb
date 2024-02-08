@@ -3,22 +3,25 @@ import { BooksContext } from "../../context/IGetBooksContext"
 import { NavLink} from "react-router-dom";
 import Booklist from "./Booklist";
 import { filterUniqueBooks } from "../../utils/filterUniqeBooks";
-
-
+import { useSessionStorage } from "../../hooks/useSessionStorage";
+import { IBookItem } from "../../models/IBookItem";
 
 
 const DisplayBooks = () => {
   const {bookResponse, selectedCategoryText} =useContext(BooksContext)  
+  useSessionStorage();
+  let filteredBooks:IBookItem[] = [];
 
-  const sortedBooks = bookResponse
-    .slice(0, 6)
-    .sort((a, b) => {
-      const dateA: Date = new Date(a.volumeInfo.publishedDate);
-      const dateB: Date = new Date(b.volumeInfo.publishedDate);
-      return dateB.getTime() - dateA.getTime();
-    });
-
-    const filteredBooks = filterUniqueBooks(sortedBooks);
+  if (bookResponse && bookResponse.length > 0) {
+    const sortedBooks = bookResponse
+      .slice(0, 6)
+      .sort((a, b) => {
+        const dateA = new Date(a.volumeInfo.publishedDate);
+        const dateB = new Date(b.volumeInfo.publishedDate);
+        return dateB.getTime() - dateA.getTime();
+      });
+    filteredBooks = filterUniqueBooks(sortedBooks);
+  }
 
   return (
     <>
