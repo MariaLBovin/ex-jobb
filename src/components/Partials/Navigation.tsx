@@ -17,7 +17,7 @@ const Navigation = ({mainMenuOpen,  toggleSubMenu, subMenuOpen, toggleMainMenu} 
   const {loggedInUser, setLoggedInUser} = useContext(LoginUserContext);
 
   const toggleMenu = () => {
-    if (window.innerWidth < 760){
+    if (window.innerWidth < 990){
       toggleMainMenu();
     }
   }

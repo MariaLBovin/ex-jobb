@@ -24,6 +24,9 @@
         display: flex;
 
         @include breakpoint (m){
+            width: 200px;
+        }
+        @include breakpoint(l){
             width: 250px;
         }
         &-button {
@@ -91,6 +94,12 @@
             color: $primary;
             width: 230px;
 
+            @include breakpoint (m){
+                font-size: 2.4rem;
+                width: 150px;
+                text-align: center;
+            }
+
             &:not(:first-child):hover {
                 text-decoration: underline;
               }
@@ -103,11 +112,6 @@
                 gap: 8px;
             }
 
-            @include breakpoint (m) {
-                font-size: 3.2rem;
-                text-align: center;
-
-            }
         } 
         &-inner {
             &Wrapper {
@@ -151,9 +155,7 @@
                     font-size: 2.4rem;
                 }
                 @include breakpoint (m) {
-                    font-size: 3rem;
-
-                    
+              
                 }
 
                 &:hover{
@@ -165,146 +167,3 @@
     
 
 }
-
-// .header {
-//     &-container {
-//         @extend %container;
-//         background-color: $secondary;
-//         padding-top: calc($gutter/2);
-//         z-index: 999;
-//         padding-bottom: calc($gutter / 2);
-//     }
-//     &-wrapper {
-//         display: flex;
-//         flex-direction: row;
-//         align-items: center;
-//     }
-//     &-logo {
-//         width: 150px;
-//     }
-
-//     &-button{
-//         @extend %buttonreset;
-//         position: fixed;
-//         right: 16px;
-//         z-index: 999;
-
-//         @include breakpoint (m) {
-//             display: none;
-//         }
-//     }
-
-//     &-symbol {
-//         line-height: 1.5;
-//         color: $primary;
-//         font-size: 3.2rem;  
-//     }
-
-//     &-nav {
-//         position: fixed;
-//         top: 0;
-//         left: 0;
-//         background-color: $secondary;
-//         box-shadow: 0 5px 5px black;
-//         width: 100%;
-
-//         @include breakpoint (s) {
-//             position: relative;
-//             box-shadow: none;
-//         }
-
-//         &-wrapper {
-//             display: flex;
-//             flex-direction: column;
-
-//             @include breakpoint (s) {
-//                 position: absolute;
-//                 right: 0;
-//                 flex-direction: row;
-//             }
-//         }
-
-//         &-list {
-//             @extend %listreset;
-//             padding: 32px 16px;
-//             color: $primary;
-//             font-size: 2rem;
-//             display: none;
-//             width: fit-content;
-
-//                 &.active {
-//                     display: flex;
-//                     flex-direction: column;
-                    
-//                     @include breakpoint (m) {
-//                         display: flex;
-//                         flex-direction: row;
-//                         padding: 0;
-//                         background-color: transparent;
-//                         position: relative;
-//                         box-shadow: 0 0 0;
-//                     }
-//                 }
-//         }
-
-//         &-item {
-
-//             @include breakpoint (m) {
-//                 width: 200px;
-//                 text-align: center;
-//             }
-//         }
-        
-//         &-inner {
-//             &Wrapper {
-//                 @include breakpoint (m) {
-//                     display: flex;
-//                     flex-direction: column;
-//                     background-color: $secondary;
-//                     position: fixed;
-//                     min-width: 100%;
-//                     top: calc($gutter*2);
-//                     left: 0;
-//                     box-shadow: 0 5px 5px black;
-//                 }
-//             }
-//             &Nav {
-
-//                 @include breakpoint (m) {
-//                     display: flex;
-//                     justify-content: end;
-//                     position: relative;
-//                     right: 180px;
-//                 }
-                
-//             }
-//             &Menu {
-//                 @extend %listreset;
-//                 padding-left: 16px;
-//                 font-weight: lighter;
-//                 display: none;
-//                 color: $primary;
-
-//                 &.active {
-//                     display: flex;
-//                     flex-direction: column;
-                    
-//                 }
-//             }
-//             &Button {
-//                 @extend %buttonreset;
-//                 color: inherit;
-//                 display: flex;
-//                 align-items: center;
-//             }
-            
-//             &Item {
-//                 padding-left: calc($gutter/2);
-
-
-//             }
-            
-//         }
-//     }
-
-// }
