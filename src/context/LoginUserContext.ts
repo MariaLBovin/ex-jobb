@@ -7,11 +7,15 @@ export interface ILogInUserContext {
     setLoggedInUser: React.Dispatch<React.SetStateAction<IUserInfo| null>>
     loggedInUserBooks: IBookItem[] | null,
     setLoggedInUserBooks: React.Dispatch<React.SetStateAction<IBookItem[]| null>>
+    loading: boolean;
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const LoginUserContext = createContext(<ILogInUserContext>{
     loggedInUser: null, 
     setLoggedInUser: () => {},
     loggedInUserBooks: null,
-    setLoggedInUserBooks: () => {}
+    setLoggedInUserBooks: () => {},
+    loading: true,
+    setLoading: () => {}
 })

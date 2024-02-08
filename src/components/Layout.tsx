@@ -16,6 +16,7 @@ const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
 const [selectedCategoryText, setSelectedCategoryText] = useState<string>('Skönlitteratur');
 const [loggedInUser, setLoggedInUser] = useState< IUserInfo| null >(null);
 const [loggedInUserBooks, setLoggedInUserBooks] =useState<IBookItem[] | null>( null);
+const [loading, setLoading] =useState<boolean>(false)
 
 const toggleMainMenu = () => {
   setmainMenuOpen(!mainMenuOpen);
@@ -33,7 +34,7 @@ setSubMenuOpen(!subMenuOpen);
 return (
     <>
   <ScrollToTop></ScrollToTop>
-  <LoginUserContext.Provider value={{loggedInUser, setLoggedInUser, loggedInUserBooks, setLoggedInUserBooks}}>
+  <LoginUserContext.Provider value={{loggedInUser, setLoggedInUser, loggedInUserBooks, setLoggedInUserBooks, loading,setLoading}}>
     <BooksContext.Provider value={{bookResponse, setBookResponse, selectedCategory, setSelectedCategory, selectedCategoryText, setSelectedCategoryText }}>
     <Header
       onToggleSubMenu={toggleSubMenu}

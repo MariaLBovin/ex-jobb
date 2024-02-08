@@ -9,21 +9,26 @@ import { fetchBookShelf } from "../../utils/fetchBookShelf";
 
 const LoginUserForm =  () => {
     const [error, setError] = useState('');
-    const {setLoggedInUser} = useContext(LoginUserContext);
+    const {setLoggedInUser, setLoading, setLoggedInUserBooks} = useContext(LoginUserContext);
     const navigate = useNavigate();
 
     const handleLogIn = async (email: string, password: string) => {
         
         try{
+            setLoading(true)
             await signInWithEmailAndPassword(auth, email, password);
             navigate('/min-sida');
             const user = {email: auth.currentUser?.email, uid: auth.currentUser?.uid}
             sessionStorage.setItem('user', JSON.stringify(user));
             setLoggedInUser(user);
-            fetchBookShelf({user})
+            const books= await fetchBookShelf({user})
+            setLoggedInUserBooks(books ?? null)
+            
         }catch (error) {
             console.log(error);
             setError('ett fel uppstod vid inloggningen')
+        }finally{
+          setLoading(false)
         }
     }
 

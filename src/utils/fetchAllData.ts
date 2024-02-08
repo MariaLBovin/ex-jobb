@@ -23,9 +23,12 @@ export const fetchAllData = async () => {
               books = response.items
               .filter(e => e)
               .filter(book => book.volumeInfo.categories && book.volumeInfo.categories.length > 0);
+                books = books.filter(book => !existingData.some((existingBook: { id: string; }) => existingBook.id === book.id));
             }
-            const existingData = JSON.parse(sessionStorage.getItem('bookData') || '{}');
+            
             const updatedData = existingData.concat(books)
+            console.log(updatedData);
+            
             sessionStorage.setItem('bookData', JSON.stringify(updatedData));
           } catch (error) {
             console.log(error);

@@ -19,7 +19,5 @@ export const changeCategory = (selectedCategory: string[]) => {
       
       return filteredBooks;
       
-      
-    
   }
 

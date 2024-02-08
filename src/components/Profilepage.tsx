@@ -1,21 +1,42 @@
-import { useContext, useState} from "react";
+import { useContext, useEffect} from "react";
 import { LoginUserContext } from "../context/LoginUserContext";
-import Booklist from "./Partials/Booklist";
+
 import { NavLink } from "react-router-dom";
 import Spinner from "./Partials/Spinner";
+import Booklist from "./Partials/Booklist";
+import { useSessionStorage } from "../hooks/useSessionStorage";
+import { fetchBookShelf } from "../utils/fetchBookShelf";
+
+
+
 
 const Profilepage = () => {
-  const {loggedInUserBooks} = useContext(LoginUserContext);
-  const [loading, setLoading] = useState(true);
+ const {loading, loggedInUserBooks, loggedInUser, setLoggedInUserBooks, setLoading} =useContext(LoginUserContext)
 
+  useSessionStorage();
 
-  const userBooks = loggedInUserBooks;
-  console.log('loggedInUserBooks', userBooks);
+  useEffect(() => {
+    const fetchUserBooks = async () => {
+      try {
+        setLoading(true);
+        const books = await fetchBookShelf({ user: loggedInUser });
+        setLoggedInUserBooks(books ?? null);
+      } catch (error) {
+        console.error('Fel vid hämtning av användarens böcker:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserBooks();
+  }, [loggedInUser, setLoggedInUserBooks, setLoading]);
+  const userBooks =loggedInUserBooks
   
   const storedBooks = JSON.parse(sessionStorage.getItem('books') || '[]');
-    const updatedBooks = storedBooks.concat(loggedInUserBooks);
+    const updatedBooks = storedBooks.concat(userBooks);
     sessionStorage.setItem('books', JSON.stringify(updatedBooks))
  
+  console.log(loading);
   
   return (
     <>
