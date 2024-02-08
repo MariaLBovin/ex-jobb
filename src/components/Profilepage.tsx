@@ -3,18 +3,22 @@ import { LoginUserContext } from "../context/LoginUserContext";
 import Booklist from "./Partials/Booklist";
 import { NavLink } from "react-router-dom";
 import Spinner from "./Partials/Spinner";
-import { useSessionStorage } from "../hooks/useSessionStorage";
 import { useFetchBookShelf } from "../hooks/useFetchBookShelf";
 
 const Profilepage = () => {
   const {loggedInUserBooks} = useContext(LoginUserContext);
 
-  useSessionStorage();
+
   const {loading} = useFetchBookShelf();
 
   const userBooks = loggedInUserBooks;
-  sessionStorage.setItem('books', JSON.stringify(userBooks));
-
+  console.log('loggedInUserBooks', userBooks);
+  
+  const storedBooks = JSON.parse(sessionStorage.getItem('books') || '[]');
+    const updatedBooks = storedBooks.concat(loggedInUserBooks);
+    sessionStorage.setItem('books', JSON.stringify(updatedBooks))
+ 
+  
   return (
     <>
     <section className="profile-container">

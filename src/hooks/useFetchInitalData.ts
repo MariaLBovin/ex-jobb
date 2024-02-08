@@ -3,58 +3,51 @@ import { BooksContext, IGetBooksContext } from "../context/IGetBooksContext";
 import { IBookItem } from "../models/IBookItem";
 import { getInitalBooks } from "../services/BooksCollector";
 
+
 export const useFetchInitialData = () => {
   const {
     setBookResponse,
-    selectedCategory,
     setSelectedCategory,
-    selectedCategoryText
+    setSelectedCategoryText
   } = useContext<IGetBooksContext>(BooksContext);
 
   useEffect(() => {
     const fetchInitialData = async () => {
     setBookResponse([]);
-    const existingData = JSON.parse(sessionStorage.getItem('bookData') || '{}');
-    const initialCategory =
-      selectedCategory && selectedCategory.length > 0 ? selectedCategory : ['Fiction'];
-    const categoryText = selectedCategoryText || 'Skönlitteratur';
-      console.log(initialCategory);
-      
+    
+    const initialCategory = ['Fiction'];
+    const categoryText = 'Skönlitteratur';
+   
     try {
       let books: IBookItem[]= [];
-      if (existingData && existingData.items && existingData.items.length > 0) {
-        books = Array.from<IBookItem>(existingData.items)
-          .filter(e => e)
-          .filter(book => book.volumeInfo.categories && book.volumeInfo.categories.length > 0);
+      const existingData = JSON.parse(sessionStorage.getItem('bookData') || '{}')
+      if (existingData.length > 0) {
+
+        return;
       } else {
         const response = await getInitalBooks({ subject: 'fiction' });
 
+        
         if (response) {
           books = response.items
             .filter(e => e)
             .filter(book => book.volumeInfo.categories && book.volumeInfo.categories.length > 0);
           setBookResponse(books);
-          sessionStorage.setItem('bookData', JSON.stringify(response));
+          setSelectedCategory(initialCategory);
+          setSelectedCategoryText(categoryText);
+          sessionStorage.setItem('books', JSON.stringify(books));
+          sessionStorage.setItem('bookData', JSON.stringify(books))
           sessionStorage.setItem('categoryText', JSON.stringify(categoryText));
+          sessionStorage.setItem('selectedCategory', JSON.stringify(initialCategory));
+
         }
+
       }
 
-      const initialBooks = books.filter((book: IBookItem) => {
-        const bookCategories = book.volumeInfo.categories;
-        return bookCategories.some(cat => initialCategory.includes(cat));
-      });
-      
-      
-      setBookResponse(initialBooks);
-      setSelectedCategory(initialCategory);
-      sessionStorage.setItem('books', JSON.stringify(initialBooks));
-      sessionStorage.setItem('selectedCategory', JSON.stringify(initialCategory));
-      
-      
     } catch (error) {
       console.log(error);
     }
   };
   fetchInitialData()
-  }, [setBookResponse, selectedCategory, setSelectedCategory, selectedCategoryText])
+  }, [setBookResponse, setSelectedCategory, setSelectedCategoryText])
 };

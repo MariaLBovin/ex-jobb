@@ -5,12 +5,10 @@ import Booklist from "./Booklist";
 import { filterUniqueBooks } from "../../utils/filterUniqeBooks";
 
 
+
+
 const DisplayBooks = () => {
   const {bookResponse, selectedCategoryText} =useContext(BooksContext)  
-
-  if (!bookResponse) {
-    return null; 
-  }
 
   const sortedBooks = bookResponse
     .slice(0, 6)

@@ -11,24 +11,27 @@ export const useSessionStorage = () => {
 
     useEffect(() => {
         const books = JSON.parse(sessionStorage.getItem('books') || '{}');
+        const selectedCategoryText = JSON.parse(sessionStorage.getItem('categoryText') || '{}');
         const selectedCategory = JSON.parse(sessionStorage.getItem('selectedCategory') || '{}');
         const storedUser = sessionStorage.getItem('user');
         const loggedInUser = storedUser ? JSON.parse(storedUser) : null;
         const userBooks = JSON.parse(sessionStorage.getItem('userBooks') || '{}')
 
-
-        
         setBookResponse(books);
         setSelectedCategory(selectedCategory);
         setLoggedInUser(loggedInUser);
         setLoggedInUserBooks(userBooks);
+        setSelectedCategoryText(selectedCategoryText);
 
     },[setBookResponse, setSelectedCategory, setSelectedCategoryText, setLoggedInUser, setLoggedInUserBooks])
 
-    const updateSessionStorage = (newBook: IBookItem) => {
+    const updateSessionStorage = (newBooks: IBookItem[]) => {
         const storedBooks = JSON.parse(sessionStorage.getItem('books') || '[]');
-        const updatedBooks = [...storedBooks, newBook];
+        console.log(newBooks);
+        
+        const updatedBooks = storedBooks.concat(newBooks)
         sessionStorage.setItem('books', JSON.stringify(updatedBooks));
+        setBookResponse(updatedBooks)
         console.log(updatedBooks);
         
       };

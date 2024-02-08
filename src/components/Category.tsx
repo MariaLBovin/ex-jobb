@@ -11,12 +11,7 @@ const Category = () => {
   const navigate = useNavigate();
   const {bookResponse, selectedCategoryText} = useContext(BooksContext);
 
-  console.log(selectedCategoryText);
-  
-
-    useSessionStorage();
-
-  
+  useSessionStorage();
   const books = bookResponse.map((book) => book);
 
   const filteredBooks = filterUniqueBooks(books);
@@ -40,7 +35,7 @@ const Category = () => {
             <Booklist books={filteredBooks} isCategoryPage={true} isProfilePage={false}></Booklist>
           </ul>
             <div className="category-footer">
-              <button className="category-footer-button" aria-lable='navigate back' onClick={handleNavigate}>
+              <button className="category-footer-button" aria-label='navigate back' onClick={handleNavigate}>
                 Tillbaka
                 <i className="fa-solid fa-angles-left"></i>
               </button>

@@ -1,6 +1,7 @@
 export interface IAIResponse {
     
       choices: [{
+        message: any;
         text: string;
         index: number;
         logprobs: null | string;

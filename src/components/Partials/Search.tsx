@@ -30,26 +30,34 @@ const Search =  () => {
     try {
       const response = await getBookRecommendation(searchString);
       if (response) {
-
-        const text= response.choices[0].text;
+        
+        const text= response.choices[0]?.message?.content;
+        console.log(text);
+        const titleIndex = text.indexOf('Titel:');
+          const authorIndex = text.indexOf('Författare:');
+  
+          const extractedTitle = titleIndex !== -1
+          ? text.substring(titleIndex + 'Titel:'.length, authorIndex).trim()
+          : null;
+        
+          const extractedAuthor = authorIndex !== -1
+          ? text.substring(authorIndex + 'Författare:'.length).trim()
+          : null;
 
         const fetchBook = async () => {
-          const startIndex = text.indexOf('"') + 1;
-          const endIndex = text.indexOf('"', startIndex);
-          if (startIndex !== -1 && endIndex !== -1) {
-            const extractedTitle = text.substring(startIndex, endIndex); 
-            const author = text.substring(endIndex + 5);
-  
-          try {
-            const response = await getSingleBook({extractedTitle: extractedTitle, author: author});
+          
 
+          try {
+            const response = await getSingleBook({extractedTitle: extractedTitle, author: extractedAuthor});
+            console.log(response);
+            
             if(response.totalItems > 0){
               const books = response.items.filter(e => e)
-
+              
               setBookdata(books);
               setBookResponse((prevbooks) => [...prevbooks,...books]);
               setSearchPerformed(true);
-              updateSessionStorage(books[0])
+              updateSessionStorage(books)
             } else{
               setSearchPerformed(true)
               setBookdata(null)
@@ -58,9 +66,9 @@ const Search =  () => {
             }catch(error) {
               console.log(error);
           }
-         }
+
       }
-      setPText(`Jag rekommenderar att du läser ${text}. `);
+      setPText(`Jag rekommenderar att du läser ${extractedTitle} av ${extractedAuthor}. `);
       fetchBook();
       setError(false);
       }

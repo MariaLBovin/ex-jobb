@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BooksContext } from "../../context/IGetBooksContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSessionStorage } from "../../hooks/useSessionStorage";
@@ -18,45 +18,29 @@ const DisplaySinglebook = () => {
     useSessionStorage();
 
     const cleanHtmlTags = (htmlText:string) => {
-      return htmlText.replace(/<\/?p>/g, ''); // This regex removes <p> and </p> tags
+      return htmlText.replace(/<\/?p>/g, '');
     };
-  
-    const book = bookResponse.find((book) => book.id === id);
-  
+
+    const book = bookResponse?.find((book) => book.id === id);
     console.log(book);
-  
-    // Use the cleanHtmlTags function to remove <p> tags
+
     const cleanedDescription = book?.volumeInfo.description
       ? cleanHtmlTags(book.volumeInfo.description)
       : '';
 
-
     const imgZoom = 5;
-    const isBookAlreadySaved = loggedInUserBooks?.some(savedBook => savedBook.id === book?.id);
 
-    const renderBookButtons = () => {
-      if (isBookAlreadySaved) {
-        return (
-          <button
-            className="bookpage-heading-button"
-            onClick={handleSave}
-            disabled={true}
-          >
-            Sparad
-          </button>
+    useEffect(() => {
+      if (loggedInUser && loggedInUserBooks) {
+        const isBookAlreadySaved = loggedInUserBooks.some(
+          (savedBook) => savedBook.id === id
         );
+        if (isBookAlreadySaved) {
+          setClicked(true);
+        }
       }
-  
-      return (
-        <button
-          className="bookpage-heading-button"
-          onClick={handleSave}
-          disabled={isClicked}
-        >
-          {isClicked ? 'Sparad' : 'Spara'}
-        </button>
-      );
-    };
+    }, [loggedInUser, loggedInUserBooks, id]);
+
     const handleNavigate = () => {
       navigate(-1)
     };
@@ -66,9 +50,7 @@ const DisplaySinglebook = () => {
         navigate('/login');
         return;
       }
-    
       try {
-        
         await handleSaveUserBook({ loggedInUser, book });
         setClicked(true);
       } catch (error) {
@@ -76,7 +58,6 @@ const DisplaySinglebook = () => {
       }
     };
 
-    
     const handleRemove= async() => {
       try {
         if (!loggedInUser || !book) {
@@ -92,7 +73,6 @@ const DisplaySinglebook = () => {
         console.error('Fel vid borttagning av bok:', error);
       }
     }
-
 
   return (
     <>
@@ -116,16 +96,21 @@ const DisplaySinglebook = () => {
                     <a href={`https://www.bokus.com/bok/${book?.volumeInfo.industryIdentifiers[0].identifier}`} target="_blank">Köp</a>
                   </button>
                   {!isProfilePage ? (
-                  renderBookButtons()
-                ) : (
-                  <button
-                    className="bookpage-heading-button"
-                    onClick={handleRemove}
-                    disabled={isClicked}
-                  >
-                    {isClicked ? 'Borttagen' : 'Ta bort'}
-                  </button>
-                )}
+                    <button
+                      className="bookpage-heading-button"
+                      onClick={handleSave}
+                      disabled={isClicked}
+                    >
+                      {isClicked ? 'Sparad' : 'Spara'}
+                    </button>
+                    ) : (
+                    <button
+                      className="bookpage-heading-button"
+                      onClick={handleRemove} 
+                    >
+                     Ta bort
+                    </button>
+                    )}
                   </div>
                 </div>
                 <div className='bookpage-heading-image'>

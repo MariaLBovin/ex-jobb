@@ -3,6 +3,7 @@ import { getBookWithId } from "../services/BooksCollector";
 import { fetchFromDb } from "../services/DatabaseCollector";
 import { LoginUserContext } from "../context/LoginUserContext";
 
+
 export const useFetchBookShelf = () => {
     const {loggedInUser, setLoggedInUserBooks} = useContext(LoginUserContext)
     const [loading, setLoading] = useState(true);
@@ -11,15 +12,13 @@ export const useFetchBookShelf = () => {
         const fetchData = async () => {
           try {
             if (!loggedInUser) {
-              
               return;
             }
             console.log(loggedInUser);
             
             const dbData = await fetchFromDb({userId: loggedInUser.uid});
-            
             const bookIDs = dbData
-    
+  
             await new Promise(resolve => setTimeout(resolve, 1000))
     
             const booksData = await getBookWithId({bookIDs});
@@ -34,6 +33,6 @@ export const useFetchBookShelf = () => {
         };
     
         fetchData();
-      }, [setLoggedInUserBooks, loggedInUser]);
+      }, [setLoggedInUserBooks, loggedInUser, ]);
       return {loading}
 }

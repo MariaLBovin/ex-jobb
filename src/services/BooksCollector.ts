@@ -5,15 +5,8 @@ import { IGetAllBooks, IGetBook, IGetBookWithId, IGetBooks } from "../models/IGe
 import { get, post } from "./ServiceBse";
 import { IAIResponse } from "../models/IAIResponse";
 import { IBookItem } from "../models/IBookItem";
+import { IAPIBody } from "../models/IAPIBody";
 
-
-interface IAPIBody {
-  model: string,
-  prompt: string,
-  temperature: number,
-  max_tokens: number,
-  top_p:number
-}
 
 const req_spec = import.meta.env.VITE_REQUEST_SPEC;
 const req_spec_single = import.meta.env.VITE_REQUEST_SPEC_SINGLE
@@ -55,10 +48,27 @@ export const getSingleBook =async (params:IGetBook) => {
 
 export const getBookRecommendation = async (title: string) => {
   const APIBody: IAPIBody = {
-    model: 'gpt-3.5-turbo-instruct',
-    prompt: `'Rekommendera en bok baserat på ${title}. Svara bara med titel och författare. '`,
+    model: 'gpt-3.5-turbo',
+    messages: [
+      {
+        "role": "system",
+        "content": "Du är en bibliotikarie som tipsar om liknande böcker som den angivna. Det måste vara en bok som finns"
+      },
+      {
+        "role": "user",
+        "content": "Harry Potter"
+      },
+      {
+        "role": "assistant",
+        "content": "Titel: Amari och Nattbröderna Författare: BB Alston"
+      },
+      {
+        "role": "user",
+        "content": `${title}`
+      }
+    ],
     temperature: 0.1,
-    max_tokens: 20,
+    max_tokens: 100,
     top_p: 1,
   };
 
