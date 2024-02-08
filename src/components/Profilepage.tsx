@@ -35,9 +35,7 @@ const Profilepage = () => {
   const storedBooks = JSON.parse(sessionStorage.getItem('books') || '[]');
     const updatedBooks = storedBooks.concat(userBooks);
     sessionStorage.setItem('books', JSON.stringify(updatedBooks))
- 
-  console.log(loading);
-  
+
   return (
     <>
     <section className="profile-container">

@@ -15,7 +15,6 @@ const SubMenu = ({subMenuOpen, toggleMainMenu, toggleSubMenu} :DesktopNavProps) 
 
   const displayChosenCategory = (selectedCategory: string[], categoryText: string) => {
     const filteredBooks = changeCategory(selectedCategory);
-    console.log(filteredBooks);
 
     sessionStorage.setItem('books', JSON.stringify(filteredBooks));
     sessionStorage.setItem('categoryText', JSON.stringify(categoryText));

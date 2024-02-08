@@ -17,8 +17,7 @@ export const fetchAllData = async () => {
           try {
             let books: IBookItem[] = []
             const response = await getAllBooks({ subjects });
-            console.log('hämtar all data');
-            
+
             if(response){
               books = response.items
               .filter(e => e)
@@ -27,7 +26,6 @@ export const fetchAllData = async () => {
             }
             
             const updatedData = existingData.concat(books)
-            console.log(updatedData);
             
             sessionStorage.setItem('bookData', JSON.stringify(updatedData));
           } catch (error) {

@@ -32,7 +32,6 @@ const Search =  () => {
       if (response) {
         
         const text= response.choices[0]?.message?.content;
-        console.log(text);
         const titleIndex = text.indexOf('Titel:');
           const authorIndex = text.indexOf('Författare:');
   
@@ -49,7 +48,6 @@ const Search =  () => {
 
           try {
             const response = await getSingleBook({extractedTitle: extractedTitle, author: extractedAuthor});
-            console.log(response);
             
             if(response.totalItems > 0){
               const books = response.items.filter(e => e)

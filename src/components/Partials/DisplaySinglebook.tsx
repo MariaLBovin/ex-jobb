@@ -22,7 +22,6 @@ const DisplaySinglebook = () => {
     };
 
     const book = bookResponse?.find((book) => book.id === id);
-    console.log(book);
 
     const cleanedDescription = book?.volumeInfo.description
       ? cleanHtmlTags(book.volumeInfo.description)

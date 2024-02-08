@@ -35,10 +35,7 @@ export const getAllBooks = async (params: IGetAllBooks): Promise<IBookList> => {
     responses.forEach(response => {
       combinedBookList.items = combinedBookList.items.concat(response.items);
     });
-    console.log(combinedBookList, 'combined booklist');
     return combinedBookList;
-    
-    
   };
 
 export const getSingleBook =async (params:IGetBook) => {

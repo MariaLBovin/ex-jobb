@@ -44,7 +44,5 @@ export const removeFromDb = async ({ userId, bookId }: { userId: string | undefi
     querySnapshot.forEach(async (doc) => {
       await deleteDoc(doc.ref);
     });
-
-    console.log('Boken har tagits bort för användaren:', userId);
   
 };

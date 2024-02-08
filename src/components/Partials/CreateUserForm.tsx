@@ -34,10 +34,8 @@ import { FirebaseError } from "firebase/app";
         }
 
         await createUserWithEmailAndPassword(auth, email, password);
-        console.log('Användare skapad');
 
         await signInWithEmailAndPassword(auth, email, password);
-        console.log('Användare inloggad');
 
         const user = {email: auth.currentUser?.email, uid: auth.currentUser?.uid}
         sessionStorage.setItem('user', JSON.stringify(user));

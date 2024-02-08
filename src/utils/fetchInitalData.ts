@@ -14,7 +14,6 @@ export const fetchInitialData = async () => {
         return;
       } else {
         const response = await getInitalBooks({ subject: 'fiction' });
-        console.log('hämtar initial data');
         
         if (response) {
           books = response.items
