@@ -23,15 +23,14 @@ const Booklist = ({books, isCategoryPage, isProfilePage}: BooklistProps) => {
             </div>
             <div className="category-text">
                 <p className="category-title">{title}</p>
-                    {authors && authors.length > 0 ? (
-                    authors.map((author, authorIndex) => (
-                <p className="category-author" key={authorIndex}>
-                     {author}
+                {authors && authors.length > 0 ? (
+                <p className="category-author">
+                {authors[0]}{authors.length > 1 && " mfl"}
                 </p>
-                    ))
-                    ) : (
-                <p className="category-author"></p>
-                    )}
+        ) : (
+    <p className="category-author"></p>
+)}
+
             </div>
             <div className="category-buttonWrapper">
                 <button className="category-button">

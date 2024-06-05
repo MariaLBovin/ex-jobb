@@ -79,7 +79,10 @@
         font-weight: 700;
         padding-bottom: 8px
     }
-
+    &-author{
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
     &-button {
         @extend %primarybutton;
         width: 100%;
