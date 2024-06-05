@@ -1,6 +1,10 @@
+export interface IMessageContent {
+  type: string;
+  text: string;
+}
 export interface IMessage {
   role: string;
-  content: string;
+  content: IMessageContent[];
 }
 
 export interface IAPIBody {

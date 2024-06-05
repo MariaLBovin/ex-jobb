@@ -47,23 +47,79 @@ export const getSingleBook =async (params:IGetBook) => {
 export const getBookRecommendation = async (title: string) => {
   const APIBody: IAPIBody = {
     model: 'gpt-3.5-turbo',
-    messages: [
+    "messages": [
       {
         "role": "system",
-        "content": "Du är en bibliotikarie som tipsar om liknande böcker som den angivna. Det måste vara en bok som finns"
+        "content": [
+          {
+            "type": "text",
+            "text": "Jag kommer mata in en titel och vill att du ger mig ett boktips baserade på den boken. Ta hänsyn till läsålder och genre. Svaret måste vara baserat på kända rekommendationer från litteraturkritiker och populära boklistor. Ge bara svenska förslag och svaret ska vara utformat så här: Titel: Författare:"
+          }
+        ]
       },
       {
         "role": "user",
-        "content": "Harry Potter"
+        "content": [
+          {
+            "type": "text",
+            "text": "Harry Potter\n"
+          }
+        ]
       },
       {
         "role": "assistant",
-        "content": "Titel: Amari och Nattbröderna Författare: BB Alston"
+        "content": [
+          {
+            "type": "text",
+            "text": "Titel: Cirkeln  \nFörfattare: Mats Strandberg och Sara Bergmark Elfgren"
+          }
+        ]
       },
       {
         "role": "user",
-        "content": `${title}`
-      }
+        "content": [
+          {
+            "type": "text",
+            "text": "Flicka, kvinna, annan"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Titel: Brinnande livet  \nFörfattare: Alice Munro"
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "1984\n"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Titel: Kallocain  \nFörfattare: Karin Boye"
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": `${title}`
+          }
+        ]
+      },
     ],
     temperature: 0.1,
     max_tokens: 100,

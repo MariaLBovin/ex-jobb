@@ -30,6 +30,7 @@ const Search =  () => {
     try {
       const response = await getBookRecommendation(searchString);
       if (response) {
+        console.log(response);
         
         const text= response.choices[0]?.message?.content;
         const titleIndex = text.indexOf('Titel:');
